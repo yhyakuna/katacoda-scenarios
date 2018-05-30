@@ -1,6 +1,8 @@
 {
   "title": "Vault ACL Policies",
   "description": "Learn how to create Vault Policies to govern your environment.",
+  "difficulty": "beginner",
+  "time": "5 minutes",
   "details": {
     "steps": [
       {
@@ -30,8 +32,7 @@
     }
   },
   "environment": {
-      "hideintro": true,
-      "hidefinish": true,
+      "showdashboard": true,
       "uilayout": "editor-terminal",
       "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
   },

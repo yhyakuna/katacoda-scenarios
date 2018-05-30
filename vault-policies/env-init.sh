@@ -15,6 +15,3 @@ sudo chown root:root /usr/bin/vault
 
 # Run Vault
 vault server -dev -dev-root-token-id="root"
-
-export VAULT_ADDR=http://localhost:8200
-vault login root

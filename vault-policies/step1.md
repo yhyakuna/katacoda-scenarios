@@ -1,4 +1,4 @@
-In the first step, you are going to author an ACL policy named, `base.hcl `.
+In the editor pane, select the file named, `base.hcl ` under `/root`.
 
 Write the following policy rules in the editor (the following snippet can be copied into the editor):
 

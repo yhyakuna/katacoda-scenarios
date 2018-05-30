@@ -1,6 +1,7 @@
 Execute the following command to create a policy:
 
 ```
+clear
 vault policy write base base.hcl
 ```{{execute}}
 

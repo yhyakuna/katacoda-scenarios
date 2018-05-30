@@ -3,7 +3,7 @@ In the editor pane, right-click on the root and select **New > File** to create 
 Write the following policy rules in the editor (the following snippet can be copied into the editor):
 
 <pre class="file" data-filename="base.hcl" data-target="replace">
-path "secret/training" {
+path "secret/data/training" {
    capabilities = ["create", "read", "update", "delete" ]
 }
 </pre>

@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-ssh root@[[HOST_IP]] 'echo "Host *" >> /root/.ssh/config && echo "    StrictHostKeyChecking no" >> /root/.ssh/config && chmod 400 /root/.ssh/config'
-
-
 # Get Vault
 export VAULT=0.10.1
 

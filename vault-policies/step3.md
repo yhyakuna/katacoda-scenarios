@@ -15,13 +15,16 @@ vault token create -h
 Create a new token:
 
 ```
+clear
 vault token create -policy="base"
 ```{{execute}}
 
-A built-in policy, `default`, is attached to all tokens and provides common permissions.
+> **NOTE:** A built-in policy, `default`, is attached to all tokens and provides common permissions.
 
 Authenticate with Vault using the generated `token`:
 
 ```
 vault login <token>
 ```
+
+Where `<token>` is the newly generated Vault token. 

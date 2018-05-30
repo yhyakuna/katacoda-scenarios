@@ -6,6 +6,8 @@ The following command **should** fail:
 vault policy list
 ```{{execute}}
 
+You should have received **"permission denied"** error. 
+
 Similarly, you won't be able to write secrets at `secret/apikey`:
 
 ```

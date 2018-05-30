@@ -1,4 +1,4 @@
-In the editor pane, select the file named, `base.hcl ` under `/root`.
+In the editor pane, right-click on the root and select **New > File** to create a file named, `base.hcl `.
 
 Write the following policy rules in the editor (the following snippet can be copied into the editor):
 

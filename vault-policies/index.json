@@ -1,11 +1,24 @@
 {
-  "title": "Managing Static Secrets using K/V Secret Engine",
-  "description": "Learn how to store your secrets using the key/value secret engine (kv-v2)",
+  "title": "Vault ACL Policies",
+  "description": "Learn how to create Vault Policies to govern your environment.",
   "details": {
     "steps": [
-      { "title": "Write an ACL policy", "text": "step1.md" },
-      { "title": "Create a policy", "text": "step2.md" },
-      { "title": "Create a token", "text": "step3.md" }
+      {
+        "title": "Write an ACL policy",
+        "text": "step1.md"
+      },
+      {
+        "title": "Create a policy",
+        "text": "step2.md"
+      },
+      {
+        "title": "Create a token",
+        "text": "step3.md"
+      },
+      {
+        "title": "Verify your policy",
+        "text": "step4.md"
+      }
     ],
     "intro": {
       "text": "intro.md",
@@ -22,6 +35,6 @@
       "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
   },
   "backend": {
-    "imageid": "docker"
+    "imageid": "bash"
   }
 }

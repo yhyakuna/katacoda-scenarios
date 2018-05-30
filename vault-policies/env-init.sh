@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Get Vault
-VAULT=0.10.1
+export VAULT=0.10.1
 
 echo "Installing Vault..."
 wget https://releases.hashicorp.com/vault/${VAULT}/vault_${VAULT}_linux_amd64.zip

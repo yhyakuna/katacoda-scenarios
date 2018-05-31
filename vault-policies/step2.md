@@ -5,13 +5,13 @@ clear
 vault policy write base base.hcl
 ```{{execute}}
 
-To verify that the policy was created, run the following command:
+Run the following command to list existing policies:
 
 ```
 vault policy list
 ```{{execute}}
 
-Run the following command to display the policy rules:
+The following command displays the policy you just created:
 
 ```
 vault policy read base

@@ -21,10 +21,18 @@ vault token create -policy="base"
 
 > **NOTE:** A built-in policy, `default`, is attached to all tokens and provides common permissions.
 
+<br>
+
 Authenticate with Vault using the generated `token`:
 
 ```
 vault login <token>
 ```
 
-Where `<token>` is the newly generated Vault token. 
+Where `<token>` is the newly generated Vault token.
+
+For example:
+
+```
+vault login c3ef68af-b3cf-56b1-5153-7323734c686b
+```

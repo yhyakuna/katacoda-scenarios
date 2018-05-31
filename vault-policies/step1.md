@@ -13,8 +13,9 @@ secret/       kv           key/value secret storage
 sys/          system       system endpoints used for control, policy and debugging
 ```
 
-For each of those path, you must write policies to allow any operation against it.
+For each of these path, you must write policies to allow any operation against it.
 
+<br>
 
 ### Write a Policy File
 
@@ -22,7 +23,7 @@ You are going to author an ACL policy in [HCL](https://github.com/hashicorp/hcl)
 
 In the editor pane, right-click on the `root` and select **New > File** to create a file named, `base.hcl `.
 
-Open the file in the editor, and enter the following policy rules in the editor (the following snippet can be copied into the editor):
+Select the `base.hcl ` file to open its editor, and enter the following policy rules in the editor (the following snippet can be copied into the editor):
 
 <pre class="file" data-filename="base.hcl" data-target="replace">
 path "secret/data/training" {
@@ -30,7 +31,15 @@ path "secret/data/training" {
 }
 </pre>
 
+Remember, an empty policy grants no permission in the system. Therefore, ACL policies are defined for each path.
 
+```
+path "<PATH>" {
+  capabilities = [ "<LIST_OF_CAPABILITIES>" ]
+}
+```
+
+The path can have a wildcard ("\*") at the end to allow for namespacing. For example, "secret/training_*" grants permissions on any path starting with "secret/training_" (e.g. secret/training_vault).
 
 
 Get help for the vault policy command:
@@ -43,5 +52,6 @@ vault policy -h
 To view the full list of optional parameters for `vault policy write` operation, run the following command:
 
 ```
+clear
 vault policy write -h
 ```{{execute}}

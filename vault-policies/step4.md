@@ -1,12 +1,10 @@
 Recall that the `base` policy only permits CRUD operations on `secret/training/` path.  
 
-The following command **should** fail:
+The following command **should** fail with **"permission denied"** error.:
 
 ```
 vault policy list
 ```{{execute}}
-
-You should have received **"permission denied"** error. 
 
 Similarly, you won't be able to write secrets at `secret/apikey`:
 
@@ -14,7 +12,7 @@ Similarly, you won't be able to write secrets at `secret/apikey`:
 vault kv put secret/apikey key="my-api-key"
 ```{{execute}}
 
-The following command should execute successfully:
+Finally, the following command should execute successfully:
 
 ```
 vault kv put secret/training scenario_name="Vault Policy"

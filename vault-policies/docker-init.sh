@@ -12,7 +12,7 @@ chown root:root /usr/bin/vault
 
 rm vault_${VAULT}_linux_amd64.zip
 
-apt-get install jq
+apt-get install -y jq 
 
 # Run Vault
 vault server -dev -dev-root-token-id="root"

@@ -30,6 +30,7 @@
     "intro": {
       "text": "intro.md",
       "code": "env-init.sh",
+      "courseData": "background.sh",
       "credits": ""
     },
     "finish": {

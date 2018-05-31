@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+apt install jq
+
 # Get Vault
 export VAULT=0.10.1
 wget https://releases.hashicorp.com/vault/${VAULT}/vault_${VAULT}_linux_amd64.zip
@@ -11,6 +13,7 @@ chmod 0755 /usr/bin/vault
 chown root:root /usr/bin/vault
 
 rm vault_${VAULT}_linux_amd64.zip
+
 
 # Run Vault
 vault server -dev -dev-root-token-id="root"

@@ -1,17 +1,18 @@
-Vault has been installed and started in development mode (`-dev`).
+Vault docker container is running in development mode.
 
 ## Login to Vault
 
-Click on the **+** next to the Terminal and select **Open New Terminal** from its pop-up menu.
+When Vault is running in development mode, it runs entirely in-memory and starts unsealed with a single unseal key. The root token is already authenticated to the CLI, so you can immediately begin using Vault.
 
-In the new terminal, let's set the `VAULT_ADDR` environment variable:
+First, get the generated root token by executing the following command:
 
 ```
-export VAULT_ADDR=http://127.0.0.1:8200
+docker logs vault > root_token.txt
+grep 'Root Token:' root-token.txt | awk '{print $NF}' > root_token.txt
 ```{{execute}}
 
 Login with root token:
 
 ```
-vault login root
+vault login $(cat root_token.txt)
 ```{{execute}}

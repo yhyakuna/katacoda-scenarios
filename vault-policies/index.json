@@ -1,4 +1,5 @@
 {
+  "icon": "hashicorp",
   "title": "Vault ACL Policies",
   "description": "Learn how to create Vault Policies to govern your environment.",
   "difficulty": "beginner",
@@ -28,7 +29,8 @@
     ],
     "intro": {
       "text": "intro.md",
-      "code": "env-init.sh"
+      "code": "env-init.sh",
+      "credits": ""
     },
     "finish": {
       "text": "finish.md"

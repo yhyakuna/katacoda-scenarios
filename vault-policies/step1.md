@@ -31,6 +31,8 @@ path "secret/data/training" {
 }
 </pre>
 
+<br>
+
 Remember, an empty policy grants no permission in the system. Therefore, ACL policies are defined for each path.
 
 ```
@@ -39,7 +41,7 @@ path "<PATH>" {
 }
 ```
 
-The path can have a wildcard ("\*") at the end to allow for namespacing. For example, "secret/training_*" grants permissions on any path starting with "secret/training_" (e.g. secret/training_vault).
+> The path can have a wildcard ("\*") at the end to allow for namespacing. For example, "secret/training_*" grants permissions on any path starting with "secret/training_" (e.g. secret/training_vault).
 
 
 Get help for the vault policy command:
@@ -52,6 +54,5 @@ vault policy -h
 To view the full list of optional parameters for `vault policy write` operation, run the following command:
 
 ```
-clear
 vault policy write -h
 ```{{execute}}

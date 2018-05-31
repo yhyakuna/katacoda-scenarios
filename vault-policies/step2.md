@@ -11,6 +11,8 @@ Run the following command to list existing policies:
 vault policy list
 ```{{execute}}
 
+The list should include the `base` policy you just created.
+
 The following command displays the policy you just created:
 
 ```

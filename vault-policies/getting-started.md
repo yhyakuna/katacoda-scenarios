@@ -1,4 +1,4 @@
-Vault is now installed and started in development mode (`-dev`).
+Vault has been installed and started in development mode (`-dev`).
 
 Scroll in the terminal to locate the output similar to the following:
 
@@ -20,7 +20,8 @@ Root Token: root
 Development mode should NOT be used in production installations!
 ```
 
-<br>
+## Login to Vault
+
 Click on the **+** next to the Terminal and select **Open New Terminal** from its pop-up menu.
 
 In the new terminal, let's set the `VAULT_ADDR` environment variable:

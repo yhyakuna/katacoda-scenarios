@@ -17,7 +17,7 @@ vault kv put secret/apikey key="my-api-key"
 The following command should execute successfully:
 
 ```
-vault kv put secret/training course_name="Vault Policy"
+vault kv put secret/training scenario_name="Vault Policy"
 ```{{execute}}
 
 You should be able to read back the data:

@@ -1,1 +1,1 @@
-In this course, you learned the basic steps to create a
+In this scenario, you learned the basic steps to create a

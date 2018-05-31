@@ -20,6 +20,8 @@ Root Token: root
 Development mode should NOT be used in production installations!
 ```
 
+<br>
+
 ## Login to Vault
 
 Click on the **+** next to the Terminal and select **Open New Terminal** from its pop-up menu.

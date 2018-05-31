@@ -36,6 +36,9 @@
       "text": "finish.md"
     }
   },
+  "files": [
+    "base.hcl"
+  ],
   "environment": {
       "showdashboard": true,
       "uilayout": "editor-terminal",

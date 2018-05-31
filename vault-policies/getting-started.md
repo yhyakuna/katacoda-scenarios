@@ -7,8 +7,8 @@ When Vault is running in development mode, it runs entirely in-memory and starts
 First, get the generated root token by executing the following command:
 
 ```
-docker logs vault > root_token.txt
-grep 'Root Token:' root-token.txt | awk '{print $NF}' > root_token.txt
+docker logs vault > system.out
+grep 'Root Token:' system.out | awk '{print $NF}' > root_token.txt
 ```{{execute}}
 
 Login with root token:

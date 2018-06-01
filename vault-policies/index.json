@@ -33,7 +33,8 @@
       "credits": "https://www.vaultproject.io"
     },
     "finish": {
-      "text": "finish.md"
+      "text": "finish.md",
+      "credits": "https://www.vaultproject.io"
     }
   },
   "environment": {

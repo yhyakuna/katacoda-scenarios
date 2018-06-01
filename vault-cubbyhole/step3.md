@@ -20,7 +20,7 @@ vault unwrap
 Let's unwrap the secret which contains the client token with `apps`. The following command stores the resulting token in `client-token.txt`.
 
 ```
-vault unwrap $(cat wrapping-token.txt) -format=json | jq -r ".auth.client_token" > client-token.txt
+vault unwrap -field=token $(cat wrapping-token.txt) > client-token.txt
 ```{{execute}}
 
 Log into Vault using the token you just uncovered:

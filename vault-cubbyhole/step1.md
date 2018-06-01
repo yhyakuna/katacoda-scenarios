@@ -8,6 +8,7 @@ vault token create -policy=default -format=json | jq -r ".auth.client_token" > t
 Now, log into Vault using the newly generated token:
 
 ```
+clear
 vault login $(cat token.txt)
 ```{{execute}}
 
@@ -17,7 +18,7 @@ Your token has `default` policy attached which does **not** give you access to a
 vault kv put secret/test password="my-password"
 ```{{execute}}
 
-This should throw "permission denied" error.
+This should throw **permission denied** error.
 
 <br>
 ## Write Secrets in Cubbyhole

@@ -27,10 +27,10 @@ clear
 cat apps-policy.hcl
 ```{{execute}}
 
-This policy grants read operation on the `secret/dev` and nothing else.
+This policy grants _read_ operation on the `secret/dev` and nothing else.
 
 ```
-path "secret/dev" {
+path "secret/data/dev" {
   capabilities = [ "read" ]
 }
 ```

@@ -43,4 +43,4 @@ However, the following command should execute successfully:
 vault kv get secret/dev
 ```{{execute}}
 
-Since there is no data has written to the `secret/dev` path, the response is "No value found at secret/data/dev".
+Since there is no data has written to the `secret/dev` path, the response is **No value found at secret/data/dev**.

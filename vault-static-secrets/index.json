@@ -33,10 +33,6 @@
       {
         "title": "Permanenctly Delete Secrets",
         "text": "step6.md"
-      },
-      {
-        "title": "Working with Key/Value Secret Engine API",
-        "text": "step7.md"
       }
     ],
     "intro": {

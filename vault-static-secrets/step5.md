@@ -13,12 +13,15 @@ clear
 vault kv delete secret/company
 ```{{execute}}
 
-Try reading the `secret/company` path again. The output displays the metadata only with `deletion_time`.
+Try reading the `secret/company` path again.
 
 ```
 vault kv get secret/company
 ```{{execute}}
 
+The output displays the metadata only with `deletion_time`.
+
+<br>
 
 ## Restore the Deleted Secrets
 

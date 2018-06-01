@@ -1,9 +1,9 @@
 {
-  "icon": "hashicorp",
-  "title": "Series 2: Vault Secret Engines - Static Secrets",
+  "pathwayTitle": "Learn HashiCorp Vault",
+  "title": "Lab 2: Vault Secret Engines - Static Secrets",
   "description": "Learn how to manage your secrets using Vault.",
   "difficulty": "beginner",
-  "time": "5 minutes",
+  "time": "5 - 10 minutes",
   "details": {
     "steps": [
       {
@@ -37,7 +37,7 @@
     ],
     "intro": {
       "text": "intro.md",
-      "code": "env-init-2.sh",
+      "code": "env-init.sh",
       "credits": ""
     },
     "finish": {
@@ -58,6 +58,6 @@
       "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
   },
   "backend": {
-    "imageid": "ubuntu"
+    "imageid": "docker"
   }
 }

@@ -11,7 +11,15 @@ Now, log into Vault using the newly generated token:
 vault login $(cat token.txt)
 ```{{execute}}
 
+Your token has `default` policy attached which does **not** give you access to any of the secret engines except cubbyhole. You can test that by running the following command:
 
+```
+vault kv put secret/test password="my-password"
+```{{execute}}
+
+This should throw "permission denied" error.
+
+<br>
 ## Write Secrets in Cubbyhole
 
 Execute the following command to write secret in the `cubbyhole/private` path:
@@ -28,9 +36,9 @@ vault read cubbyhole/private
 ```{{execute}}
 
 
-## Try as a `root`
+## Try as a root
 
-Login with root token:
+Log back in with root token:
 
 ```
 vault login $(cat root_token.txt)

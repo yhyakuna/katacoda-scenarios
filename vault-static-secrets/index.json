@@ -25,6 +25,14 @@
       {
         "title": "List Secret Keys",
         "text": "step4.md"
+      },
+      {
+        "title": "Delete Secrets and Recover",
+        "text": "step5.md"
+      },
+      {
+        "title": "Permanenctly Delete Secrets",
+        "text": "step6.md"
       }
     ],
     "intro": {

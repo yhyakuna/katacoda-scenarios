@@ -42,7 +42,7 @@
           "target": "~/"
         }
       ]
-    },
+    }
   },
   "environment": {
       "showdashboard": true,

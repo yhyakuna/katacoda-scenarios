@@ -14,6 +14,10 @@ vault kv delete secret/company
 
 Try reading the `secret/company` path again. The output displays the metadata only with `deletion_time`.
 
+```
+vault kv get secret/company
+```{{execute}}
+
 
 ## Restore the Deleted Secrets
 
@@ -23,4 +27,10 @@ Run the following command to recover the deleted data:
 
 ```
 vault kv undelete -versions=1 secret/company
+```{{execute}}
+
+Now, you should be able to read the data again:
+
+```
+vault kv get secret/company
 ```{{execute}}

@@ -1,4 +1,9 @@
-View the contents of the file named, `data.txt`:   `cat data.txt`{{execute}}
+View the contents of the file named, `data.txt`:   
+
+```
+clear
+cat data.txt
+```{{execute}}
 
 Copy this file onto the vault container:
 

@@ -3,7 +3,7 @@ View the contents of the file named, `data.txt`:   `cat data.txt`{{execute}}
 Copy this file onto the vault container:
 
 ```
-docker cp base.hcl vault:/base.hcl
+docker cp data.txt vault:/data.txt
 ```{{execute}}
 
 Now, let's store the data written in `data.txt` to Vault at `secret/company` path:
@@ -12,6 +12,8 @@ Now, let's store the data written in `data.txt` to Vault at `secret/company` pat
 ```
 vault kv put secret/company @data.txt
 ```{{execute}}
+
+> Any value begins with "@" is loaded from a file.
 
 Read the secret in the `secret/company` path:
 

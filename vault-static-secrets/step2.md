@@ -41,6 +41,10 @@ vault kv put secret/training password="another-password"
 
 It creates another version of the secret, version 2.
 
+```
+vault kv get secret/training
+```{{execute}}
+
 When you read the data at `secret/training`, **username** no longer exists!
 
 > This is very important to understand. The  key/value secret engine does **NOT** merge or add values. If you want to add/update a key, you must specify all the existing keys as well; otherwise, ***data loss*** can occur!

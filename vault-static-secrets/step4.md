@@ -15,3 +15,5 @@ vault kv list secret
 ```{{execute}}
 
 The output displays only the keys and not the values.
+
+This indicates that there is `secret/training` and `secret/company` under the `secret/` path.

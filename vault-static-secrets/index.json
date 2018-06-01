@@ -3,7 +3,7 @@
   "title": "Lab 2: Vault Secret Engines - Static Secrets",
   "description": "Learn how to manage your secrets using Vault.",
   "difficulty": "beginner",
-  "time": "5 - 10 minutes",
+  "time": "10 minutes",
   "details": {
     "steps": [
       {
@@ -33,12 +33,16 @@
       {
         "title": "Permanenctly Delete Secrets",
         "text": "step6.md"
+      },
+      {
+        "title": "Working with Key/Value Secret Engine API",
+        "text": "step7.md"
       }
     ],
     "intro": {
       "text": "intro.md",
       "code": "env-init.sh",
-      "credits": ""
+      "credits": "https://www.vaultproject.io"
     },
     "finish": {
       "text": "finish.md"

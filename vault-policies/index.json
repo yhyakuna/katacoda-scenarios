@@ -30,7 +30,7 @@
     "intro": {
       "text": "intro.md",
       "code": "env-init.sh",
-      "credits": ""
+      "credits": "https://www.vaultproject.io"
     },
     "finish": {
       "text": "finish.md"

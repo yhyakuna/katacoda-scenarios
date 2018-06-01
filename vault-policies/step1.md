@@ -23,7 +23,7 @@ You are going to write an ACL policy in [HCL](https://github.com/hashicorp/hcl) 
 
 Create a file named, `base.hcl `: `touch base.hcl`{{execute}}
 
-Select the `base.hcl ` file to open it in the editor pane, and enter the following policy rules in the editor (the following snippet can be copied into the editor):
+Select the `base.hcl`{{open}} file to open it in the editor pane, and enter the following policy rules in the editor (the following snippet can be copied into the editor):
 
 <pre class="file" data-filename="base.hcl" data-target="replace">
 path "secret/data/training" {

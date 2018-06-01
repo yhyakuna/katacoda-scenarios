@@ -13,8 +13,6 @@ clear
 vault token create -policy="base" -format=json | jq -r ".auth.client_token" > token.txt
 ```{{execute}}
 
-> **NOTE:** A built-in policy, `default`, is attached to all tokens and provides common permissions.
-
 <br>
 
 ### Authenticate with Base Token
@@ -24,3 +22,5 @@ Let's login with newly generated `token`.  The command is:
 ```
 vault login $(cat token.txt)
 ```{{execute}}
+
+> **NOTE:** A built-in policy, `default`, is attached to all tokens and provides common permissions.

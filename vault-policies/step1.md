@@ -44,7 +44,14 @@ path "<PATH>" {
 > The path can have a wildcard ("\*") at the end to allow for namespacing. For example, "secret/training\_*" grants permissions on any path starting with "secret/training_" (e.g. secret/training_vault).
 
 
-Get help for the vault policy command:
+Copy the `base.hcl` to the vault docker container:
+
+```
+docker cp base.hcl vault:/base.hcl
+```{{execute}}
+
+
+Get help for the `vault policy` command:
 
 ```
 vault policy -h

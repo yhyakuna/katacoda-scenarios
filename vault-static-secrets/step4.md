@@ -10,6 +10,7 @@ This command can be used to list keys in a given secret engine.
 Run the following command to list all the secret keys stored in the key/value secret backend.
 
 ```
+clear
 vault kv list secret
 ```{{execute}}
 

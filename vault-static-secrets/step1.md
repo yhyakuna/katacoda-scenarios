@@ -7,6 +7,7 @@ vault secrets list -format=json
 In the output, locate "secret/" and check its version.
 
 ```
+  ...
   "secret/": {
     "type": "kv",
     "description": "key/value secret storage",
@@ -22,6 +23,7 @@ In the output, locate "secret/" and check its version.
     "local": false,
     "seal_wrap": false
   },
+  ...
 ```
 
 When you run Vault in development mode, the [key/value version 2](https://www.vaultproject.io/docs/secrets/kv/kv-v2.html) gets enabled by default.  If you are running your vault in non-dev mode, key/value version 1 gets enabled.

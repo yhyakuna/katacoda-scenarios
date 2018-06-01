@@ -19,11 +19,11 @@ For each of these path, you must write policies to allow any operation against i
 
 ### Write a Policy File
 
-You are going to author an ACL policy in [HCL](https://github.com/hashicorp/hcl) format. HCL is JSON compatible; therefore, JSON can be used as completely valid input.
+You are going to write an ACL policy in [HCL](https://github.com/hashicorp/hcl) format. HCL is JSON compatible; therefore, JSON can be used as completely valid input.
 
-In the editor pane, right-click on the `root` and select **New > File** to create a file named, `base.hcl `.
+Create a file named, `base.hcl `: `touch base.hcl`{{execute}}
 
-Select the `base.hcl ` file to open its editor, and enter the following policy rules in the editor (the following snippet can be copied into the editor):
+Select the `base.hcl ` file to open it in the editor pane, and enter the following policy rules in the editor (the following snippet can be copied into the editor):
 
 <pre class="file" data-filename="base.hcl" data-target="replace">
 path "secret/data/training" {
@@ -31,13 +31,13 @@ path "secret/data/training" {
 }
 </pre>
 
-<br>
+This policy permits create, read, update, and delete operations on the `secret/data/training` path.
 
 Remember, an empty policy grants no permission in the system. Therefore, ACL policies are defined for each path.
 
 ```
 path "<PATH>" {
-  capabilities = [ "<LIST_OF_CAPABILITIES>" ]
+   capabilities = [ "<LIST_OF_CAPABILITIES>" ]
 }
 ```
 

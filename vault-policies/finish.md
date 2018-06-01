@@ -1,4 +1,4 @@
-This scenario gave you a quick introduction to write ACL policies.  
+This scenario gave you a quick introduction to writing Vault policies. 
 
 ### Resources:
 

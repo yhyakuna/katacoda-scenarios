@@ -27,6 +27,14 @@ clear
 cat apps-policy.hcl
 ```{{execute}}
 
+This policy grants read operation on the `secret/dev` and nothing else.
+
+```
+path "secret/dev" {
+  capabilities = [ "read" ]
+}
+```
+
 Execute the following command to create a new policy named, `apps-policy`:
 
 ```

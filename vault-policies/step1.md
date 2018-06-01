@@ -17,7 +17,7 @@ For each of these path, you must write policies to allow any operation against i
 
 <br>
 
-### Write a Policy File
+## Write a Policy File
 
 You are going to write an ACL policy in [HCL](https://github.com/hashicorp/hcl) format. HCL is JSON compatible; therefore, JSON can be used as completely valid input.
 

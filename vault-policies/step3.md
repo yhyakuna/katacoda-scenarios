@@ -15,7 +15,7 @@ vault token create -policy="base" -format=json | jq -r ".auth.client_token" > to
 
 <br>
 
-### Authenticate with Base Token
+## Authenticate with Base Token
 
 Let's login with newly generated `token`.  The command is:
 

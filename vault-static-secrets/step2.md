@@ -1,6 +1,7 @@
 Write a secret into `secret/training` path:
 
 ```
+clear
 vault kv put secret/training username="student01" password="pAssw0rd"
 ```{{execute}}
 
@@ -13,7 +14,6 @@ When running v2 of the key/value backend, a key can retain a configurable number
 To read the secrets in `secret/training` path, run the following command:
 
 ```
-clear
 vault kv get secret/training
 ```{{execute}}
 

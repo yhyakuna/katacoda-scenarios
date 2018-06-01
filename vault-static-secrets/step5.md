@@ -9,6 +9,7 @@ This command deletes secrets and configuration from Vault at the given path.
 Let's delete `secret/company`:
 
 ```
+clear
 vault kv delete secret/company
 ```{{execute}}
 

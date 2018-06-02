@@ -13,6 +13,7 @@ Similarly, you won't be able to write secrets at `secret/apikey`:
 vault kv put secret/apikey key="my-api-key"
 ```{{execute}}
 
+<br>
 Finally, the following command should execute successfully:
 
 ```

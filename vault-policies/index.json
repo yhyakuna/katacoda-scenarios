@@ -25,6 +25,10 @@
       {
         "title": "Verify your policy",
         "text": "step4.md"
+      },
+      {
+        "title": "Check Token Capabilities",
+        "text": "step5.md"
       }
     ],
     "intro": {

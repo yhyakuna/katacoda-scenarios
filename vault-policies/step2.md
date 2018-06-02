@@ -18,3 +18,9 @@ The following command displays the policy you just created:
 ```
 vault policy read base
 ```{{execute}}
+
+***Optional:*** Execute the following command to examine the `default` policy.
+
+```
+vault policy read default
+```{{execute}}

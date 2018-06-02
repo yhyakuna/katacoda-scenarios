@@ -21,18 +21,6 @@ For each of these path, you must write policies to allow any operation against i
 
 You are going to write an ACL policy in [HCL](https://github.com/hashicorp/hcl) format. HCL is JSON compatible; therefore, JSON can be used as completely valid input.
 
-Create a file named, `base.hcl `: `touch base.hcl`{{execute}}
-
-Select the `base.hcl`{{open}} file to open it in the editor pane, and enter the following policy rules in the editor (the following snippet can be copied into the editor):
-
-<pre class="file" data-filename="base.hcl" data-target="replace">
-path "secret/data/training" {
-   capabilities = ["create", "read", "update", "delete" ]
-}
-</pre>
-
-This policy permits create, read, update, and delete operations on the `secret/data/training` path.
-
 Remember, an empty policy grants no permission in the system. Therefore, ACL policies are defined for each path.
 
 ```
@@ -42,6 +30,20 @@ path "<PATH>" {
 ```
 
 > The path can have a wildcard ("\*") at the end to allow for namespacing. For example, "secret/training\_*" grants permissions on any path starting with "secret/training_" (e.g. secret/training_vault).
+
+<br>
+
+Create a file named, `base.hcl `: `touch base.hcl`{{execute}}
+
+Select the `base.hcl`{{open}} file to open it in the editor pane, and enter the following policy rules in the editor (the following snippet can be copied into the editor):
+
+<pre class="file" data-filename="base.hcl" data-target="replace">
+path "secret/data/training_*" {
+   capabilities = ["create", "read"]
+}
+</pre>
+
+Notice that the path has the "splat" operator (`training_*`). This is helpful in working with namespace patterns.  
 
 
 Copy the `base.hcl` to the vault docker container:

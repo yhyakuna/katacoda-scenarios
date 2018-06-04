@@ -1,6 +1,5 @@
-> The username/password combinations are configured directly to the auth method using the `users/` path. This method cannot read usernames and passwords from an external source.
+The username/password combinations are configured directly to the auth method using the `users/` path. This method cannot read usernames and passwords from an external source.
 
-The method lowercases all submitted usernames, e.g. Mary and mary are the same entry.
 
 Execute the following command to list which authentication methods have been enabled:
 
@@ -21,12 +20,12 @@ Now, when you list the enabled auth methods, you should see `userpass`.
 vault auth list
 ```{{execute}}
 
-Everything in Vault is path based, and you can enable the same method at multiple paths.  The data is isolated at path that they are not shared between paths even among the same auth method.
+> Everything in Vault is path based, and you can enable the same method at multiple paths.  The data is isolated at path that they are not shared between paths even among the same auth method.
 
 Execute the following command to enable userpass at a different path, training-userpass:
 
 ```
-vault auth enable -path=training-userpass userpass
+vault auth enable -path=training-userpass -description="userpass at a different path" userpass
 ```{{execute}}
 
 Now, the enabled auth method list should include `userpass` and `training-userpass`:

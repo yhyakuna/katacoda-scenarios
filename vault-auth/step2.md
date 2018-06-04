@@ -22,6 +22,7 @@ The command to create a new user:
 vault write auth/<userpass_mount_path>/users/<username> password=<password> policies=<list_of_policies>
 ```
 
+The method lowercases all submitted usernames, e.g. Mary and mary are the same entry.
 
 Let's create your first user.
 

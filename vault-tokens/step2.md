@@ -1,3 +1,5 @@
+Although a token has a short TTL, it can be renewed for as long as it hasn't reached its TTL via `renew` operation. 
+
 Review the help message on token renewal:
 
 ```

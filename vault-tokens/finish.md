@@ -1,4 +1,13 @@
-This scenario gave you an introduction to Vault token lifecycle. To learn more, please reference the following:
+This scenario gave you an introduction to Vault token lifecycle.
+
+1. Created a Short-Lived Tokens
+1. Renewed Token TTL
+1. Created Tokens with Use Limit
+1. Created a Token Role and Periodic Token
+1. Created an Orphan Token
+
+
+To learn more, please reference the following:
 
 ## References:
 

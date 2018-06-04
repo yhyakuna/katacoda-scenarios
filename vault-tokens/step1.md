@@ -1,7 +1,9 @@
-When you have a scenario where an app talks to Vault only to retrieve a secret (e.g. API key), and never again.  If the interaction between Vault and its client takes only a few seconds, there is no need to keep the token alive for longer than necessary.  Let's create a token which is only valid for 30 seconds.
+Each token has a time-to-live (TTL) with an exception of the `root` token.  Tokens get **revoked** automatically by Vault when it reaches its TTL.
+
+When the interaction between Vault and its client takes only a few seconds, there is no need to keep the token alive for longer than necessary. If you don't explicitly specify, token's default TTL is 32 days.  Let's create a token which is only valid for 30 seconds.
 
 
-Review the help message on token creation:
+First, let's see the help message on token creation:
 
 ```
 vault token create -h

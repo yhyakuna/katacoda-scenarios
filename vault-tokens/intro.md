@@ -13,11 +13,10 @@ If a user or machine needs a temporal access to Vault, you can set a short TTL o
 This also allows for organizations to plan and train for various "break glass" procedures.
 
 
-Almost all operations in [HashiCorp Vault](https://www.vaultproject.io) requires a token; therefore, it is important to understand the token lifecycle as well as different token parameters that affects the token's lifecycle.  This lab demonstrates various token parameters.  In addition, you are going to enable userpass auth method and test it.
+Almost all operations in [HashiCorp Vault](https://www.vaultproject.io) requires a token; therefore, it is important to understand the token lifecycle as well as different token parameters that affects the token's lifecycle.  This lab demonstrates various token parameters.  
 
 1. Create a Short-Lived Tokens
 1. Token Renewal
 1. Create Tokens with Use Limit
 1. Create a Token Role and Periodic Token
 1. Create an Orphan Token
-1. Enable Username and Password Auth Method

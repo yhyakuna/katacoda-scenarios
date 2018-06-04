@@ -1,4 +1,6 @@
-A common use case of periodic token is long-running processes where generation of a new token can interrupt the entire system flow.  This task demonstrates the creation of a role and periodic token for such long-running process.
+Although you can renew the expiring token with `renew` command, tokens have ***max TTL*** (the system default max TTL is 32 days).  Once the max TTL is reached, the token will be revoked.
+
+In some cases, having a token be revoked would be problematic. For instance, a long-running service needs to maintain its SQL connection pool over a long period of time. In this scenario, a **periodic token** can be used. Periodic tokens have **period** but no max TTL. Therefore, periodic tokens may live for an infinite amount of time, so long as they are renewed within their TTL.
 
 Get help on `auth/token` path:
 
@@ -6,13 +8,12 @@ Get help on `auth/token` path:
 vault path-help auth/token
 ```{{execute}}
 
-The API endpoint to create a token role is `auth/token/roles`.
+
+> **Root** or **sudo** users have the permission to generate periodic tokens. Periodic tokens have a TTL, but no max TTL; therefore, they may live for an infinite duration of time so long as they are renewed within their TTL. This is useful for long-running services that cannot handle regenerating a token.
 
 ## Create a Token Role
 
-> Root or sudo users have the ability to generate periodic tokens. Periodic tokens have a TTL, but no max TTL; therefore, they may live for an infinite duration of time so long as they are renewed within their TTL. This is useful for long-running services that cannot handle regenerating a token.
-
-Create a token role named, `monitor`.  This role has `base` policy attached and token renewal period of 24 hours.
+The API endpoint to create a token role is `auth/token/roles`.  Execute the following command to create a token role named, `monitor`.  This role has `base` policy attached and token renewal period of 24 hours (86400 seconds).
 
 ```
 clear

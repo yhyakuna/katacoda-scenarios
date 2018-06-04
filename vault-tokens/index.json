@@ -25,6 +25,14 @@
       {
         "title": "Create a Token Role and Periodic Token",
         "text": "step4.md"
+      },
+      {
+        "title": "Test Token Lifecycle",
+        "text": "step5.md"
+      },
+      {
+        "title": "Create an Orphan Token",
+        "text": "step6.md"
       }
     ],
     "intro": {

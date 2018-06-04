@@ -14,7 +14,7 @@ vault token create -use-limit=2 -policy=base -format=json \
 Login with the generated token:
 
 ```
-vault login $(cat ttl_token.txt)
+vault login $(cat use_limit_token.txt)
 ```{{execute}}
 
 Now, test the token with use limit by executing some vault commands:

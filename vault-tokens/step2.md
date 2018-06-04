@@ -1,11 +1,3 @@
-Although a token has a short TTL, it can be renewed for as long as it hasn't reached its TTL via `renew` operation.
-
-Review the help message on token renewal:
-
-```
-vault token renew -h
-```{{execute}}
-
 First, create a policy named, `base` by executing the following command:
 
 ```
@@ -14,6 +6,11 @@ clear
 vault policy write base base.hcl
 ```{{execute}}
 
+To review the created policy:
+
+```
+vault policy read base
+```{{execute}}
 
 Let's create another token with base policy and TTL of 60 seconds, and save the generated token in a file named, `token_60s.txt`.
 
@@ -31,7 +28,15 @@ vault token lookup $(cat token_60s.txt)
 
 The output displays the **`ttl`** left with this token in seconds.
 
+
+
 ## Renew the Token
+
+Although a token has a short TTL, it can be renewed for as long as it hasn't reached its TTL via `renew` operation. Review the help message on token renewal:
+
+```
+vault token renew -h
+```{{execute}}
 
 Execute the following command to renew the token and double its TTL:
 
@@ -46,4 +51,4 @@ Look up the token details again to verify that is TTL has been updated.
 vault token lookup $(cat token_60s.txt)
 ```{{execute}}
 
-The **`ttl`** should reflect the changes. 
+The **`ttl`** should reflect the changes.

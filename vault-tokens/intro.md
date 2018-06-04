@@ -1,3 +1,7 @@
+Before a client can interact with [HashiCorp Vault](https://www.vaultproject.io), it must authenticate against an [**auth method**](/docs/auth/index.html) to acquire a token. This token has policies attached so that the behavior of the client can be governed.
+
+Since tokens are the core method for authentication within Vault, there is a **token** auth method (often referred to as **_token store_**). This is a special auth method responsible for creating and storing tokens.
+
 Consider the following scenarios often encountered outside of Vault:
 
 - There is no **break glass** procedure available for revoking access to credentials in the event of a breach

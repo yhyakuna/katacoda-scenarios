@@ -12,21 +12,16 @@ vault token create -use-limit=2 -policy=base -format=json \
 ```{{execute}}
 
 
-```
-docker cp use_limit_token.txt vault:/use_limit_token.txt
-docker exec -it vault sh
-clear
-```{{execute}}
-
 Now, test the token with use limit by executing some vault commands:
 
 ```
-VAULT_TOKEN=$(cat use_limit_token.txt) vault token lookup
+vault token lookup $(cat use_limit_token.txt)
 ```{{execute}}
 
 Execute the following command to write some secrets at `secret/training_test`:
 
 ```
+docker cp use_limit_token.txt vault:/use_limit_token.txt
 VAULT_TOKEN=$(cat use_limit_token.txt) vault kv put secret/training_test year="2018"
 ```{{execute}}
 

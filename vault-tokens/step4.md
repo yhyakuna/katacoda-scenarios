@@ -17,6 +17,13 @@ clear
 vault write auth/token/roles/monitor allowed_policies="base" period="24h"
 ```{{execute}}
 
+Execute the following command to display the role details:
+
+```
+vault read auth/token/roles/monitor
+exit
+```{{execute}}
+
 
 Execute the following command to create a token for role, `monitor`, and save the generated token in a file named, `monitor_token.txt`.
 
@@ -25,8 +32,17 @@ vault token create -role="monitor" \
       | jq -r ".auth.client_token" > monitor_token.txt
 ```{{execute}}
 
+```
+docker cp monitor_token.txt vault:/monitor_token.txt
+docker exec -it vault sh
+clear
+```{{execute}}
+
+
 Display the token details:
 
 ```
 VAULT_TOKEN=$(cat monitor_token.txt) vault token lookup
 ```{{execute}}
+
+Notice that the **`role`** is set to **`monitor`**.

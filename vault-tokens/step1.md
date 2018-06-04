@@ -40,7 +40,7 @@ vault login $(cat ttl_token.txt)
 The output displays the **`token_duration`** left with this token in seconds.
 
 
-Wait for a few seconds and re-run the login command:
+Wait for a few seconds to let the TTL to be reached, and re-run the login command:
 
 ```
 vault login $(cat ttl_token.txt)

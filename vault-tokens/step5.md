@@ -11,14 +11,12 @@ In this scenario, the token ID of `1d3fd4b2..` will expire in an hour. When the 
 
 This ensures that a user cannot escape revocation by simply generating a never-ending tree of child tokens.
 
-If this behavior is not desired, users with **root** or **sudo** privilege can create **orphan tokens**. These tokens have no parent that they are the root of their own token tree.
-
 ## Explore the Token Lifecycle
 
 First, create a token, and save the generated token in a file named, `parent_token.txt`.
 
 ```
-vault token create -ttl=80s -format=json \
+vault token create -ttl=60s -format=json \
       | jq -r ".auth.client_token" > parent_token.txt
 ```{{execute}}
 
@@ -32,7 +30,7 @@ vault login $(cat parent_token.txt)
 Now, create a child token and save it in a file named, `child_token.txt`:
 
 ```
-vault token create -ttl=60s -format=json \
+vault token create -ttl=80s -format=json \
       | jq -r ".auth.client_token" > child_token.txt
 ```{{execute}}
 
@@ -42,10 +40,15 @@ Try running some commands using this child token.
 vault token lookup $(cat child_token.txt)
 ```{{execute}}
 
-Log back in with `root` token, and revoke the parent token:
+Log back in with `root` token:
 
 ```
 vault login $(cat root_token.txt)
+```{{execute}}
+
+Execute the following command to revoke the parent token:
+
+```
 vault token revoke $(cat parent_token.txt)
 ```{{execute}}
 

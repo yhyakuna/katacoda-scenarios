@@ -1,4 +1,4 @@
-Although a token has a short TTL, it can be renewed for as long as it hasn't reached its TTL via `renew` operation. 
+Although a token has a short TTL, it can be renewed for as long as it hasn't reached its TTL via `renew` operation.
 
 Review the help message on token renewal:
 
@@ -45,3 +45,5 @@ Look up the token details again to verify that is TTL has been updated.
 ```
 vault token lookup $(cat token_60s.txt)
 ```{{execute}}
+
+The **`ttl`** should reflect the changes. 

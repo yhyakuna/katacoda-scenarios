@@ -4,10 +4,10 @@ To limit the number of times that a token can be used, pass the `-use-limit` par
 vault token create -use-limit=<integer>
 ```
 
-Execute the following command to create a token with use limit of 2, and save the generated token in a file named, `use_limit_token.txt`.
+Execute the following command to create a token with use limit of 3, and save the generated token in a file named, `use_limit_token.txt`.
 
 ```
-vault token create -use-limit=2 -policy=base -format=json \
+vault token create -use-limit=3 -policy=base -format=json \
       | jq -r ".auth.client_token" > use_limit_token.txt
 ```{{execute}}
 

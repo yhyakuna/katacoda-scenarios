@@ -40,6 +40,8 @@ Try running some commands using this child token.
 vault token lookup $(cat child_token.txt)
 ```{{execute}}
 
+## Revoke the Parent Token
+
 Log back in with `root` token:
 
 ```

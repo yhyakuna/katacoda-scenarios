@@ -5,7 +5,9 @@ Repeat the steps to create a token and login with the generated token.
 ```
 vault token create -ttl=80s -format=json \
       | jq -r ".auth.client_token" > parent_token.txt
+```{{execute}}
 
+```
 vault login $(cat parent_token.txt)
 ```{{execute}}
 

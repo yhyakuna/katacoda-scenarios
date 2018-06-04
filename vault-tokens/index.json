@@ -39,8 +39,9 @@
     "finish": {
       "text": "finish.md",
       "credits": "https://www.vaultproject.io"
-    },
-    "environment": {
+    }
+  },
+  "environment": {
       "showdashboard": true,
       "uilayout": "terminal",
       "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"

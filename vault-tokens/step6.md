@@ -14,7 +14,7 @@ vault login $(cat parent_token.txt)
 Execute the following command to generate an orphan token and save it to a file named, `orphan_token.txt`.
 
 ```
-vault token create -ttl=120s -format=json \
+vault token create -ttl=120s -orphan -format=json \
       | jq -r ".auth.client_token" > orphan_token.txt
 ```{{execute}}
 

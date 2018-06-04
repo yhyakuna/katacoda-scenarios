@@ -50,7 +50,7 @@ vault token create -policy=<POLICY_NAME> -wrap-ttl=<WRAP_TTL>
 ```
 
 
-Execute the following commands to generate a token for apps using response wrapping with TTL of **360 seconds**.
+Execute the following commands to generate a token for apps using response wrapping with TTL of **360 seconds**, and save the generated wrapping token in a file named, `wrapping_token.txt`
 
 ```
 vault token create -policy=apps -wrap-ttl=360 -format=json | jq -r ".wrap_info.token" > wrapping-token.txt

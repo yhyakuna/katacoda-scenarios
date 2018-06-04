@@ -1,7 +1,7 @@
-Execute the following command to create a token with use limit of 2.
+Execute the following command to create a token with use limit of 2, and save the generated token in a file named, `use_limit_token.txt`.
 
 ```
-vault token create -use-limit=2 -format=json | jq -r ".auth.client_token" > use_limit_token.txt
+vault token create -use-limit=2-policy=base -format=json | jq -r ".auth.client_token" > use_limit_token.txt
 ```{{execute}}
 
 Now, test the token with use limit by executing some vault commands:

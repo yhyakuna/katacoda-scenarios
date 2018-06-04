@@ -19,7 +19,7 @@ vault token create -ttl=<duration>
 clear
 ```{{execute}}
 
-Execute the following command to create a token whose TTL is **30 seconds**:
+Execute the following command to create a token whose TTL is **30 seconds**, and save the generated token in a file named, `ttl_token.txt`.
 
 ```
 vault token create -ttl=30s -format=json | jq -r ".auth.client_token" > ttl_token.txt
@@ -34,10 +34,10 @@ vault token create -ttl=30s -format=json | jq -r ".auth.client_token" > ttl_toke
 vault login $(cat ttl_token.txt)
 ```{{execute}}
 
-The output displays the **`ttl`** left with this token in seconds.
+The output displays the **`token_duration`** left with this token in seconds.
 
 
-Wait for a few seconds and re-run the lgoin command:
+Wait for a few seconds and re-run the login command:
 
 ```
 vault login $(cat ttl_token.txt)

@@ -4,11 +4,19 @@ Review the help message on token renewal:
 vault token renew -h
 ```{{execute}}
 
-
-Let's create another token with base policy and TTL of 80 seconds:
+First, create a policy named, `base` by executing the following command:
 
 ```
-vault token create -ttl 80s -format=json | jq -r ".auth.client_token" > token_80s.txt
+docker cp base.hcl vault:/base.hcl
+clear
+vault policy write base base.hcl
+```{{execute}}
+
+
+Let's create another token with base policy and TTL of 80 seconds, and save the generated token in a file named, `token_80s.txt`.
+
+```
+vault token create -ttl 80s -policy=base -format=json | jq -r ".auth.client_token" > token_80s.txt
 ```{{execute}}
 
 

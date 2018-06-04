@@ -13,17 +13,18 @@ vault policy write base base.hcl
 ```{{execute}}
 
 
-Let's create another token with base policy and TTL of 80 seconds, and save the generated token in a file named, `token_80s.txt`.
+Let's create another token with base policy and TTL of 60 seconds, and save the generated token in a file named, `token_60s.txt`.
 
 ```
-vault token create -ttl 80s -policy=base -format=json | jq -r ".auth.client_token" > token_80s.txt
+vault token create -ttl 60s -policy=base -format=json \
+     | jq -r ".auth.client_token" > token_60s.txt
 ```{{execute}}
 
 
 Execute the following command to take a look at the token details:
 
 ```
-vault token lookup $(cat token_80s.txt)
+vault token lookup $(cat token_60s.txt)
 ```{{execute}}
 
 The output displays the **`ttl`** left with this token in seconds.
@@ -33,12 +34,12 @@ The output displays the **`ttl`** left with this token in seconds.
 Execute the following command to renew the token and double its TTL:
 
 ```
-vault token renew -increment=160s $(cat token_80s.txt)
+vault token renew -increment=120s $(cat token_60s.txt)
 ```{{execute}}
 
 
 Look up the token details again to verify that is TTL has been updated.
 
 ```
-vault token lookup $(cat token_80s.txt)
+vault token lookup $(cat token_60s.txt)
 ```{{execute}}

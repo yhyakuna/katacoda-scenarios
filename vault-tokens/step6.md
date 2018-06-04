@@ -1,4 +1,4 @@
-When the default behavior is undesirable, you can create an **orphan token** instead. To create an orphan token, you can simply pass the `-orphan` flag when you create a token.
+When the default behavior is undesirable, you can create an **orphan token** instead.
 
 Repeat the steps to create a token and login with the generated token.
 
@@ -10,6 +10,10 @@ vault token create -ttl=80s -format=json \
 ```
 vault login $(cat parent_token.txt)
 ```{{execute}}
+
+## Create an Orphan Token
+
+To create an orphan token, you can simply pass the **`-orphan`** flag when you create a token.
 
 Execute the following command to generate an orphan token and save it to a file named, `orphan_token.txt`.
 
@@ -40,3 +44,5 @@ Verify that the child token still exists:
 ```
 vault token lookup $(cat child_token.txt)
 ```{{execute}}
+
+Notice that the **orphan** is set to **true**.

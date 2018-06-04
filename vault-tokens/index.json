@@ -21,12 +21,24 @@
       {
         "title": "Tokens with Use Limit",
         "text": "step3.md"
+      },
+      {
+        "title": "Create a Token Role and Periodic Token",
+        "text": "step4.md"
       }
     ],
     "intro": {
       "text": "intro.md",
       "code": "env-init.sh",
       "credits": "https://www.vaultproject.io"
+    },
+    "assets": {
+      "client": [
+        {
+          "file": "base.hcl",
+          "target": "~/"
+        }
+      ]
     },
     "finish": {
       "text": "finish.md",

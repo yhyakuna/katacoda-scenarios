@@ -28,7 +28,7 @@ vault token lookup $(cat token_60s.txt)
 
 The output displays the **`ttl`** left with this token in seconds.
 
-
+<br>
 
 ## Renew the Token
 
@@ -52,3 +52,7 @@ vault token lookup $(cat token_60s.txt)
 ```{{execute}}
 
 The **`ttl`** should reflect the changes.
+
+```
+clear
+```{{execute}}

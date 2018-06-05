@@ -42,7 +42,7 @@ vault token revoke $(cat parent_token.txt)
 Verify that the child token still exists:
 
 ```
-vault token lookup $(cat child_token.txt)
+vault token lookup $(cat orphan_token.txt)
 ```{{execute}}
 
 Notice that the **orphan** is set to **true**.

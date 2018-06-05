@@ -24,7 +24,9 @@ Now, you are logged in as a `root` and ready to play!
 docker exec -it postgres psql -U postgres -c 'CREATE DATABASE myapp;' &>/dev/null
 ```{{execute}}
 
-
+```
+vault secrets enable database
+```{{execute}}
 
 
 ```

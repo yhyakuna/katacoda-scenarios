@@ -1,3 +1,5 @@
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/Vault_Icon_FullColor.png" alt="Logo"/>
+
 [HashiCorp Vault](https://www.vaultproject.io)'s secret engines are components responsible for managing secrets:
 
 - Secrets are pieces of sensitive information that can be used to access infrastructure, resources, data, etc.

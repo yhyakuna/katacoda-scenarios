@@ -21,4 +21,4 @@ vault write database/config/postgresql \
 vault write database/config/postgresql \
    plugin_name=postgresql-database-plugin \
    allowed_roles="*" \
-   connection_url="postgresql://postgres:postgres@localhost:5432/myapp?sslmode=disable"
+   connection_url="postgresql://postgres:postgres@postgres:5432/myapp?sslmode=disable"

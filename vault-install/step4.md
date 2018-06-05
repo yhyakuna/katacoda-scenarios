@@ -3,13 +3,13 @@ Initialization is the process configuring the Vault. This only happens once when
 To initialize Vault use `vault operator init` operation.
 <br>
 
-From the **second** Terminal, execute the `vault operator init` command to initialize Vault:
+In the **second** Terminal, execute the `vault operator init` command to initialize Vault:
 
 ```
 vault operator init > key.txt
 ```{{execute T2}}
 
-
+<br>
 ## Unseal Vault
 
 Every initialized Vault server starts in the **sealed** state. From the configuration, Vault can access the physical storage, but it can't read any of it because it doesn't know how to decrypt it.
@@ -20,7 +20,7 @@ In order to prevent no one person from having complete access to the system, Vau
 
 Typically each of these key shares is distributed to trusted parties in the organization. These parties must come together to "unseal" the Vault by entering their key share.
 
-By default, the number of shared keys is `5` and quorum of unseal keys required to unseal vault is `3`.  (NOTE: This is configurable during the initialization.)
+By default, the number of shared keys is `5` and quorum of `3` unseal keys are required to unseal vault.  (NOTE: This is configurable during the initialization using `-key-shares` and `-key-threshold` parameters.)
 
 <br>
 
@@ -30,7 +30,7 @@ Execute the `vault operator unseal` command to enter the first unseal key:
 vault operator unseal $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-The output indicates that 1/3 of the unseal process was completed.
+Notice that the output indicates that the **unseal progress** is now `1/3`.
 
 Pass the second unseal key:
 
@@ -44,3 +44,5 @@ Finally, pass the third unseal key:
 ```
 vault operator unseal $(grep 'Key 3:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
+
+Now, Vault is unsealed and ready to accept requests.

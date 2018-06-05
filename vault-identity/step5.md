@@ -10,13 +10,25 @@ vault login -method=userpass username="bob" \
 
 Test to see if the token has an access to the following paths:
 
-- `secret/data/test`:  `vault token capabilities secret/test`{{execute}}
+- `secret/data/test`:  
+  ```
+  vault token capabilities secret/data/test
+  ```{{execute}}
 
-- `secret/data/training_test`:  `vault token capabilities secret/training_test`{{execute}}
+- `secret/data/training_test`:  
+  ```
+  vault token capabilities secret/data/training_test
+  ```{{execute}}
 
-- `secret/data/team/qa`:  `vault token capabilities secret/team/qa`{{execute}}
+- `secret/data/team/qa`:  
+  ```
+  vault token capabilities secret/team/qa
+  ```{{execute}}
 
-- `secret/data/team/eng`:  `vault token capabilities secret/team/qa`{{execute}}
+- `secret/data/team/eng`:  
+  ```
+  vault token capabilities secret/team/qa
+  ```{{execute}}
 
 
 

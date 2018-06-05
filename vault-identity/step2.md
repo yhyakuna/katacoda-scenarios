@@ -51,7 +51,7 @@ vault read identity/entity/id/$(cat entity_id.txt)
 
 The output should include the entity aliases (both `bob` and `bsmith`), metadata (organization, and team), and base policy.
 
-NOTE: It might be easier to read the output in JSON format.
+**NOTE:** It might be easier to read the output in JSON format.
 
 ```
 vault read -format=json identity/entity/id/$(cat entity_id.txt)

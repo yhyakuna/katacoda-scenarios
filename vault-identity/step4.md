@@ -17,6 +17,8 @@ clear
 vault policy write team-eng team-eng.hcl
 ```{{execute}}
 
+<br>
+
 ## Create an Internal Group
 
 Execute the following command to create an internal group named, `engineers` and add `bob-smith` entity as a group member.  Also, assign the newly created `team-eng` policy to the group.

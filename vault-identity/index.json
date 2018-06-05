@@ -21,6 +21,14 @@
       {
         "title": "Test the Entity",
         "text": "step3.md"
+      },
+      {
+        "title": "Create an Internal Group",
+        "text": "step4.md"
+      },
+      {
+        "title": "Test the Internal Group",
+        "text": "step5.md"
       }
     ],
     "intro": {
@@ -32,6 +40,7 @@
       "client": [
         { "file": "base.hcl", "target": "~/" },
         { "file": "test.hcl", "target": "~/" },
+        { "file": "team-eng.hcl", "target": "~/" },
         { "file": "team-qa.hcl", "target": "~/" }
       ]
     },

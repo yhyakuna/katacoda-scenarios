@@ -38,7 +38,6 @@ Execute the following command to create `test` policy.
 
 ```
 docker cp test.hcl vault:/test.hcl
-clear
 vault policy write test test.hcl
 ```{{execute}}
 
@@ -47,7 +46,6 @@ Execute the following command to create `team-qa` policy.
 
 ```
 docker cp team-qa.hcl vault:/team-qa.hcl
-clear
 vault policy write team-qa team-qa.hcl
 ```{{execute}}
 
@@ -56,7 +54,7 @@ At this point, you should have `base`, `test`, and `team-qa` policies:
 
 ```
 vault policy list
-```
+```{{execute}}
 
 
 ## Create Users

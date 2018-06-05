@@ -26,7 +26,7 @@ Now, add user `bob` to the `bob-smith` entity by creating an entity alias:
 
 ```
 vault write identity/entity-alias name="bob" \
-     canonical_id=$(cat entity_id.txt)
+     canonical_id=$(cat entity_id.txt) \
      mount_accessor=$(cat accessor.txt)
 ```{{execute}}
 
@@ -37,7 +37,7 @@ Repeat the step to add user bsmith to the `bob-smith` entity.
 
 ```
 vault write identity/entity-alias name="bsmith" \
-     canonical_id=$(cat entity_id.txt)
+     canonical_id=$(cat entity_id.txt) \
      mount_accessor=$(cat accessor.txt)
 ```{{execute}}
 

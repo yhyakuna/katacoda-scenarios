@@ -18,3 +18,26 @@ vault login $(cat root_token.txt)
 ```{{execute}}
 
 Now, you are logged in as a `root` and ready to play!
+
+
+```
+docker exec -it postgres psql -U postgres -c 'CREATE DATABASE myapp;' &>/dev/null
+```{{execute}}
+
+
+
+
+```
+vault write database/config/postgresql \
+   plugin_name=postgresql-database-plugin \
+   allowed_roles="*" \
+   connection_url="postgresql://postgres:training@0.0.0.0:5432/myapp?sslmode=disable"
+```{{execute}}
+
+
+```
+vault write database/config/postgresql \
+  plugin_name=postgresql-database-plugin \
+  allowed_roles="*" \
+  connection_url="postgresql://postgres:training@0.0.0.0:5432/myapp"
+```{{execute}}

@@ -17,6 +17,10 @@
       {
         "title": "Write Vault Configuration File",
         "text": "step3.md"
+      },
+      {
+        "title": "Initialize Vault",
+        "text": "step4.md"
       }
     ],
     "intro": {

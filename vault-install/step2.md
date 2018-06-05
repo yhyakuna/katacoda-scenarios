@@ -44,7 +44,8 @@ For example:
 vault kv put secret/customer/james name="James Bond" employer="MI6"
 ```{{execute}}
 
+<br>
 
-**CTRL + C** to terminate the dev server.  
+Return to the first terminal where Vault server is running, and **CTRL + C** to terminate the dev server.  
 
 Next, you are going to learn how to configure Vault.

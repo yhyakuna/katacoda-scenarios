@@ -1,6 +1,6 @@
 Now, test to understand how a token inherits the capabilities from its associating group.
 
-<img src="https://s3-us-west-1.amazonaws.com/education-yh/7-entity-3.png" alt="Groups" style="width: 500px;"/>
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/7-entity-3.png" alt="Groups/>
 
 Login as bob with userpass auth method:
 

@@ -16,9 +16,9 @@ vault write database/config/postgresql \
 ```{{execute}}
 
 
-```
+
+
 vault write database/config/postgresql \
-  plugin_name=postgresql-database-plugin \
-  allowed_roles="*" \
-  connection_url="jdbc:postgres://postgres:training@localhost:5432/myapp"
-```{{execute}}
+   plugin_name=postgresql-database-plugin \
+   allowed_roles="*" \
+   connection_url="postgresql://postgres:postgres@localhost:5432/myapp?sslmode=disable"

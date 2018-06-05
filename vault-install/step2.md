@@ -1,20 +1,17 @@
-Execute the following command to create a policy:
+Outside of development mode, Vault servers are configured using a file. The format of this file is [HCL](https://github.com/hashicorp/hcl) or JSON. The configuration file for Vault is relatively simple.
 
-```
-clear
-vault policy write base base.hcl
-```{{execute}}
+Enter the following in the `config.hcl`{{open}} file:
 
-Run the following command to list existing policies:
+<pre class="file" data-filename="base.hcl" data-target="replace">
+# Use the file backend
+storage "file" {
+  path = "data"
+}
 
-```
-vault policy list
-```{{execute}}
+listener "tcp" {
+  address     = "127.0.0.1:8200"
+  tls_disable = 1
+}
 
-The list should include the `base` policy you just created.
-
-The following command displays the policy you just created:
-
-```
-vault policy read base
-```{{execute}}
+ui = true
+</pre>

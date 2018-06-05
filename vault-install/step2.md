@@ -24,17 +24,19 @@ Root Token: root
 
 Click the **+** next to the opened Terminal, and select **Open New Terminal**.
 
-In the second terminal, set the `VAULT_ADDR`:
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/install-another-terminal.png" alt="New Terminal"/>
+
+In the second terminal, set the `VAULT_ADDR` environment variable:
 
 ```
 export VAULT_ADDR='http://127.0.0.1:8200'
-```{{execute}}
+```{{execute T2}}
 
 Login with the generated root token.
 
 ```
 vault login root
-```{{execute}}
+```{{execute T2}}
 
 Now, you can run vault commands to manage your secrets using the dev server.
 
@@ -42,10 +44,10 @@ For example:
 
 ```
 vault kv put secret/customer/james name="James Bond" employer="MI6"
-```{{execute}}
+```{{execute T2}}
 
 <br>
 
-Return to the first terminal where Vault server is running, and **CTRL + C** to terminate the dev server.  
+Return to the _first terminal_ where Vault server is running, and **CTRL + C** to terminate the dev server.  
 
 Next, you are going to learn how to configure Vault.

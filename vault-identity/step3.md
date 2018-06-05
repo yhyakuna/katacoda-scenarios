@@ -1,6 +1,6 @@
 To better understand how a token inherits the capabilities from entity's policy, you are going to test it by logging in as bob.
 
-<img src="https://s3-us-west-1.amazonaws.com/education-yh/7-entity-2.png" alt="Entity Alias"/>
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/7-entity-2.png" alt="Entity Alias" style="width: 500px;/>
 
 
 Execute the following command to login as `bob` and save the generated client token in the `bob_token.txt` file:

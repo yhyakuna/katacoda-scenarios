@@ -20,6 +20,8 @@ Now, when you list the enabled auth methods, you should see `userpass`.
 vault auth list
 ```{{execute}}
 
+<br>
+
 > Everything in Vault is path based, and you can enable the same method at multiple paths.  The data is isolated at path that they are not shared between paths even among the same auth method.
 
 Execute the following command to enable userpass at a different path, training-userpass:

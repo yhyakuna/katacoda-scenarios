@@ -15,8 +15,8 @@ vault policy read base
 Let's create another token with base policy and TTL of 60 seconds, and save the generated token in a file named, `token_60s.txt`.
 
 ```
-vault token create -ttl 60s -policy=base -format=json \
-     | jq -r ".auth.client_token" > token_60s.txt
+vault token create -ttl 60s -policy=base  \
+     -format=json | jq -r ".auth.client_token" > token_60s.txt
 ```{{execute}}
 
 

@@ -16,8 +16,8 @@ This ensures that a user cannot escape revocation by simply generating a never-e
 First, create a token, and save the generated token in a file named, `parent_token.txt`.
 
 ```
-vault token create -ttl=60s -format=json \
-      | jq -r ".auth.client_token" > parent_token.txt
+vault token create -ttl=60s \
+      -format=json | jq -r ".auth.client_token" > parent_token.txt
 ```{{execute}}
 
 
@@ -30,8 +30,8 @@ vault login $(cat parent_token.txt)
 Now, create a child token and save it in a file named, `child_token.txt`:
 
 ```
-vault token create -ttl=80s -format=json \
-      | jq -r ".auth.client_token" > child_token.txt
+vault token create -ttl=80s \
+      -format=json | jq -r ".auth.client_token" > child_token.txt
 ```{{execute}}
 
 Try running some commands using this child token.

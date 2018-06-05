@@ -24,8 +24,8 @@ clear
 Execute the following command to create a token whose TTL is **30 seconds**, and save the generated token in a file named, `ttl_token.txt`.
 
 ```
-vault token create -ttl=30s -format=json \
-  | jq -r ".auth.client_token" > ttl_token.txt
+vault token create -ttl=30s  \
+    -format=json | jq -r ".auth.client_token" > ttl_token.txt
 ```{{execute}}
 
 > Notice that the generated token inherits the parent token's policy.  For the training, you are logged in with `root` token.  When you create a new token, it inherits the parent token's policy unless you specify with **`-policy`** parameter (e.g. `vault token create -policy="base" -ttl=30s`).

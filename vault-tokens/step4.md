@@ -30,8 +30,8 @@ vault read auth/token/roles/monitor
 Execute the following command to create a token for role, `monitor`, and save the generated token in a file named, `monitor_token.txt`.
 
 ```
-vault token create -role="monitor" -format=json \
-      | jq -r ".auth.client_token" > monitor_token.txt
+vault token create -role="monitor" \
+      -format=json | jq -r ".auth.client_token" > monitor_token.txt
 ```{{execute}}
 
 

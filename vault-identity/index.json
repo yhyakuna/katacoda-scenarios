@@ -1,0 +1,52 @@
+{
+  "pathwayTitle": "Learn HashiCorp Vault",
+  "title": "Lab 7: Vault Identity - Entities & Groups",
+  "description": "Learn how to create entities and groups in Vault.",
+  "difficulty": "beginner",
+  "time": "10 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Getting Started",
+        "text": "getting-started.md"
+      },
+      {
+        "title": "Create Users",
+        "text": "step1.md"
+      },
+      {
+        "title": "Create an Entity",
+        "text": "step2.md"
+      },
+      {
+        "title": "Test the Entity",
+        "text": "step3.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md",
+      "code": "env-init.sh",
+      "credits": "https://www.vaultproject.io"
+    },
+    "assets": {
+      "client": [
+        {
+          "file": "*",
+          "target": "~/"
+        }
+      ]
+    },
+    "finish": {
+      "text": "finish.md",
+      "credits": "https://www.vaultproject.io"
+    }
+  },
+  "environment": {
+      "showdashboard": true,
+      "uilayout": "terminal",
+      "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
+  },
+  "backend": {
+    "imageid": "docker"
+  }
+}

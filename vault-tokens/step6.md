@@ -3,8 +3,8 @@ When the default behavior is undesirable, you can create an **orphan token** ins
 Repeat the steps to create a token and login with the generated token.
 
 ```
-vault token create -ttl=80s -format=json \
-      | jq -r ".auth.client_token" > parent_token.txt
+vault token create -ttl=80s \
+      -format=json | jq -r ".auth.client_token" > parent_token.txt
 ```{{execute}}
 
 ```
@@ -18,8 +18,8 @@ To create an orphan token, you can simply pass the **`-orphan`** flag when you c
 Execute the following command to generate an orphan token and save it to a file named, `orphan_token.txt`.
 
 ```
-vault token create -ttl=120s -orphan -format=json \
-      | jq -r ".auth.client_token" > orphan_token.txt
+vault token create -ttl=120s -orphan \
+      -format=json | jq -r ".auth.client_token" > orphan_token.txt
 ```{{execute}}
 
 This child token will continue to be active for 120 seconds even after its parent token gets revoked.

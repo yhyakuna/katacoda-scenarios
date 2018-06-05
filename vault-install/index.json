@@ -11,8 +11,12 @@
         "text": "step1.md"
       },
       {
-        "title": "Write Vault Configuration File",
+        "title": "Run Vault in Development Mode",
         "text": "step2.md"
+      },
+      {
+        "title": "Write Vault Configuration File",
+        "text": "step3.md"
       }
     ],
     "intro": {

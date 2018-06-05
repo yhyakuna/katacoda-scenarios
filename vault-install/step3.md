@@ -1,26 +1,17 @@
-Now, create a token attached to the `base` policy so that you can test it.
+Outside of development mode, Vault servers are configured using a file. The format of this file is [HCL](https://github.com/hashicorp/hcl) or JSON. The configuration file for Vault is relatively simple.
 
-You are going to run the `vault token create` command.  To view the full list of optional parameters for the operation, run the following command:
+Enter the following in the `config.hcl`{{open}} file:
 
-```
-vault token create -h
-```{{execute}}
+<pre class="file" data-filename="config.hcl" data-target="replace">
+# Use the file backend
+storage "file" {
+  path = "/data/vault"
+}
 
-Create a new token:
+listener "tcp" {
+  address     = "127.0.0.1:8200"
+  tls_disable = 1
+}
 
-```
-clear
-vault token create -policy="base" -format=json | jq -r ".auth.client_token" > token.txt
-```{{execute}}
-
-> **NOTE:** A built-in policy, `default`, is attached to all tokens and provides common permissions.
-
-<br>
-
-### Authenticate with Base Token
-
-Let's login with newly generated `token`.  The command is:
-
-```
-vault login $(cat token.txt)
-```{{execute}}
+ui = true
+</pre>

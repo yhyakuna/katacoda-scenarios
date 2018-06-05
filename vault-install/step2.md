@@ -1,17 +1,50 @@
-Outside of development mode, Vault servers are configured using a file. The format of this file is [HCL](https://github.com/hashicorp/hcl) or JSON. The configuration file for Vault is relatively simple.
+At this point, you can run Vault in development mode. In this mode, Vault runs entirely in-memory and starts unsealed with a single unseal key. The root token is already authenticated to the CLI, so you can immediately begin using Vault.
 
-Enter the following in the `config.hcl`{{open}} file:
+Execute the following command to start Vault in development mode:
 
-<pre class="file" data-filename="base.hcl" data-target="replace">
-# Use the file backend
-storage "file" {
-  path = "data"
-}
+```
+vault server -dev -dev-root-token-id="root"
+```{{execute}}
 
-listener "tcp" {
-  address     = "127.0.0.1:8200"
-  tls_disable = 1
-}
+> This is a built-in, pre-configured server that is ***not*** very secure but useful for playing with Vault locally.
 
-ui = true
-</pre>
+Scroll up to find the following message:
+
+```
+You may need to set the following environment variable:
+
+    $ export VAULT_ADDR='http://127.0.0.1:8200'
+
+The unseal key and root token are displayed below in case you want to
+seal/unseal the Vault or re-authenticate.
+
+Unseal Key: zA1ujDttNWW9REd5I+VHCcYnmYiZHmBDs2QxZCVDgZc=
+Root Token: root
+```
+
+Click the **+** next to the opened Terminal, and select **Open New Terminal**.
+
+In the second terminal, set the `VAULT_ADDR`:
+
+```
+export VAULT_ADDR='http://127.0.0.1:8200'
+```{{execute}}
+
+Login with the generated root token.
+
+```
+vault login root
+```{{execute}}
+
+Now, you can run vault commands to manage your secrets using the dev server.
+
+For example:
+
+```
+vault kv put secret/customer/james name="James Bond" employer="MI6"
+```{{execute}}
+
+
+**CTRL + C** to terminate the dev server.  
+
+Next, you are going to learn how to configure Vault.

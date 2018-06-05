@@ -1,6 +1,6 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Lab 4: Vault Secret Engines - Dynamic Secrets",
+  "title": "TEST",
   "description": "Learn how to use Vault's secret-as-a-service feature to generate secrets on-demand.",
   "difficulty": "beginner",
   "time": "10 minutes",
@@ -13,22 +13,6 @@
       {
         "title": "Secret Engine List",
         "text": "step1.md"
-      },
-      {
-        "title": "",
-        "text": "step2.md"
-      },
-      {
-        "title": "",
-        "text": "step3.md"
-      },
-      {
-        "title": "",
-        "text": "step4.md"
-      },
-      {
-        "title": "",
-        "text": "step5.md"
       }
     ],
     "intro": {

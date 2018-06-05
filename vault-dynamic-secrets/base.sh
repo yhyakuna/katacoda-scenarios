@@ -1,1 +1,1 @@
-ssh root@client "apt-get install curl -y"
+docker run --name postgres -e POSTGRES_PASSWORD=training -d postgres

@@ -23,6 +23,13 @@ Now, test the token with use limit by executing some vault commands:
 vault token lookup
 ```{{execute}}
 
+Execute the following command to write some secrets at `secret/training_test`:
+
+```
+vault kv put secret/training_test year="2018"
+```{{execute}}
+
+The command should execute successfully.
 
 Now, try to read the data that you just wrote.
 

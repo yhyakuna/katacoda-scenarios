@@ -1,0 +1,37 @@
+{
+  "pathwayTitle": "Learn HashiCorp Vault",
+  "title": "[WIP] Installing HashiCorp Vault",
+  "description": "Learn how to install and configure the Vault server.",
+  "difficulty": "beginner",
+  "time": "5 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Installing Vault",
+        "text": "step1.md"
+      },
+      {
+        "title": "Write Vault Configuration File",
+        "text": "step2.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md",
+      "credits": "https://www.vaultproject.io"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "files": [
+    "config.hcl"
+  ],
+  "environment": {
+      "showdashboard": true,
+      "uilayout": "editor-terminal",
+      "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}

@@ -21,7 +21,7 @@ For each of these path, you must write policies to allow any operation against i
 
 You are going to write an ACL policy in [HCL](https://github.com/hashicorp/hcl) format. HCL is JSON compatible; therefore, JSON can be used as completely valid input.
 
-Remember, an empty policy grants no permission in the system. Therefore, ACL policies are defined for each path.
+Remember, _an empty policy grants no permission_ in the system. Therefore, ACL policies are defined for each path.
 
 ```
 path "<PATH>" {
@@ -44,6 +44,10 @@ path "secret/data/training_*" {
 </pre>
 
 Notice that the path has the "splat" operator (`training_*`). This is helpful in working with namespace patterns.  
+
+This policy grants **create** and **read** operations on any path starting with `secret/data/training_`.
+
+> **NOTE:**  When you are working with [_key/value secret engine v2_](https://www.vaultproject.io/api/secret/kv/kv-v2.html), the path to write policies would be `secret/data/<path>` even though the CLI command to the path is `secret/<path>` (e.g. `vault kv put secret`).  When you are working with [v1](https://www.vaultproject.io/api/secret/kv/kv-v1.html), the policies should be written against `secret/<path>`.  This is because the API endpoint to invoke key/value v2 is different from v1.
 
 
 Copy the `base.hcl` to the vault docker container:

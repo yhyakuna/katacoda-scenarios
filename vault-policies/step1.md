@@ -1,6 +1,6 @@
 > Everything in Vault is **path** based, and admins write policies to grant or forbid access to certain paths and operations in Vault. Vault operates on a secure by default standard, and as such, an ***empty policy grants no permissions*** in the system.
 
-Before begins, let's check which secret engines have been enabled: `vault secrets list`{{execute}}
+Before begins, let's check which secret engines have been enabled:  `vault secrets list`{{execute}}
 
 The output should look like:
 

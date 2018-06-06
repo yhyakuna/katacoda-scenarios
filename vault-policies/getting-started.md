@@ -19,9 +19,6 @@ Login with root token:
 vault login $(cat root_token.txt)
 ```{{execute}}
 
+<br>
+
 #### Now, you are ready to start writing Vault policies!
-
-
-```
-clear
-```{{execute}}

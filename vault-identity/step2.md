@@ -1,4 +1,4 @@
-Execute the following command to discover the mount accessor for the `userpass` auth method:
+Execute the following command to discover the mount accessor for the `userpass` auth method since `bob` and `bsmith` are users defined using the `userpass` auth method:
 
 ```
 vault auth list \
@@ -7,6 +7,15 @@ vault auth list \
 
 This command parses the output using `jq`, retrieves the mount accessor for `userpass` and save it in the `accessor.txt` file.
 
+**NOTE:** The output of `vault auth list -detailed`{{execute}} includes the accessor ID for each auth method enabled for your Vault server:
+
+```
+Path         Type        Accessor                  ...
+----         ----        --------                  ...
+token/       token       auth_token_070a4d9f       ...
+userpass/    userpass    auth_userpass_329e028b    ...
+```
+<br>
 ## Create an Entity
 
 Execute the following command to create a new entity named, `bob-smith` and save its ID in the `entity_id.txt` file:

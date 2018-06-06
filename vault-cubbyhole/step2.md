@@ -16,6 +16,7 @@ Since you are currently logged in as a root, you are going to perform the follow
 1. Verify that you can read `secret/dev` using the apps token
 1. Verify that `root` cannot read the cubbyhole secrets written by another token
 
+<br>
 
 ## Create a New Token for Apps
 
@@ -27,7 +28,7 @@ clear
 cat apps-policy.hcl
 ```{{execute}}
 
-This policy grants _read_ operation on the `secret/dev` and nothing else.
+This policy grants **read** operation on the `secret/dev` and nothing else.
 
 ```
 path "secret/data/dev" {
@@ -49,11 +50,13 @@ To create a new token using response wrapping, run the `vault token create` comm
 vault token create -policy=<POLICY_NAME> -wrap-ttl=<WRAP_TTL>
 ```
 
+<br>
 
 Execute the following commands to generate a token for apps using response wrapping with TTL of **360 seconds**, and save the generated wrapping token in a file named, `wrapping_token.txt`
 
 ```
-vault token create -policy=apps -wrap-ttl=360 -format=json | jq -r ".wrap_info.token" > wrapping-token.txt
+vault token create -policy=apps -wrap-ttl=360 \
+    -format=json | jq -r ".wrap_info.token" > wrapping-token.txt
 ```{{execute}}
 
 > **NOTE:** The response is the **wrapping token** rather than the actual client token for apps-policy; therefore, the admin user does not even see the generated token.

@@ -37,6 +37,7 @@ Read back the secret you just wrote. It should return the secret.
 vault read cubbyhole/private
 ```{{execute}}
 
+<br>
 
 ## Try as a root
 
@@ -49,6 +50,12 @@ vault login $(cat root_token.txt)
 
 Now, try to read the `cubbyhole/private` path.
 
+<br>
+
 #### What response did you receive?
 
 Cubbyhole secret backend provide an isolated secrete storage area for an individual token where no other token can violate.
+
+```
+vault read cubbyhole/private
+```{{execute}}

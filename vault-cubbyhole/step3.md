@@ -20,7 +20,8 @@ vault unwrap
 Let's unwrap the secret which contains the client token with `apps`. The following command stores the resulting token in `client-token.txt`.
 
 ```
-vault unwrap -format=json $(cat wrapping-token.txt) | jq -r ".auth.client_token" > client-token.txt
+vault unwrap -format=json $(cat wrapping-token.txt) \
+    | jq -r ".auth.client_token" > client-token.txt
 ```{{execute}}
 
 Log into Vault using the token you just uncovered:
@@ -29,13 +30,15 @@ Log into Vault using the token you just uncovered:
 vault login $(cat client-token.txt)
 ```{{execute}}
 
+<br>
+
 Remember that `apps` policy has a very limited privilege that the policy does not grant permissions on the `secret/dev` path other than **read**. Run the following command to verify the behavior.
 
 ```
 vault kv put secret/dev test="secret"
 ```{{execute}}
 
-You should receive "permission denied" error.
+You should receive **permission denied** error.
 
 However, the following command should execute successfully:
 
@@ -43,4 +46,4 @@ However, the following command should execute successfully:
 vault kv get secret/dev
 ```{{execute}}
 
-Since there is no data has written to the `secret/dev` path, the response is **No value found at secret/data/dev**.
+Since there is no data has written to the `secret/dev` path, the response is **No value found at secret/data/dev**. You should not received **permission denied** error.

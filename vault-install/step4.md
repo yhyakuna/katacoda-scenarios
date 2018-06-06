@@ -20,7 +20,9 @@ In order to prevent no one person from having complete access to the system, Vau
 
 Typically each of these key shares is distributed to trusted parties in the organization. These parties must come together to "unseal" the Vault by entering their key share.
 
-By default, the number of shared keys is `5` and quorum of `3` unseal keys are required to unseal vault.  (NOTE: This is configurable during the initialization using `-key-shares` and `-key-threshold` parameters.)
+By default, the number of shared keys is `5` and quorum of `3` unseal keys are required to unseal vault (`key.txt`{{open}}).  
+
+> NOTE: This is configurable during the initialization using `-key-shares` and `-key-threshold` parameters.)
 
 <br>
 

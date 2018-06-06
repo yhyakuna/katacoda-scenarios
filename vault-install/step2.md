@@ -26,7 +26,7 @@ Click the **+** next to the opened Terminal, and select **Open New Terminal**.
 
 <img src="https://s3-us-west-1.amazonaws.com/education-yh/ops-another-terminal.png" alt="New Terminal"/>
 
-In the second terminal, set the `VAULT_ADDR` environment variable:
+In the **Terminal 2**, set the `VAULT_ADDR` environment variable:
 
 ```
 export VAULT_ADDR='http://127.0.0.1:8200'

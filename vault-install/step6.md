@@ -68,6 +68,7 @@ before it can start servicing requests.
 
 > Vault supports **PGP encrypting** the resulting unseal keys and creating backup encryption keys for disaster recovery.
 
+<br>
 
 ## Rotating the Encryption Key
 

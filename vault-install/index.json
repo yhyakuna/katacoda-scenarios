@@ -1,9 +1,9 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "[WIP] Introduction to Vault Operations",
-  "description": "Learn how to install and configure the Vault server.",
+  "title": "Introduction to Vault Operations",
+  "description": "Learn how to install, configure, and manage the Vault server.",
   "difficulty": "beginner",
-  "time": "5 minutes",
+  "time": "10 - 15 minutes",
   "details": {
     "steps": [
       {

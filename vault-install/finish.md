@@ -1,4 +1,13 @@
-This scenario gave you a quick introduction to write ACL policies.  
+In this lab, you performed the following tasks:
+
+- Installing Vault
+- Run Vault in Development Mode
+- Write Vault Configuration File
+- Initialize Vault
+- Enable Audit Logging
+- Key Rotation
+- Generating Root Token
+
 
 ### Resources:
 

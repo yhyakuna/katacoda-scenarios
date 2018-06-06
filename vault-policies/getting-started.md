@@ -20,3 +20,8 @@ vault login $(cat root_token.txt)
 ```{{execute}}
 
 Now, you are ready to start writing Vault policies!
+
+
+```
+clear
+```{{execute}}

@@ -1,6 +1,6 @@
 Recall that the `base` policy only permits CRUD operations on `secret/training/` path.  
 
-The following command **should** fail with **"permission denied"** error.:
+The following command **should fail** with **"permission denied"** error.:
 
 ```
 vault policy list
@@ -29,13 +29,15 @@ You should be able to read back the data:
 vault kv get secret/training_test
 ```{{execute}}
 
+<br>
+
 Now, pass a different password value to update it.
 
 ```
 vault kv put secret/training_test password="password1234"
 ```{{execute}}
 
-> his should fail because the base policy only grants **create** and **read**.  With absence of **update** permission, this operation fails.
+> This should fail because the base policy only grants **create** and **read**.  With absence of **update** permission, this operation fails.
 
 <br>
 

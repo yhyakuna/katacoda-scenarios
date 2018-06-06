@@ -4,7 +4,9 @@ Log back in with root token:
 vault login $(cat root_token.txt)
 ```{{execute}}
 
-Execute the capabilities command to check permissions on secret/data/training_dev path.
+<br>
+
+Execute the capabilities command to check permissions on `secret/data/training_dev` path.
 
 ```
 vault token capabilities $(cat token.txt) secret/data/training_dev
@@ -12,7 +14,7 @@ vault token capabilities $(cat token.txt) secret/data/training_dev
 
 Where `token.txt` contains the generated token with `base` policy attached.
 
-This lists the capabilities of a token on a path granted by its attached policies. When unexpected behavior was encountered, this is an easy method to check the policy for the token.
+This lists the capabilities of a token on a path granted by its attached policies (`base`). When unexpected behavior was encountered, this is an easy method to check the policy for the token.
 
 <br>
 

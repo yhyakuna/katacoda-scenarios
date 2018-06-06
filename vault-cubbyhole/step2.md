@@ -59,4 +59,4 @@ vault token create -policy=apps -wrap-ttl=360 \
     -format=json | jq -r ".wrap_info.token" > wrapping-token.txt
 ```{{execute}}
 
-> **NOTE:** The response is the **wrapping token** rather than the actual client token for apps-policy; therefore, the admin user does not even see the generated token.
+> **NOTE:** The response is the **wrapping token** rather than the actual client token for apps-policy; therefore, the admin user does not even see the generated token that he/she generated. After 360 seconds, the wrapping token gets expired that its wrapped content will no longer discoverable. 

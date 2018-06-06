@@ -46,4 +46,27 @@ However, the following command should execute successfully:
 vault kv get secret/dev
 ```{{execute}}
 
-Since there is no data has written to the `secret/dev` path, the response is **No value found at secret/data/dev**. You should not received **permission denied** error.
+Since there is no data has written to the `secret/dev` path, the response is **No value found at secret/data/dev**.
+
+<br>
+
+Any Vault operation response can be wrapped with user defined TTL.
+
+For example, write some secrets in `secret/credentials`:
+
+```
+vault kv put secret/credentials username="sf-admin" password="some-long-password"
+```{{execute}}
+
+Then wrap its content to pass it to a trusted user:
+
+```
+vault kv get -wrap-ttl=360 secret/credentials \
+    -format=json | jq -r ".wrap_info.token" > wrapping-token.txt
+```{{execute}}
+
+Unwrap the secrets:
+
+```
+vault unwrap $(cat wrapping-token.txt)
+```{{execute}}

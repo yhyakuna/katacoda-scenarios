@@ -22,7 +22,7 @@ The command to create a new user:
 vault write auth/<userpass_mount_path>/users/<username> password=<password> policies=<list_of_policies>
 ```
 
-The method lowercases all submitted usernames, e.g. Mary and mary are the same entry.
+The method lowercases all submitted usernames (e.g. _Mary_ and _mary_ are the same entry).
 
 Let's create your first user.
 
@@ -46,3 +46,10 @@ vault read auth/userpass/users/student01
 ```{{execute}}
 
 Notice that the password is NOT included in the response.
+
+<br>
+If you wish to list the users created, execute the following command:
+
+```
+vault list auth/userpass/users
+```{{execute}}

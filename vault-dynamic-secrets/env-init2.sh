@@ -10,4 +10,4 @@ install -c -m 0755 vault /usr/bin
 apt-get install -y jq &&
 
 # Run Vault
-vault server -dev -dev-root-token-id="root" > /dev/null
+vault server -dev -dev-root-token-id="root" > /dev/null &

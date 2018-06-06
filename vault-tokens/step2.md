@@ -32,11 +32,7 @@ The output displays the **`ttl`** left with this token in seconds.
 
 ## Renew the Token
 
-Although a token has a short TTL, it can be renewed for as long as it hasn't reached its TTL via `renew` operation. Review the help message on token renewal:
-
-```
-vault token renew -h
-```{{execute}}
+Although a token has a short TTL, it can be renewed for as long as it hasn't reached its TTL via `renew` operation. 
 
 Execute the following command to renew the token and double its TTL:
 

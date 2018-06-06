@@ -6,7 +6,7 @@ To better understand how a token inherits the capabilities from entity's policy,
 Execute the following command to login as `bob` and save the generated client token in the `bob_token.txt` file:
 
 ```
-vault login -format=json -method=userpass username=bob password=training 
+vault login -format=json -method=userpass username=bob password=training
 ```{{execute}}
 
 
@@ -17,7 +17,7 @@ vault kv put secret/test owner="bob"
 ```{{execute}}
 
 
-Although the username `bob` does not have `base` policy attached, the token inherits the capabilities granted in the base policy because `bob` is a member of the `bob-smith` entity, and the entity has base policy attached.
+> Although the username `bob` does not have `base` policy attached, the token inherits the capabilities granted in the base policy because `bob` is a member of the `bob-smith` entity, and the entity has base policy attached.
 
 Check to see that the bob's token inherited the capabilities:
 

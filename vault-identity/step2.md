@@ -7,7 +7,7 @@ vault auth list \
 
 This command parses the output using `jq`, retrieves the mount accessor for `userpass` and save it in the `accessor.txt` file.
 
-**NOTE:** The output of `vault auth list -detailed`{{execute}} includes the accessor ID for each auth method enabled for your Vault server:
+**NOTE:** The output of `vault auth list -detailed`{{execute}} includes the accessor ID for each auth method enabled on your Vault server:
 
 ```
 Path         Type        Accessor                  ...
@@ -15,6 +15,7 @@ Path         Type        Accessor                  ...
 token/       token       auth_token_070a4d9f       ...
 userpass/    userpass    auth_userpass_329e028b    ...
 ```
+
 <br>
 ## Create an Entity
 

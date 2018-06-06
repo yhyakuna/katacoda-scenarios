@@ -1,4 +1,4 @@
-Now, you are going to create an internal group named, engineers.  Its member is `bob-smith` entity that you created in Task 1.
+Now, you are going to create an internal group named, engineers.  Its member is `bob-smith` entity that you created.
 
 Log back in with the root token:
 
@@ -9,7 +9,7 @@ vault login $(cat root_token.txt)
 
 First, create a new policy so that you can test the capability inheritance:
 
-Create a policy named, `team-eng` which grants CRUD operations on the `secret/team/eng` path.
+Create a policy named, `team-eng` which grants CRUD operations on the `secret/data/team/eng` path.
 
 ```
 docker cp team-eng.hcl vault:/team-eng.hcl
@@ -17,6 +17,7 @@ clear
 vault policy write team-eng team-eng.hcl
 ```{{execute}}
 
+To review the policy:  `vault policy read team-eng`{{execute}}
 <br>
 
 ## Create an Internal Group

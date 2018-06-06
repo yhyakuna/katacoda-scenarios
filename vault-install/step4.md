@@ -27,7 +27,8 @@ By default, the number of shared keys is `5` and quorum of `3` unseal keys are r
 Execute the `vault operator unseal` command to enter the first unseal key:
 
 ```
-vault operator unseal $(grep 'Key 1:' key.txt | awk '{print $NF}')
+vault operator unseal \
+    $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
 Notice that the output indicates that the **unseal progress** is now `1/3`.
@@ -35,14 +36,16 @@ Notice that the output indicates that the **unseal progress** is now `1/3`.
 Pass the second unseal key:
 
 ```
-vault operator unseal $(grep 'Key 2:' key.txt | awk '{print $NF}')
+vault operator unseal \
+    $(grep 'Key 2:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
 
 Finally, pass the third unseal key:
 
 ```
-vault operator unseal $(grep 'Key 3:' key.txt | awk '{print $NF}')
+vault operator unseal \
+    $(grep 'Key 3:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
 Now, Vault is unsealed and ready to accept requests.

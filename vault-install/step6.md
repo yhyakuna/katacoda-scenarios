@@ -29,7 +29,8 @@ This will generate a nonce value and start the rekeying process. All other unsea
 Each unseal key holder runs the following command and enters their unseal key:
 
 ```
-vault operator rekey -nonce=$(cat nonce.txt) $(grep 'Key 1:' key.txt | awk '{print $NF}')
+vault operator rekey -nonce=$(cat nonce.txt) \
+    $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
 Notice that the output indicates that the **unseal progress** is now `1/3`.
@@ -37,14 +38,16 @@ Notice that the output indicates that the **unseal progress** is now `1/3`.
 Enter the second unseal key:
 
 ```
-vault operator rekey -nonce=$(cat nonce.txt) $(grep 'Key 2:' key.txt | awk '{print $NF}')
+vault operator rekey -nonce=$(cat nonce.txt) \
+    $(grep 'Key 2:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
 
 Finally, enter the third unseal key:
 
 ```
-vault operator rekey -nonce=$(cat nonce.txt) $(grep 'Key 3:' key.txt | awk '{print $NF}')
+vault operator rekey -nonce=$(cat nonce.txt) \
+    $(grep 'Key 3:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
 

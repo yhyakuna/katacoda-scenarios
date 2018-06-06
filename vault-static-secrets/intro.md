@@ -16,5 +16,5 @@ Key/Value secret engine is used to store arbitrary secrets:
 - Enforced access control via policies
 - Fully audited access
 
-> The secrets are encrypted using 256-bits AES in GCM mode with a randomly generated nonce prior to writing them to its storage backend
+> The secrets are ***encrypted*** using 256-bits AES in GCM mode with a randomly generated nonce prior to writing them to its storage backend.
 Anything that leaves Vault is encrypted.

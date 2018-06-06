@@ -7,12 +7,12 @@ vault secrets list -detailed
 In the output, locate "secret/" and check its version.
 
 ```
-Path          Type         Accessor              ...    Options           Description
-----          ----         --------              ...    -------           -----------
-cubbyhole/    cubbyhole    cubbyhole_1cca99e9    ...    map[]             per-token private secret storage
-identity/     identity     identity_67a39d3a     ...    map[]             identity store
-secret/       kv           kv_84d9897b           ...    map[version:2]    key/value secret storage
-sys/          system       system_4b427358       ...    map[]             system endpoints used for control, policy and debugging
+Path          Type         ...    Options           Description
+----          ----         ...    -------           -----------
+cubbyhole/    cubbyhole    ...    map[]             per-token private secret storage
+identity/     identity     ...    map[]             identity store
+secret/       kv           ...    map[version:2]    key/value secret storage
+sys/          system       ...    map[]             system endpoints used for control, policy and debugging
 ```
 
 Under **Options**, it should display that the kv version is 2.  

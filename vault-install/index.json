@@ -25,6 +25,10 @@
       {
         "title": "Enable Audit Logging",
         "text": "step5.md"
+      },
+      {
+        "title": "Key Rotation",
+        "text": "step6.md"
       }
     ],
     "intro": {

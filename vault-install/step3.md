@@ -3,7 +3,7 @@ Outside of development mode, Vault servers are configured using a file. The form
 Enter the following in the `config.hcl`{{open}} file:
 
 <pre class="file" data-filename="config.hcl" data-target="replace">
-# Use the file backend
+# Use the file system as storage backend
 storage "file" {
   path = "/data/vault"
 }
@@ -16,9 +16,13 @@ listener "tcp" {
 ui = true
 </pre>
 
-The `storage` and `listener` stanzas are **required**. In this example, the **file** storage backend stores Vault's data on the filesystem using a standard directory structure (`/data/vault`). It can be used for durable single server situations, or to develop locally where durability is not critical.
+The `storage` and `listener` stanzas are **required**.
+
+In this example, the **file** storage backend stores Vault's data on the filesystem using a standard directory structure (`/data/vault`). It can be used for durable single server situations, or to develop locally where durability is not critical.  For production, you want to use scalable storage backend solution such as [Consul](https://www.vaultproject.io/docs/configuration/storage/consul.html).
 
 The `listener` stanza specifies the TCP address/port that Vault listens to for incoming requests.
+
+> For more details, refer to the [Vault Configuration](https://www.vaultproject.io/docs/configuration/index.html) documentation.
 
 <br>
 
@@ -43,3 +47,5 @@ Notice the output indicating that the storage backend is `file` system, and the 
                  Version: Vault v0.10.1
              Version Sha: 756fdc4587350daf1c65b93647b2cc31a6f119cd
 ```
+
+Next, you are going to initialize Vault.

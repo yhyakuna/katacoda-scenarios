@@ -24,7 +24,7 @@ Root Token: root
 
 Click the **+** next to the opened Terminal, and select **Open New Terminal**.
 
-<img src="https://s3-us-west-1.amazonaws.com/education-yh/install-another-terminal.png" alt="New Terminal"/>
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/ops-another-terminal.png" alt="New Terminal"/>
 
 In the second terminal, set the `VAULT_ADDR` environment variable:
 
@@ -50,6 +50,6 @@ vault kv put secret/customer/james name="James Bond" employer="MI6"
 
 Return to the _first terminal_ where Vault server is running, and **CTRL + C** to terminate the dev server.  
 
-<img src="https://s3-us-west-1.amazonaws.com/education-yh/install-stop-server.png" alt="Stop Vault"/>
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/ops-stop-server.png" alt="Stop Vault"/>
 
 Next, you are going to learn how to configure Vault.

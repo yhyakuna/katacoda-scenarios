@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Get Vault
-export VAULT=0.10.1
+export VAULT=0.10.2
 wget https://releases.hashicorp.com/vault/${VAULT}/vault_${VAULT}_linux_amd64.zip
 
 unzip vault_${VAULT}_linux_amd64.zip && rm vault_${VAULT}_linux_amd64.zip

@@ -33,9 +33,8 @@ path "<PATH>" {
 
 <br>
 
-Create a file named, `base.hcl `: `touch base.hcl`{{execute}}
 
-Select the `base.hcl`{{open}} file to open it in the editor pane, and enter the following policy rules in the editor (the following snippet can be copied into the editor):
+The `base.hcl`{{open}} file should be opened in the editor pane.  Enter the following policy rules in the editor (the following snippet can be copied into the editor):
 
 <pre class="file" data-filename="base.hcl" data-target="replace">
 path "secret/data/training_*" {

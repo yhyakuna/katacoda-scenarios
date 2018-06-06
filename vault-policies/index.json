@@ -42,7 +42,7 @@
     }
   },
   "files": [
-      "app.js"
+      "base.hcl"
   ],
   "environment": {
       "showdashboard": true,

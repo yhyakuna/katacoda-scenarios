@@ -3,7 +3,9 @@ Each token has a time-to-live (TTL) with an exception of the `root` token.  Toke
 When the interaction between Vault and its client takes only a few seconds, there is no need to keep the token alive for longer than necessary. If you don't explicitly specify, token's default TTL is 32 days.  Let's create a token which is only valid for 30 seconds.
 
 
-First, let's see the help message on token creation:
+First, let's see the help message on token creation.
+
+> Enter the following command into the terminal, or click on the command to automatically copy it into the terminal and execute it.
 
 ```
 vault token create -h

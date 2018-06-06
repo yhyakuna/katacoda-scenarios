@@ -41,6 +41,9 @@
       "credits": "https://www.vaultproject.io"
     }
   },
+  "files": [
+      "app.js"
+  ],
   "environment": {
       "showdashboard": true,
       "uilayout": "editor-terminal",

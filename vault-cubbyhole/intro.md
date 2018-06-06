@@ -18,3 +18,10 @@ This scenario demonstrates the [cubbyhole secret engine](https://www.vaultprojec
   - No concept of a time-to-live (TTL) or refresh interval for values in cubbyhole
   - Even the `root` token ***cannot*** read the data if it wasn't written by the `root`
 - Cubbyhole secret engine _cannot be disabled_, _moved_ or _enabled multiple times_
+
+
+This lab demonstrates the following:
+
+- Write secrets in Cubbyhole
+- Create a new token for apps which was wrapped
+- Unwrap the wrapped token and tested its permissions

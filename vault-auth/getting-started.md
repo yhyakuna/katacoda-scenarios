@@ -19,8 +19,8 @@ Login with root token:
 vault login $(cat root_token.txt)
 ```{{execute}}
 
+<br>
+
 Now, you are logged in as a `root` and ready to play!
 
-```
-clear
-```{{execute}}
+`clear`{{execute}}

@@ -1,7 +1,8 @@
 To better demonstrate the cubbyhole secret engine, first create a **non-privileged** token.
 
 ```
-vault token create -policy=default -format=json | jq -r ".auth.client_token" > token.txt
+vault token create -policy=default \
+    -format=json | jq -r ".auth.client_token" > token.txt
 ```{{execute}}
 
 

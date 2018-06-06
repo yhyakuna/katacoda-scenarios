@@ -19,7 +19,7 @@ Try reading the `secret/company` path again.
 vault kv get secret/company
 ```{{execute}}
 
-The output displays the metadata only with `deletion_time`.
+The output displays the metadata with `deletion_time`.
 
 <br>
 

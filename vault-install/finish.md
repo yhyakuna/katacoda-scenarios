@@ -8,10 +8,13 @@ In this lab, you performed the following tasks:
 - Generating Root Token
 - Key Rotation
 
-
+To learn more about Vault operation topics, refer to the following resources.
 
 ### Resources:
 
-- [Vault Policies guide](https://www.vaultproject.io/guides/identity/policies.html)
-- [Vault Policies documentation](https://www.vaultproject.io/docs/concepts/policies.html)
-- [Vault Policy API](https://www.vaultproject.io/api/system/policy.html)
+- [Vault Operations guides](https://www.vaultproject.io/guides/operations/index.html)
+- [Vault Architecture](https://www.vaultproject.io/docs/internals/architecture.html)
+- [Vault Policies](https://www.vaultproject.io/docs/concepts/policies.html)
+- [Vault Configuration](https://www.vaultproject.io/docs/configuration/index.html)
+- [Initializing Vault](https://www.vaultproject.io/intro/getting-started/deploy.html#initializing-the-vault)
+- [Seal/Unseal Vault](https://www.vaultproject.io/intro/getting-started/deploy.html#seal-unseal)

@@ -34,7 +34,7 @@ Execute the following command to start the Vault server:
 vault server -config=config.hcl
 ```{{execute T1}}
 
-Notice the output indicating that the storage backend is `file` system, and the Vault address is `127.0.0.1:8200`.
+Notice the output indicating that the **Storage** is set to `file` system, and the **Listener** address is `127.0.0.1:8200`.
 
 ```
 ==> Vault server configuration:

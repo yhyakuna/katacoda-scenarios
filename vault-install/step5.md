@@ -1,4 +1,4 @@
-Log into Vault using the initial root token:
+Log into Vault using the **initial root token** (`key.txt`{{open}}):
 
 ```
 vault login $(grep 'Initial Root Token:' key.txt | awk '{print $NF}')

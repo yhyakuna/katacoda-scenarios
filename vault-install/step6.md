@@ -19,14 +19,14 @@ First, execute the following command to generate a one-time password (OTP) and s
 vault operator generate-root -generate-otp > otp.txt
 ```{{execute T2}}
 
-Initialize a root token generation with the OTP code and save the resulting nonce in the `nonce.txt` file:
+Initialize a root token generation with the OTP code (`otp.txt`{{open}}) and save the resulting nonce in the `nonce.txt` file:
 
 ```
 vault operator generate-root -init -otp=$(cat otp.txt) \
     -format=json | jq -r ".nonce" > nonce.txt
 ```{{execute T2}}
 
-> The nonce value should be distributed to all unseal key holders. Generation of a root token requires a quorum of unseal keys.
+> The **nonce** value (`nonce.txt`{{open}}) should be distributed to all unseal key holders. Generation of a root token requires a quorum of unseal keys.
 
 
 **Each unseal key holder** must execute the following command providing their unseal key:
@@ -71,4 +71,11 @@ Now, verify the newly generated root token (`root_token.txt`{{open}}):
 
 ```
 vault login $(cat root_token.txt)
+```{{execute T2}}
+
+The output should show that the token policy is **root**.
+
+
+```
+clear
 ```{{execute T2}}

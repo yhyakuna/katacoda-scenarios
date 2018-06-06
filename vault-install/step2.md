@@ -43,7 +43,7 @@ Now, you can run vault commands to manage your secrets using the dev server.
 For example:
 
 ```
-vault kv put secret/customer/james name="James Bond" employer="MI6"
+vault kv put secret/customer/james name="James Bond" organization="MI6"
 ```{{execute T2}}
 
 <br>
@@ -52,4 +52,4 @@ Return to the _first terminal_ where Vault server is running, and **CTRL + C** t
 
 <img src="https://s3-us-west-1.amazonaws.com/education-yh/ops-stop-server.png" alt="Stop Vault"/>
 
-Next, you are going to learn how to configure Vault.
+Next, you are going to learn how to configure Vault for non-dev environment.

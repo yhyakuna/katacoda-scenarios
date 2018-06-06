@@ -13,6 +13,8 @@ In addition to rekeying the master key, there may be an independent desire to ro
 
 In Vault, `rekeying` and `rotating` are two separate operations. The process for generating a new master key and applying Shamir's algorithm is called "rekeying". The process for generating a new encryption key for Vault to encrypt data at rest is called "rotating".
 
+<br>
+
 ## Rekeying Vault
 
 **NOTE:** Rekeying the Vault requires a quorum of unseal keys.

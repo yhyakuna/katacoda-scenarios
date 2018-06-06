@@ -17,10 +17,10 @@ okta/        okta        auth_okta_0e2bffe6        ...
 token/       token       auth_token_070a4d9f       ...
 userpass/    userpass    auth_userpass_329e028b    ...
 ```
-If the identity, `bob`, is defined in LDAP and `bsmith` is defined in Okta, you would need the accessor IDs of LDAP and Okta. 
+If the identity, `bob`, is defined in LDAP and `bsmith` is defined in Okta, you would need the accessor IDs of LDAP and Okta.
 
 <br>
-## Create an Entity
+## Create bob-smith Entity
 
 Execute the following command to create a new entity named, `bob-smith` and save its ID in the `entity_id.txt` file:
 

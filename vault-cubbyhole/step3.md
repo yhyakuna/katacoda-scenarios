@@ -1,4 +1,4 @@
-In order for the apps to acquire a valid token to read secrets from `secret/dev` path, it must run the unwrap operation using this token.
+In order for the apps to acquire a valid token to read secrets from `secret/data/dev` path, it must run the unwrap operation using this token.
 
 Use `vault unwrap` command to retrieve the wrapped secrets as follow:
 
@@ -32,7 +32,7 @@ vault login $(cat client-token.txt)
 
 <br>
 
-Remember that `apps` policy has a very limited privilege that the policy does not grant permissions on the `secret/dev` path other than **read**. Run the following command to verify the behavior.
+Remember that `apps` policy has a very limited privilege that the policy does not grant permissions on the `secret/data/dev` path other than **read**. Run the following command to verify the behavior.
 
 ```
 vault kv put secret/dev test="secret"
@@ -46,16 +46,12 @@ However, the following command should execute successfully:
 vault kv get secret/dev
 ```{{execute}}
 
-Since there is no data has written to the `secret/dev` path, the response is **No value found at secret/data/dev**.
-
 <br>
 
-Any Vault operation response can be wrapped with user defined TTL.
-
-For example, log back in with `root` token, and write some secrets in `secret/credentials`:
+Any Vault operation response can be wrapped with user defined TTL.  For example, log back in with `root` token, and write some secrets in `secret/credentials`:
 
 ```
-vault login $(cat root_token.txt)
+vault login $(cat root_token.txt) &&
 vault kv put secret/credentials username="sf-admin" password="some-long-password"
 ```{{execute}}
 

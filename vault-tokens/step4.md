@@ -42,3 +42,5 @@ vault token lookup $(cat monitor_token.txt)
 ```{{execute}}
 
 Notice that the **`role`** is set to **`monitor`**.
+
+This token can be renewed infinite number of times for as long as it hasn't reached its 24-hour TTL.

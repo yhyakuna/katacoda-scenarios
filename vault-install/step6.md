@@ -1,83 +1,74 @@
-During initialization, the encryption keys were generated, and unseal keys are created. This only happens **once** when the server is started against a new backend that has never been used with Vault before.
+A recommended best practice is not to persist your root tokens. The root tokens should be used only for just enough initial setup or in emergencies. Once appropriate policies are written, use tokens with assigned set of policies based on your role in the organization.
 
-In some cases, you may want to re-generate the master key and key shares. For examples:
+Therefore, a root token should be generated using Vault's operator generate-root command only when absolutely necessary.
 
-- Someone joins or leaves the organization
-- Security wants to change the number of shares or threshold of shares
-- Compliance mandates the master key be rotated at a regular interval
-
-
-In addition to rekeying the master key, there may be an independent desire to rotate the underlying encryption key Vault uses to encrypt data at rest.
-
-<img src="https://s3-us-west-1.amazonaws.com/education-yh/ops-rekey.png" alt="Logo"/>
-
-In Vault, `rekeying` and `rotating` are two separate operations. The process for generating a new master key and applying Shamir's algorithm is called "rekeying". The process for generating a new encryption key for Vault to encrypt data at rest is called "rotating".
-
-## Rekeying Vault
-
-**NOTE:** Rekeying the Vault requires a quorum of unseal keys.
-
-First, initialize a rekeying operation.  At this point, you can specify the desired number of key shares and threshold.  Execute the following command to rekey Vault where the number of key shares is `3` and key threshold is `2`:
+Review the help text on the `generate-root` operation:
 
 ```
-vault operator rekey -init -key-shares=3 -key-threshold=2 \
+vault operator generate-root -h
+```{{execute T2}}
+
+```
+clear
+```{{execute T2}}
+
+
+Execute the following command to generate a one-time password (OTP) and save it in the `otp.txt` file:
+
+```
+vault operator generate-root -generate-otp > otp.txt
+```{{execute T2}}
+
+Initialize a root token generation with the OTP code and save the resulting nonce in the `nonce.txt` file:
+
+```
+vault operator generate-root -init -otp=$(cat otp.txt) \
     -format=json | jq -r ".nonce" > nonce.txt
 ```{{execute T2}}
 
-This will generate a nonce value and start the rekeying process. All other unseal keys must also provide this nonce value. This nonce value is not a secret, so it is safe to distribute over insecure channels like chat, email, or carrier pigeon.
+> The nonce value should be distributed to all unseal key holders. Generation of a root token requires a quorum of unseal keys.
 
-Each unseal key holder runs the following command and enters their unseal key:
+
+**Each unseal key holder** must execute the following command providing their unseal key:
 
 ```
-vault operator rekey -nonce=$(cat nonce.txt) \
+vault operator generate-root -nonce=$(cat nonce.txt) \
     $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-Notice that the output indicates that the **unseal progress** is now `1/3`.
-
-Enter the second unseal key:
+The output displays the progress:
 
 ```
-vault operator rekey -nonce=$(cat nonce.txt) \
+Nonce       f5368918-60c0-5122-77b5-38c5aca3375d
+Started     true
+Progress    1/3
+Complete    false
+```
+
+Proceed with second unseal key:
+
+```
+vault operator generate-root -nonce=$(cat nonce.txt) \
     $(grep 'Key 2:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-
-Finally, enter the third unseal key:
+Finally, enter the third unseal key and save the resulting encoded root token in the `encoded_root.txt` file:
 
 ```
-vault operator rekey -nonce=$(cat nonce.txt) \
-    $(grep 'Key 3:' key.txt | awk '{print $NF}')
+vault operator generate-root -nonce=$(cat nonce.txt) \
+    -format=json $(grep 'Key 2:' key.txt | awk '{print $NF}') \
+    | jq -r ".encoded_root_token" > encoded_root.txt
 ```{{execute T2}}
 
-
-When the final unseal key holder enters their key, Vault will output the new unseal keys similar to following:
-
-```
-Key 1: a4By/JU6xqMxXG95FtcShLldGS4GDZmcUcCD4Q83cl2b
-Key 2: dWBDfbTicxDwCbmi7TQnKBdecdyfWWi+25Pj2xN+vlnb
-Key 3: zZk7kYLu02E/UENLmCjBSzu76SQaqnVt9RtcYeTQYsf4
-
-Operation nonce: cc9f9311-7945-3b91-9af4-96d94eba83ae
-
-Vault rekeyed with 3 key shares an a key threshold of 2. Please securely
-distributed the key shares printed above. When the Vault is re-sealed,
-restarted, or stopped, you must supply at least 2 of these keys to unseal it
-before it can start servicing requests.
-```
-
-> Vault supports **PGP encrypting** the resulting unseal keys and creating backup encryption keys for disaster recovery.
-
-<br>
-
-## Rotating the Encryption Key
-
-Unlike rekeying the Vault, rotating Vault's encryption key does not require a quorum of unseal keys. Anyone with the proper permissions in Vault can perform the encryption key rotation.
-
-To trigger a key rotation, execute the following command:
+The resulting root token is encrypted. Execute the following command to decode:
 
 ```
-vault operator rotate
+vault operator generate-root -decode=$(cat encoded_root.txt) -otp=$(cat otp.txt) \
+    > root_token.txt
 ```{{execute T2}}
 
-The output shows the key version and installation time. This will add a new key to the keyring. All new values written to the storage backend will be encrypted with this new key.
+Now, check to make sure that you can authenticate with the newly generated root token:
+
+```
+vault login $(root_token.txt)
+```{{execute T2}}

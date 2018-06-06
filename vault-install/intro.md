@@ -9,5 +9,5 @@ This lab walks you through the installation and configuration of a Vault server,
 - Write Vault Configuration File
 - Initialize Vault
 - Enable Audit Logging
-- Key Rotation
 - Generating Root Token
+- Key Rotation

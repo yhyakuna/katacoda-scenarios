@@ -1,6 +1,6 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Introduction to Vault Operations",
+  "title": "Vault Operations",
   "description": "Learn how to install, configure, and manage the Vault server.",
   "difficulty": "beginner",
   "time": "10 - 15 minutes",
@@ -27,8 +27,12 @@
         "text": "step5.md"
       },
       {
-        "title": "Key Rotation",
+        "title": "Generate Root Token",
         "text": "step6.md"
+      },
+      {
+        "title": "Key Rotation",
+        "text": "step7.md"
       }
     ],
     "intro": {

@@ -5,8 +5,9 @@ In this lab, you performed the following tasks:
 - Write Vault Configuration File
 - Initialize Vault
 - Enable Audit Logging
-- Key Rotation
 - Generating Root Token
+- Key Rotation
+
 
 
 ### Resources:

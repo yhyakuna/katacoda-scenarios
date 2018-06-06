@@ -47,30 +47,3 @@ vault kv get secret/dev
 ```{{execute}}
 
 <br>
-
-Any Vault operation response can be wrapped with user defined TTL.  For example, wrap the output from `vault kv get` operation.
-
-First, log back in with `root` token:
-
-```
-vault login $(cat root_token.txt)
-```{{execute}}
-
-Write some secrets in `secret/credentials`
-
-```
-vault kv put secret/credentials username="sf-admin" password="some-long-password"
-```{{execute}}
-
-Invoke `vault kv get` command and wrap its response so that you can pass it to a trusted user securely:
-
-```
-vault kv get -format=json -wrap-ttl=360 secret/credentials \
-     | jq -r ".wrap_info.token" > wrapping-token.txt
-```{{execute}}
-
-Unwrap the secrets:
-
-```
-vault unwrap $(cat wrapping-token.txt)
-```{{execute}}

@@ -1,4 +1,4 @@
-Vault docker container is running in development mode.
+This tutorial uses [Vault docker container](https://hub.docker.com/_/vault/) which is running Vault in development mode.
 
 ## Login to Vault
 

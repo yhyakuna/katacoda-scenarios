@@ -60,8 +60,4 @@ vault policy -h
 ```{{execute}}
 
 
-To view the full list of optional parameters for `vault policy write` operation, run the following command:
-
-```
-vault policy write -h
-```{{execute}}
+To view the full list of optional parameters for `vault policy write` operation, run the following command:  `vault policy write -h`{{execute}}

@@ -10,14 +10,15 @@ Create a new token, and save the generated token in a file named, `token.txt`:
 
 ```
 clear
-vault token create -policy="base" -format=json | jq -r ".auth.client_token" > token.txt
+vault token create -policy="base" \
+    -format=json | jq -r ".auth.client_token" > token.txt
 ```{{execute}}
 
 <br>
 
 ## Authenticate with Base Token
 
-Let's login with newly generated `token`.  The command is:
+Let's login with newly generated `token` (`token.txt`{{open}}).  The command is:
 
 ```
 vault login $(cat token.txt)

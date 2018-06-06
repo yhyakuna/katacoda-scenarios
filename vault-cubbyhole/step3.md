@@ -65,8 +65,8 @@ vault kv put secret/credentials username="sf-admin" password="some-long-password
 Invoke `vault kv get` command and wrap its response so that you can pass it to a trusted user securely:
 
 ```
-vault kv get -wrap-ttl=360 secret/credentials \
-    -format=json | jq -r ".wrap_info.token" > wrapping-token.txt
+vault kv get -format=json -wrap-ttl=360 secret/credentials \
+     | jq -r ".wrap_info.token" > wrapping-token.txt
 ```{{execute}}
 
 Unwrap the secrets:

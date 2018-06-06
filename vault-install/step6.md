@@ -13,7 +13,7 @@ clear
 ```{{execute T2}}
 
 
-Execute the following command to generate a one-time password (OTP) and save it in the `otp.txt` file:
+First, execute the following command to generate a one-time password (OTP) and save it in the `otp.txt` file:
 
 ```
 vault operator generate-root -generate-otp > otp.txt
@@ -56,19 +56,19 @@ Finally, enter the third unseal key and save the resulting encoded root token in
 
 ```
 vault operator generate-root -nonce=$(cat nonce.txt) \
-    -format=json $(grep 'Key 2:' key.txt | awk '{print $NF}') \
+    -format=json $(grep 'Key 3:' key.txt | awk '{print $NF}') \
     | jq -r ".encoded_root_token" > encoded_root.txt
 ```{{execute T2}}
 
-The resulting root token is encrypted. Execute the following command to decode:
+The resulting root token is encrypted (`encoded_root.txt`{{open}}). Execute the following command to decode:
 
 ```
 vault operator generate-root -decode=$(cat encoded_root.txt) -otp=$(cat otp.txt) \
     > root_token.txt
 ```{{execute T2}}
 
-Now, check to make sure that you can authenticate with the newly generated root token:
+Now, verify the newly generated root token (`root_token.txt`{{open}}):
 
 ```
-vault login $(root_token.txt)
+vault login $(cat root_token.txt)
 ```{{execute T2}}

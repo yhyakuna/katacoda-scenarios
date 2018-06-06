@@ -56,7 +56,6 @@ To create a new token using response wrapping, run the `vault token create` comm
 vault token create -policy=<POLICY_NAME> -wrap-ttl=<WRAP_TTL>
 ```
 
-<br>
 
 Execute the following commands to generate a token for apps using response wrapping with TTL of **360 seconds**, and save the generated wrapping token in a file named, `wrapping_token.txt`
 

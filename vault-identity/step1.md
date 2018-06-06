@@ -56,6 +56,7 @@ At this point, you should have `base`, `test`, and `team-qa` policies:
 vault policy list
 ```{{execute}}
 
+<br>
 
 ## Create Users
 

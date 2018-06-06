@@ -6,8 +6,7 @@ To better understand how a token inherits the capabilities from entity's policy,
 Execute the following command to login as `bob` and save the generated client token in the `bob_token.txt` file:
 
 ```
-vault login -format=json -method=userpass username=bob password=training \
-    | jq -r ".auth.client_token" > bob_token.txt
+vault login -format=json -method=userpass username=bob password=training 
 ```{{execute}}
 
 

@@ -25,7 +25,7 @@ ls -al | grep vault
 Finally, make sure that the vault binary is available on the `PATH`:
 
 ```
-mv vault /usr/bin
+install -c -m 0755 vault /usr/bin
 ```{{execute}}
 
 **That's it!**

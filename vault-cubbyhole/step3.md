@@ -52,9 +52,10 @@ Since there is no data has written to the `secret/dev` path, the response is **N
 
 Any Vault operation response can be wrapped with user defined TTL.
 
-For example, write some secrets in `secret/credentials`:
+For example, log back in with `root` token, and write some secrets in `secret/credentials`:
 
 ```
+vault login $(cat root_token.txt)
 vault kv put secret/credentials username="sf-admin" password="some-long-password"
 ```{{execute}}
 

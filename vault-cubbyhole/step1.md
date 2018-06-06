@@ -54,7 +54,7 @@ Now, try to read the `cubbyhole/private` path.
 
 #### What response did you receive?
 
-Cubbyhole secret backend provide an isolated secrete storage area for an individual token where no other token can violate.
+Cubbyhole secret backend provide an isolated secrete storage area for an individual token where **no other token** can violate.
 
 ```
 vault read cubbyhole/private

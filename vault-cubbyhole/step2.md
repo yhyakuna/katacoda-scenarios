@@ -42,6 +42,12 @@ Execute the following command to create a new policy named, `apps-policy`:
 vault policy write apps apps-policy.hcl
 ```{{execute}}
 
+Also, write some data in `secret/data/dev` for testing:
+
+```
+vault kv put secret/dev apikey="1234567890"
+```{{execute}}
+
 <br>
 
 To create a new token using response wrapping, run the `vault token create` command with `-wrap-ttl` flag:
@@ -59,4 +65,4 @@ vault token create -policy=apps -wrap-ttl=360 \
     -format=json | jq -r ".wrap_info.token" > wrapping-token.txt
 ```{{execute}}
 
-> **NOTE:** The response is the **wrapping token** rather than the actual client token for apps-policy; therefore, the admin user does not even see the generated token that he/she generated. After 360 seconds, the wrapping token gets expired that its wrapped content will no longer discoverable. 
+> **NOTE:** The response is the **wrapping token** rather than the actual client token for apps-policy; therefore, the admin user does not even see the generated token that he/she generated. After 360 seconds, the wrapping token gets expired that its wrapped content will no longer discoverable.

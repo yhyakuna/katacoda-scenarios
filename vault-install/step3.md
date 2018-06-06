@@ -20,6 +20,7 @@ The `storage` and `listener` stanzas are **required**. In this example, the **fi
 
 The `listener` stanza specifies the TCP address/port that Vault listens to for incoming requests.
 
+<br>
 
 ## Run Vault
 

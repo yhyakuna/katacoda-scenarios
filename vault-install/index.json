@@ -21,6 +21,10 @@
       {
         "title": "Initialize Vault",
         "text": "step4.md"
+      },
+      {
+        "title": "Enable Audit Logging",
+        "text": "step5.md"
       }
     ],
     "intro": {

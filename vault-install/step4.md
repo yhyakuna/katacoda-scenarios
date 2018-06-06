@@ -3,7 +3,7 @@ Initialization is the process configuring the Vault. This only happens once when
 To initialize Vault use `vault operator init` operation.
 <br>
 
-In the **second** Terminal, execute the `vault operator init` command to initialize Vault:
+In the **Terminal 2**, execute the `vault operator init` command to initialize Vault:
 
 ```
 vault operator init > key.txt

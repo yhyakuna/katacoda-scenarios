@@ -18,6 +18,7 @@ vault policy write team-eng team-eng.hcl
 ```{{execute}}
 
 To review the policy:  `vault policy read team-eng`{{execute}}
+
 <br>
 
 ## Create Internal Group for Engineers

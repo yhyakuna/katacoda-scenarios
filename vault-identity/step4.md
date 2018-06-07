@@ -43,4 +43,4 @@ vault read identity/group/id/$(cat group_id.txt)
 ```{{execute}}
 
 
-> By default, Vault creates an internal group, and you don't create any alias for internal groups.  Group aliases are mapping between Vault and the external identity provider.  Therefore, you define group aliases when you create external groups.  For internal groups, you have `member_group_ids` and/or `member_group_ids` instead.
+> By default, Vault creates an internal group. When you create an internal group, you specify the group members, so you don't specify any group alias. Group aliases are mapping between Vault and external identity providers (e.g. LDAP, GitHub, etc.).  Therefore, you define group aliases only when you create external groups.  For internal groups, you have `member_entity_ids` and/or `member_group_ids` instead.

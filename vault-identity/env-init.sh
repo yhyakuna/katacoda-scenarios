@@ -2,4 +2,5 @@ docker run -d -p 8200:8200 -e VAULT_ADDR='http://127.0.0.1:8200' --name vault va
 
 alias vault='docker exec -it vault vault "$@"'
 
-apt-get update && install -y jq
+sudo chmod 644 /var/lib/dpkg/status
+apt-get install -y jq

@@ -30,7 +30,6 @@ Log into Vault using the token you just uncovered:
 vault login $(cat client-token.txt)
 ```{{execute}}
 
-<br>
 
 Remember that `apps` policy has a very limited privilege that the policy does not grant permissions on the `secret/data/dev` path other than **read**. Run the following command to verify that you can read the data at `secret/dev`:
 
@@ -40,13 +39,11 @@ vault kv get secret/dev
 
 <br>
 
-If you have credentials stored in Vault and wish to distribute it to a trusted entity (user or app) securely, you can use response wrapping.
+## Wrap Any Response
 
-Login with root token again:
+Token is one example.  If you have some static secrets stored in Vault and wish to distribute it to a trusted entity (user or app) securely, you can use response wrapping.
 
-```
-vault login $(cat root_token.txt)
-```{{execute}}
+Login with root token again:  `vault login $(cat root_token.txt)`{{execute}}
 
 Write some secrets:
 
@@ -54,13 +51,13 @@ Write some secrets:
 vault kv put secret/app_credential id="project-admin" password="my-long-password"
 ```{{execute}}
 
-Without response wrapping:
+Without response wrapping enabled, you can see the output:
 
 ```
 vault kv get secret/app_credential
 ```{{execute}}
 
-When you wrap the response, even you don't see the data:
+When you wrap the `get` response, even you don't see the resulting data from the command invocation:
 
 ```
 vault kv get -wrap-ttl=60 secret/app_credential
@@ -74,13 +71,18 @@ wrapping_token_creation_time:    2018-06-08 00:47:43.915339533 +0000 UTC
 wrapping_token_creation_path:    secret/data/app_credential
 ```
 
-The response from the `vault kv get secret/app_credential` operation is now placed into the cubbyhole tied to the `wrapping_token` and can be revealed only by the `wrapping_token`.
+The response from the `vault kv get` operation is placed into the cubbyhole tied to the single use token (`wrapping_token`).  
 
 ```
 vault kv get -format=json -wrap-ttl=60 secret/app_credential \
      | jq -r ".wrap_info.token" > wrapping-token.txt
 ```{{execute}}
 
+Using the `wrapping_token`, you can unwrap the response:
+
 ```
-vault unwrap -format=json $(cat wrapping-token.txt) 
+vault unwrap -format=json $(cat wrapping-token.txt)
 ```{{execute}}
+
+
+If you run the `unwrap` command again, it fails since the `wrapping_token` is a single-use token.  Just like any other token, you can revoke `wrapping_token` if you think it was compromised. 

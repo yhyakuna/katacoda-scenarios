@@ -41,14 +41,14 @@ vault kv get secret/dev
 
 ## Wrap Any Response
 
-Token is one example.  If you have some static secrets stored in Vault and wish to distribute it to a trusted entity (user or app) securely, you can use response wrapping.
+Token is one example.  If you have a user credential stored in Vault and wish to distribute it securely, you can use response wrapping.
 
 Login with root token again:  `vault login $(cat root_token.txt)`{{execute}}
 
 Write some secrets:
 
 ```
-vault kv put secret/app_credential id="project-admin" password="my-long-password"
+vault kv put secret/app_credential user_id="project-admin" password="my-long-password"
 ```{{execute}}
 
 Without response wrapping enabled, you can see the output:
@@ -70,7 +70,7 @@ wrapping_token_ttl:              1m
 wrapping_token_creation_time:    2018-06-08 00:47:43.915339533 +0000 UTC
 wrapping_token_creation_path:    secret/data/app_credential
 ```
-
+<br>
 The response from the `vault kv get` operation is placed into the cubbyhole tied to the single use token (`wrapping_token`).  
 
 ```
@@ -85,4 +85,6 @@ vault unwrap -format=json $(cat wrapping-token.txt)
 ```{{execute}}
 
 
-If you run the `unwrap` command again, it fails since the `wrapping_token` is a single-use token.  Just like any other token, you can revoke `wrapping_token` if you think it was compromised. 
+If you run the `unwrap` command again, it fails since the `wrapping_token` is a single-use token.  
+
+> Just like any other token, you can revoke `wrapping_token` if you think it was compromised at any time.

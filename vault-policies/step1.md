@@ -59,4 +59,4 @@ vault policy -h
 
 To view the full list of optional parameters for `vault policy write` operation, run the following command:  `vault policy write -h`{{execute T2}}
 
-You can clear the screen: `clear`{{execute T2}}
+To clear the screen: `clear`{{execute T2}}

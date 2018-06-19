@@ -6,7 +6,7 @@ You are going to run the `vault token create` command.  To view the full list of
 vault token create -h
 ```{{execute T2}}
 
-You can clear the screen: `clear`{{execute T2}}
+To clear the screen: `clear`{{execute T2}}
 
 Create a new token, and save the generated token in a file named, `token.txt`:
 

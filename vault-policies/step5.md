@@ -1,7 +1,7 @@
 Log back in with root token:
 
 ```
-vault login $(cat root_token.txt)
+vault login root
 ```{{execute T2}}
 
 <br>

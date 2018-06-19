@@ -51,4 +51,4 @@ vault login root
 ```{{execute T2}}
 
 
-**Now, you are logged in as a `root` and ready to play!**
+Now, you are logged in as a `root` and ready to play!

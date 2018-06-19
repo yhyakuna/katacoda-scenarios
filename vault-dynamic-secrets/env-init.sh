@@ -1,7 +1,14 @@
-docker run -d -p 8200:8200 -e VAULT_ADDR='http://127.0.0.1:8200' --name vault vault:latest
+#!/usr/bin/env bash
+curl -L http://assets.joinscrapbook.com/unzip -o ~/.bin/unzip
+chmod +x ~/.bin/unzip
 
-alias vault='docker exec -it vault vault "$@"'
-
-docker run --name postgres -p 5432:5432 --publish 127.0.0.1:5432:5432 -e POSTGRES_PASSWORD=training -dit postgres
+curl -L -o ~/vault.zip https://releases.hashicorp.com/vault/0.10.2/vault_0.10.2_linux_amd64.zip &&
+unzip -d ~/.bin ~/vault.zip && rm ~/vault.zip
 
 apt-get install -y jq
+
+export VAULT_ADDR=http://127.0.0.1:8200
+
+vault server -dev -dev-root-token-id="root"
+
+ssh root@host01 "curl -L http://assets.joinscrapbook.com/unzip -o /usr/bin/unzip && chmod +x /usr/bin/unzip && curl -L -o ~/vault.zip https://releases.hashicorp.com/vault/0.10.2/vault_0.10.2_linux_amd64.zip && unzip -d  /usr/bin/ ~/vault.zip && rm ~/vault.zip && apt-get install -y jq &$ export VAULT_ADDR=http://127.0.0.1:8200 && vault server -dev -dev-root-token-id=root &"

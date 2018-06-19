@@ -35,3 +35,13 @@ Now, the enabled auth method list should include `userpass` and `training-userpa
 ```
 vault auth list
 ```{{execute T2}}
+
+The output displays that you now have `userpass` enabled at two different paths:
+
+```
+Path                  Type        Accessor                  Description
+----                  ----        --------                  -----------
+token/                token       auth_token_1d355601       token based credentials
+training-userpass/    userpass    auth_userpass_67c0850b    userpass at a different path
+userpass/             userpass    auth_userpass_08620fee    n/a
+```

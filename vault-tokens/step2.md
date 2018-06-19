@@ -1,8 +1,6 @@
 First, create a policy named, `base` by executing the following command:
 
 ```
-docker cp base.hcl vault:/base.hcl
-clear
 vault policy write base base.hcl
 ```{{execute T2}}
 
@@ -49,6 +47,4 @@ vault token lookup $(cat token_60s.txt)
 
 The **`ttl`** should reflect the changes.
 
-```
-clear
-```{{execute T2}}
+To clear the screen: `clear`{{execute T2}}

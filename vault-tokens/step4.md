@@ -11,12 +11,13 @@ vault path-help auth/token
 
 > **Root** or **sudo** users have the permission to generate periodic tokens. Periodic tokens have a TTL, but no max TTL; therefore, they may live for an infinite duration of time so long as they are renewed within their TTL. This is useful for long-running services that cannot handle regenerating a token.
 
+To clear the screen: `clear`{{execute T2}}
+
 ## Create a Token Role
 
 The API endpoint to create a token role is `auth/token/roles`.  Execute the following command to create a token role named, `monitor`.  This role has `base` policy attached and token renewal period of 24 hours (86400 seconds).
 
 ```
-clear
 vault write auth/token/roles/monitor allowed_policies="base" period="24h"
 ```{{execute T2}}
 

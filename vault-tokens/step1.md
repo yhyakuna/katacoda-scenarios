@@ -19,9 +19,7 @@ To specify the life of a token, run the `vault token create` command with `-ttl`
 vault token create -ttl=<duration>
 ```
 
-```
-clear
-```{{execute T2}}
+To clear the screen: `clear`{{execute T2}}
 
 Execute the following command to create a token whose TTL is **30 seconds**, and save the generated token in a file named, `ttl_token.txt`.
 

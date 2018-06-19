@@ -18,13 +18,13 @@ Since you are currently logged in as a root, you are going to perform the follow
 
 <br>
 
+To clear the screen: `clear`{{execute T2}}
+
 ## Create a New Token for Apps
 
 A policy file (`apps-policy.hcl`) is provided.
 
 ```
-docker cp apps-policy.hcl vault:/apps-policy.hcl
-clear
 cat apps-policy.hcl
 ```{{execute T2}}
 

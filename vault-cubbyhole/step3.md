@@ -43,7 +43,7 @@ vault kv get secret/dev
 
 Token is one example.  If you have a user credential stored in Vault and wish to distribute it securely, you can use response wrapping.
 
-Login with root token again:  `vault login $(cat root_token.txt)`{{execute T2}}
+Login with root token again:  `vault login root`{{execute T2}}
 
 Write some secrets:
 

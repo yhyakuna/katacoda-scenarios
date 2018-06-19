@@ -9,7 +9,6 @@ vault token create -policy=default \
 Now, log into Vault using the newly generated token:
 
 ```
-clear
 vault login $(cat token.txt)
 ```{{execute T2}}
 

@@ -1,37 +1,37 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Vault Authentication",
-  "description": "Learn how to enable and use username and password auth method.",
+  "title": "Vault Secret Engines - Cubbyhole",
+  "description": "Learn how cubbyhole secret engine works in Vault.",
   "difficulty": "beginner",
   "time": "5 minutes",
   "details": {
-    "intro": {
-      "text": "intro.md",
-      "code": "env-init.sh",
-      "credits": "https://www.vaultproject.io"
-    },
     "steps": [
       {
         "title": "Getting Started",
         "text": "getting-started.md"
       },
       {
-        "title": "Enable an Auth Method",
+        "title": "Write Token-based Secrets",
         "text": "step1.md"
       },
       {
-        "title": "Create a User",
+        "title": "Cubbyhole Wrapping Token",
         "text": "step2.md"
       },
       {
-        "title": "Test the Username & Password",
+        "title": "Unwrap the Secrets",
         "text": "step3.md"
       }
     ],
+    "intro": {
+      "text": "intro.md",
+      "code": "env-init.sh",
+      "credits": "https://www.vaultproject.io"
+    },
     "assets": {
       "client": [
         {
-          "file": "base.hcl",
+          "file": "apps-policy.hcl",
           "target": "~/"
         }
       ]

@@ -53,4 +53,4 @@ vault login root
 
 <br>
 
-**Now, you are ready!**
+**Now, you are ready to write some secrets!**

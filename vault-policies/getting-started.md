@@ -1,0 +1,66 @@
+## Start the Vault Server
+
+For this tutorial, you are going to run Vault in development mode.  
+
+First set the `VAULT_ADDR` environment variable.
+
+> Enter the following command into the terminal, or click on the command (`⮐`) to automatically copy it into the terminal and execute it.
+
+```
+export VAULT_ADDR=http://127.0.0.1:8200
+```{{execute}}
+
+Now, start the Vault server in development mode by passing the `-dev` flag.  
+
+```
+vault server -dev -dev-root-token-id="root"
+```{{execute T1}}
+
+The generated root token can be accessed by its ID (`root`).
+
+Scroll up the terminal to locate the output:
+
+```
+==> Vault server configuration:
+
+             Api Address: http://127.0.0.1:8200
+                     Cgo: disabled
+         Cluster Address: https://127.0.0.1:8201
+              Listener 1: tcp (addr: "127.0.0.1:8200", cluster address: "127.0.0.1:8201", tls: "disabled")
+               Log Level: info
+                   Mlock: supported: true, enabled: false
+                 Storage: inmem
+                 Version: Vault v0.10.2
+             Version Sha: 3ee0802ed08cb7f4046c2151ec4671a076b76166
+
+WARNING! dev mode is enabled! In this mode, Vault runs entirely in-memory
+and starts unsealed with a single unseal key. The root token is already
+authenticated to the CLI, so you can immediately begin using Vault.
+```
+
+When Vault is running in development mode, it runs entirely in-memory that the data does not get persisted.
+
+<br>
+
+## Login with root token
+
+Click the **+** next to the opened Terminal, and select **Open New Terminal**.
+
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/ops-another-terminal.png" alt="New Terminal"/>
+
+In the **Terminal 2**, set the `VAULT_ADDR` environment variable:
+
+```
+export VAULT_ADDR='http://127.0.0.1:8200'
+```{{execute T2}}
+
+Login with the generated root token.
+
+```
+vault login root
+```{{execute T2}}
+
+
+<br>
+
+#### Now, you are ready to start writing Vault policies!

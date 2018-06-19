@@ -5,20 +5,20 @@ Execute the following command to list which authentication methods have been ena
 
 ```
 vault auth list
-```{{execute}}
+```{{execute T2}}
 
 
 Userpass auth method allows users to login with username and password.  Execute the following command to enable the userpass auth method:
 
 ```
 vault auth enable userpass
-```{{execute}}
+```{{execute T2}}
 
 Now, when you list the enabled auth methods, you should see `userpass`.
 
 ```
 vault auth list
-```{{execute}}
+```{{execute T2}}
 
 <br>
 
@@ -28,10 +28,10 @@ Execute the following command to enable userpass at a different path, training-u
 
 ```
 vault auth enable -path=training-userpass -description="userpass at a different path" userpass
-```{{execute}}
+```{{execute T2}}
 
 Now, the enabled auth method list should include `userpass` and `training-userpass`:
 
 ```
 vault auth list
-```{{execute}}
+```{{execute T2}}

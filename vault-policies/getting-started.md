@@ -1,8 +1,6 @@
-For this tutorial, you are going to run Vault in development mode.  
-
 Enter the following command to start the Vault server in development mode.  
 
-> Enter the following command into the terminal, or click on the command (`⮐`) to automatically copy it into the terminal and execute it.
+> Click on the command (`⮐`) will automatically copy it into the terminal and execute it.
 
 
 ```
@@ -30,7 +28,7 @@ and starts unsealed with a single unseal key. The root token is already
 authenticated to the CLI, so you can immediately begin using Vault.
 ```
 
-When Vault is running in development mode, it runs entirely in-memory that the data does not get **persisted**. This build-in, pre-configured server is useful for local development, testing and exploration. 
+When Vault is running in development mode, it runs entirely in-memory that the data does not get **persisted**. This build-in, pre-configured server is useful for local development, testing and exploration.
 
 <br>
 

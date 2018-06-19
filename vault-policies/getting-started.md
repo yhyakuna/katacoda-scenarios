@@ -1,16 +1,9 @@
-## Start the Vault Server
-
 For this tutorial, you are going to run Vault in development mode.  
 
-First set the `VAULT_ADDR` environment variable.
+Enter the following command to start the Vault server in development mode.  
 
 > Enter the following command into the terminal, or click on the command (`⮐`) to automatically copy it into the terminal and execute it.
 
-```
-export VAULT_ADDR=http://127.0.0.1:8200
-```{{execute}}
-
-Now, start the Vault server in development mode by passing the `-dev` flag.  
 
 ```
 vault server -dev -dev-root-token-id="root"

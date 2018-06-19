@@ -1,7 +1,7 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Vault Secret Engines - Versioned Key/Value",
-  "description": "Learn how to manage your secrets using Vault.",
+  "title": "Vault Token Lifecycle",
+  "description": "Learn the lifecycle of Vault client tokens.",
   "difficulty": "beginner",
   "time": "10 minutes",
   "details": {
@@ -16,41 +16,41 @@
         "text": "getting-started.md"
       },
       {
-        "title": "Secret Engine List",
+        "title": "Create Short-Lived Tokens",
         "text": "step1.md"
       },
       {
-        "title": "Write Secrets",
+        "title": "Token Renewal",
         "text": "step2.md"
       },
       {
-        "title": "Upload Secrets from a File",
+        "title": "Tokens with Use Limit",
         "text": "step3.md"
       },
       {
-        "title": "List Secret Keys",
+        "title": "Create a Token Role and Periodic Token",
         "text": "step4.md"
       },
       {
-        "title": "Delete Secrets and Recover",
+        "title": "Test Token Lifecycle",
         "text": "step5.md"
       },
       {
-        "title": "Permanently Delete Secrets",
+        "title": "Create an Orphan Token",
         "text": "step6.md"
       }
     ],
-    "finish": {
-      "text": "finish.md",
-      "credits": "https://www.vaultproject.io"
-    },
     "assets": {
       "client": [
         {
-          "file": "data.txt",
+          "file": "base.hcl",
           "target": "~/"
         }
       ]
+    },
+    "finish": {
+      "text": "finish.md",
+      "credits": "https://www.vaultproject.io"
     }
   },
   "environment": {

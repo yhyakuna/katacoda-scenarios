@@ -9,9 +9,8 @@ Enter the following command to start the Vault server in development mode.
 vault server -dev -dev-root-token-id="root"
 ```{{execute T1}}
 
-The generated root token can be accessed by its ID (`root`).
 
-Scroll up the terminal to locate the output:
+Scroll up the Terminal to locate the following output:
 
 ```
 ==> Vault server configuration:
@@ -31,7 +30,7 @@ and starts unsealed with a single unseal key. The root token is already
 authenticated to the CLI, so you can immediately begin using Vault.
 ```
 
-When Vault is running in development mode, it runs entirely in-memory that the data does not get persisted.
+When Vault is running in development mode, it runs entirely in-memory that the data does not get **persisted**. This build-in, pre-configured server is useful for local development, testing and exploration. 
 
 <br>
 

@@ -18,8 +18,6 @@ vault auth enable userpass
 Next, create a new policy named, `base`:
 
 ```
-docker cp base.hcl vault:/base.hcl
-clear
 vault policy write base base.hcl
 ```{{execute T2}}
 
@@ -37,7 +35,6 @@ Let's create two more policies: `test` and `team-qa`.
 Execute the following command to create `test` policy.
 
 ```
-docker cp test.hcl vault:/test.hcl
 vault policy write test test.hcl
 ```{{execute T2}}
 
@@ -45,7 +42,6 @@ vault policy write test test.hcl
 Execute the following command to create `team-qa` policy.
 
 ```
-docker cp team-qa.hcl vault:/team-qa.hcl
 vault policy write team-qa team-qa.hcl
 ```{{execute T2}}
 

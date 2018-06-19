@@ -53,4 +53,4 @@ vault login root
 
 <br>
 
-**Now, you are ready to write some secrets!**
+Now, you are logged in as a `root` and ready to play!

@@ -1,9 +1,9 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Vault Secret Engines - Cubbyhole",
-  "description": "Learn how cubbyhole secret engine works in Vault.",
+  "title": "Vault Identity - Entities & Groups",
+  "description": "Learn how to create entities and groups in Vault.",
   "difficulty": "beginner",
-  "time": "5 minutes",
+  "time": "10 minutes",
   "details": {
     "steps": [
       {
@@ -11,16 +11,24 @@
         "text": "getting-started.md"
       },
       {
-        "title": "Write Token-based Secrets",
+        "title": "Create Users",
         "text": "step1.md"
       },
       {
-        "title": "Cubbyhole Wrapping Token",
+        "title": "Create an Entity",
         "text": "step2.md"
       },
       {
-        "title": "Unwrap the Secrets",
+        "title": "Test the Entity",
         "text": "step3.md"
+      },
+      {
+        "title": "Create an Internal Group",
+        "text": "step4.md"
+      },
+      {
+        "title": "Test the Internal Group",
+        "text": "step5.md"
       }
     ],
     "intro": {
@@ -30,10 +38,10 @@
     },
     "assets": {
       "client": [
-        {
-          "file": "apps-policy.hcl",
-          "target": "~/"
-        }
+        { "file": "base.hcl", "target": "~/" },
+        { "file": "test.hcl", "target": "~/" },
+        { "file": "team-eng.hcl", "target": "~/" },
+        { "file": "team-qa.hcl", "target": "~/" }
       ]
     },
     "finish": {

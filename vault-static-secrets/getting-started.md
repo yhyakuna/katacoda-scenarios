@@ -53,4 +53,5 @@ vault login root
 
 <br>
 
-Now, you are logged in as a `root` and ready to play!
+
+**Now, you are logged in as a `root` and ready to play!**

@@ -53,4 +53,4 @@ vault login root
 
 <br>
 
-#### Now, you are ready to start writing Vault policies!
+**Now, you are ready to start writing Vault policies!**

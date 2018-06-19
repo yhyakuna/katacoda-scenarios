@@ -20,3 +20,12 @@ vault login $(cat root_token.txt)
 ```{{execute}}
 
 Now, you are logged in as a `root` and ready to play!
+
+```
+vault server -dev -dev-root-token-id="root"
+```{{execute T1}}
+
+
+```
+export VAULT_ADDR='http://127.0.0.1:8200'
+```{{execute T2}}

@@ -1,0 +1,16 @@
+[HashiCorp Vault](https://www.vaultproject.io)は、クラウド化と共に分散されたインフラインフラ上で、機密情報を統合的に一貫して管理しアクセスコントロールするものがVaultです。この際の機密情報とは、ユーザー名やパスワードはもちろん、APIキーや証明書など、漏れてしまったら多大な損害を被る情報を指して言っています。
+
+[![YouTube](https://s3-us-west-1.amazonaws.com/education-yh/Armon_whiteboard.png)](https://youtu.be/VYfl-DpZ5wM)
+
+
+以下の操作方を学びます。
+
+- Vaultのインストール
+- サーバーを開発モードで起動
+- Vaultの設定ファイルを書く
+- Vaultサーバーの初期化
+- 監査ログの活用
+- Rootトークンの生成
+- 暗号化キーの回転
+
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/Vault_Icon_FullColor.png" alt="Logo"/>

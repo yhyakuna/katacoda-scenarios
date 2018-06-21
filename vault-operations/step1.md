@@ -1,8 +1,7 @@
-Vault is distributed as a [binary package](https://www.vaultproject.io/downloads.html) for all supported platforms and architectures.
+まずは必要とするOSの[バイナリファイル](https://www.vaultproject.io/downloads.html)をダウンロードします。
 
-To install Vault, find the appropriate package for your system and download it. (NOTE: Vault is packaged as a zip archive.)  
-
-> Enter the following command into the terminal, or click on the command (`⮐`) to automatically copy it into the terminal and execute to downloads the `0.10.3` of the Vault binary for Linux.
+> 以下のコマンドをターミナル内にタイプして実行するか、あるいはリターンの記号 (`⮐`) をクリックすると自動的にコマンドがターミナルにコピーされ
+Vault `0.10.3`のバイナリファイルのダウンロードが実行されます。
 
 ```
 export VAULT=0.10.3
@@ -10,27 +9,27 @@ wget https://releases.hashicorp.com/vault/${VAULT}/vault_${VAULT}_linux_amd64.zi
 ```{{execute}}
 
 
-After downloading Vault, unzip the package, and go ahead and remove the zip file:
+ダウンロード完了後、ZIP形式で圧縮されたファイルを展開しVaultのバイナリファイルを取り出します。必要となくなったZIPファイルは削除してしまいます。
 
 ```
 unzip vault_${VAULT}_linux_amd64.zip && rm vault_${VAULT}_linux_amd64.zip
 ```{{execute}}
 
-Vault runs as a single binary named vault. Any other files in the package can be safely removed and Vault will still function.
+解凍されたバイナリファイルを確かめてみましょう。
 
 ```
 ls -al | grep vault
 ```{{execute}}
 
-Finally, make sure that the vault binary is available on the `PATH`:
+Linux環境でVaultコマンドを実行しやすくする為、`vault`バイナリファイルを`/usr/bin`に移行します。
 
 ```
 install -c -m 0755 vault /usr/bin
 ```{{execute}}
 
-**That's it!**
+これでインストールは完了です！
 
-Execute the following command to verify the vault version:
+では以下のコマンドを実行してインストールされたVaultのバージョンを確かめてみましょう。
 
 ```
 vault version

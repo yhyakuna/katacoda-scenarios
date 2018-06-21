@@ -1,6 +1,6 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Vault Operations: サーバー管理の基礎",
+  "title": "Vaultサーバー管理の基礎知識",
   "description": "Vaultサーバーのインストール、設定、そしてサーバー管理の基本的なコマンドを学びます。",
   "difficulty": "ビギナー",
   "time": "10 minutes",

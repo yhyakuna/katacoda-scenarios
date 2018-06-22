@@ -1,16 +1,16 @@
-In this lab, you performed the following tasks:
+今回は以下の操作方を学びました。
 
-- Installing Vault
-- Run Vault in Development Mode
-- Write Vault Configuration File
-- Initialize Vault
-- Enable Audit Logging
-- Generating Root Token
-- Key Rotation
+- Vaultのインストール
+- サーバーを開発モードで起動
+- Vaultの設定ファイルを書く
+- Vaultサーバーの初期化
+- 監査ログの活用
+- Rootトークンの生成
+- 暗号化キーの回転
 
-To learn more about Vault operation topics, refer to the following resources.
+<br>
 
-### Resources:
+今回は基礎知識を学びましたが、他のVaultサーバー管理についての資料も参考にしてください。
 
 - [Vault Operations guides](https://www.vaultproject.io/guides/operations/index.html)
 - [Vault Architecture](https://www.vaultproject.io/docs/internals/architecture.html)

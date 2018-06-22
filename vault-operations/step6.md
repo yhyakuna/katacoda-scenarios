@@ -26,7 +26,7 @@ vault operator generate-root -init -otp=$(cat otp.txt) \
 
 > 上のコマンドがアウトプットした**nonce**(`nonce.txt`{{open}})は、Unsealキーの保持者に知らせる必要があります。
 
-rootトークンの生成には過半数のUnsealキーが必要で、**個々のUnsealキー保持者**が以下のコマンドを実行する必要があります。
+rootトークンの生成には過半数のUnsealキーが必要で、個々のUnsealキー保持者が以下のコマンドを実行する必要があります。
 
 ```
 vault operator generate-root -nonce=$(cat nonce.txt) \

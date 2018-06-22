@@ -1,43 +1,40 @@
-During initialization, the encryption keys were generated, and unseal keys are created. This only happens **once** when the server is started against a new backend that has never been used with Vault before.
+サーバーの初期化をする際に暗号化キー、Unseal(開封)キー、そしてrootトークンの生成が行われましたが、このプロセスは一度しか実行されません。あるいはサーバーの設定が変更され新しいストレージに変換された場合も初めてサーバーとストレージが繋がれた時に初期化が必要となります。
 
-In some cases, you may want to re-generate the master key and key shares. For examples:
+場合によってはマスターキーを再度、生成する必要があるかもしれません。例えば…
 
-- Someone joins or leaves the organization
-- Security wants to change the number of shares or threshold of shares
-- Compliance mandates the master key be rotated at a regular interval
+- Unsealキーの保持者だった社員が辞めた場合
+- セキュリティエンジニアが安全性を高める為にUnsealキーの数を増やしたい場合
+- 組織内の規定で定期的にマスターキーを回転させなければいけない場合
 
-
-In addition to rekeying the master key, there may be an independent desire to rotate the underlying encryption key Vault uses to encrypt data at rest.
+更にはマスターキーによって暗号化されている暗号化キーを回転する必要が出てくるかもしれません。
 
 <img src="https://s3-us-west-1.amazonaws.com/education-yh/ops-rekey.png" alt="Logo"/>
 
-In Vault, `rekeying` and `rotating` are two separate operations. The process for generating a new master key and applying Shamir's algorithm is called "rekeying". The process for generating a new encryption key for Vault to encrypt data at rest is called "rotating".
+`rekeying`と`rotating`は２つの異なるオペレーションとなっていて、[Shamir's Secret Sharing Algorithm](https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing)によってUnsealキーを再生成するプロセスを"**rekeying**"と呼び、新しい暗号化キーを生成するプロセスを"**rotating**"と呼びます。
 
 <br>
 
 ## Rekeying Vault
 
-**NOTE:** Rekeying the Vault requires a quorum of unseal keys.
+まず最初にrekeyingオペレーションの初期化をします。この時点でUnsealキーの数とUnseal(開封)に必要な過半数の数を指定し調整する事ができます。
 
-First, initialize a rekeying operation.  At this point, you can specify the desired number of key shares and threshold.  Execute the following command to rekey Vault where the number of key shares is `3` and key threshold is `2`:
+以下のコマンドを実行してキー分割の数を`3`、そしてUnseal(開封)に必要なキーの数を`2`に設定します。
 
 ```
 vault operator rekey -init -key-shares=3 -key-threshold=2 \
     -format=json | jq -r ".nonce" > nonce.txt
 ```{{execute T2}}
 
-This will generate a nonce value and start the rekeying process. All other unseal keys must also provide this nonce value. This nonce value is not a secret, so it is safe to distribute over insecure channels like chat, email, or carrier pigeon.
-
-Each unseal key holder runs the following command and enters their unseal key:
+この際、nonceが生成され、rootキーの生成の時と同じく個々のUnsealキー保持者が以下のコマンドを実行する必要があります。
 
 ```
 vault operator rekey -nonce=$(cat nonce.txt) \
     $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-Notice that the output indicates that the **unseal progress** is now `1/3`.
+アウトプットにはプログレスが表示されます(`1/3`)。
 
-Enter the second unseal key:
+２つ目のUnsealキーを入力します。
 
 ```
 vault operator rekey -nonce=$(cat nonce.txt) \
@@ -45,15 +42,14 @@ vault operator rekey -nonce=$(cat nonce.txt) \
 ```{{execute T2}}
 
 
-Finally, enter the third unseal key:
+最後に３つ目のUnsealキーを入力。
 
 ```
 vault operator rekey -nonce=$(cat nonce.txt) \
     $(grep 'Key 3:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-
-When the final unseal key holder enters their key, Vault will output the new unseal keys similar to following:
+過半数のunsealキーが入力された事により、新しいunsealキーが生成されます。
 
 ```
 Key 1: a4By/JU6xqMxXG95FtcShLldGS4GDZmcUcCD4Q83cl2b
@@ -68,18 +64,16 @@ restarted, or stopped, you must supply at least 2 of these keys to unseal it
 before it can start servicing requests.
 ```
 
-> Vault supports **PGP encrypting** the resulting unseal keys and creating backup encryption keys for disaster recovery.
-
 <br>
 
-## Rotating the Encryption Key
+## Rotating Encryption Key
 
-Unlike rekeying the Vault, rotating Vault's encryption key does not require a quorum of unseal keys. Anyone with the proper permissions in Vault can perform the encryption key rotation.
+Rekeyingと違って暗号化キーの回転はunsealキーを必要としません。
 
-To trigger a key rotation, execute the following command:
+新しい暗号化キーの生成は以下のコマンドを実行してください。
 
 ```
 vault operator rotate
 ```{{execute T2}}
 
-The output shows the key version and installation time. This will add a new key to the keyring. All new values written to the storage backend will be encrypted with this new key.
+暗号化キーは表示されることはなく、その代わりに暗号化キーのバージョンとインストール時間が表示されます。以後、データの暗号化には、この新しい暗号化キーが使われます。

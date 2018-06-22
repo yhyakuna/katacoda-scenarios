@@ -1,6 +1,6 @@
-Outside of development mode, Vault servers are configured using a file. The format of this file is [HCL](https://github.com/hashicorp/hcl) or JSON. The configuration file for Vault is relatively simple.
+Vaultサーバーの設定は[HCL](https://github.com/hashicorp/hcl)かJSON形式のファイルで行います。
 
-Enter the following in the `config.hcl`{{open}} file:
+以下の設定を`config.hcl`{{open}}ファイルに書き込みましょう。
 
 <pre class="file" data-filename="config.hcl" data-target="replace">
 # Use the file system as storage backend
@@ -16,25 +16,23 @@ listener "tcp" {
 ui = true
 </pre>
 
-The `storage` and `listener` stanzas are **required**.
+上にある`storage`と`listener`は必須エントリーです。
 
-In this example, the **file** storage backend stores Vault's data on the filesystem using a standard directory structure (`/data/vault`). It can be used for durable single server situations, or to develop locally where durability is not critical.  For production, you want to use scalable storage backend solution such as [Consul](https://www.vaultproject.io/docs/configuration/storage/consul.html).
+この例では、データを保存する`storage`に`file`を使っていて、データは`/data/vault`に保存されます。本格的にVaultを導入する場合、[Consul](https://www.vaultproject.io/docs/configuration/storage/consul.html)をデータストレージに使うのが理想的ですが、それぞれの用途に合わせ、今回のようにファイルシステムを使う事もあればDynamoDBやCassandraを使う事も可能です。詳しくは[Vault Configuration](https://www.vaultproject.io/docs/configuration/index.html)をご覧ください。
 
-The `listener` stanza specifies the TCP address/port that Vault listens to for incoming requests.
-
-> For more details, refer to the [Vault Configuration](https://www.vaultproject.io/docs/configuration/index.html) documentation.
+`listener`は、Vaultサーバーがクライアントからのリクエストを受ける為のリスナーで、現時点ではTCPプロトコールのみ対応しています。
 
 <br>
 
-## Run Vault
+## サーバーの起動
 
-Execute the following command to start the Vault server:
+では`config.hcl`{{open}}ファイルの設定にしたがって、サーバーを起動してみましょう。
 
 ```
 vault server -config=config.hcl
 ```{{execute T1}}
 
-Notice the output indicating that the **Storage** is set to `file` system, and the **Listener** address is `127.0.0.1:8200`.
+アウトプットを見ると設定通りに起動された事が確認できます。
 
 ```
 ==> Vault server configuration:
@@ -48,4 +46,4 @@ Notice the output indicating that the **Storage** is set to `file` system, and t
              Version Sha: 756fdc4587350daf1c65b93647b2cc31a6f119cd
 ```
 
-Next, you are going to initialize Vault.
+次のステップではサーバーの初期化をして行きます。

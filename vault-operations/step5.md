@@ -1,38 +1,36 @@
-Log into Vault using the **initial root token** (`key.txt`{{open}}):
+初期化の際に生成された**initial root token**(`key.txt`{{open}})を使ってログインします。
 
 ```
 vault login $(grep 'Initial Root Token:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-Audit devices are the components in Vault that keep a detailed log of all requests and response to Vault. Because every operation with Vault is an API request/response, the audit log contains every authenticated interaction with Vault, including errors.
+Audit devicesとはVaultによってプロセスされる全てのリクエストと返答の詳細を監査ログとして記録するコンポーネントです。APIを介して行われるVaultサーバーとクライアントのコミュニケーションを(エラーも含め)全て記録します。
 
-
-Execute the following command to enable audit logging:
+以下のコマンドを実行して監査ログ有効化します。
 
 ```
 vault audit enable file file_path=/var/log/vault-audit.log
 ```{{execute T2}}
 
-The file audit device writes audit logs to a file (`/var/log/vault-audit.log`). This is a very simple audit device: it appends logs to a file.
+監査ログは`/var/log/vault-audit.log`に記録されます。
 
-> The device does not currently assist with any log rotation. There are very stable and feature-filled log rotation tools already, so we recommend using existing tools.
+> 現在、監査ログの回転はされないので、数多くあるログ管理のツールを利用する事をお勧めします。
 
-Each line in the audit log is a JSON object. The type field specifies what type of object it is. Currently, only two types exist: request and response. The line contains all of the information for any given request and response. By default, all the sensitive information is first hashed before logging in the audit logs.
+監査ログはJSON形式で、APIのリクエストメッセージとレスポンスメッセージが記録されています。機密情報は暗号化されたハッシュ値として記録されます。
 
-Let's install a JSON format tool, `jq`:
+まずJSONファイルを読みやすくする為に`jq`ツールをインストールしましょう
 
 ```
 apt-get install jq -y
 ```{{execute T2}}
 
-Now, take a look at the audit log by executing the following command:
+では監査ログをみて見ましょう。
 
 ```
 cat /var/log/vault-audit.log | jq
 ```{{execute T2}}
 
-
-Notice that audit logs contain the full request and response objects for every interaction with Vault. The request and response can be matched utilizing a unique identifier assigned to each request. The data in the request and the data in the response (including secrets and authentication tokens) will be hashed with a salt using **HMAC-SHA256**.
+監査ログには全てのリクエストオブジェクト、それに対するレスポンスオブジェクト、そしてリクエストを発信するのに使われた認証トークンも記録されていますが認証トークンは**HMAC-SHA256**を使って暗号化されているのでハッシュ値が記録されています。
 
 ```
 {

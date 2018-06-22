@@ -1,8 +1,8 @@
-A recommended best practice is not to persist your root tokens. The root tokens should be used only for just enough initial setup or in emergencies. Once appropriate policies are written, use tokens with assigned set of policies based on your role in the organization.
+初期化の際に生成されたrootトークンは、新しいサーバーを設定するのに必要なオペレーションを実行するのに使い、必要なポリシーを作成後は、rootトークンではなく個々の認証トークンを使ってVaultに繋ぐ事が優良な技法とされています。
 
-Therefore, a root token should be generated using Vault's operator generate-root command only when absolutely necessary.
+その為、後にrootトークンが必要な事態が起きた時には`generate-root`コマンドを使い新しいrootトークンを生成します。
 
-Review the help text on the `generate-root` operation:
+ヘルプメッセージを表示するには`help`あるいは`-h`を使ってみましょう。
 
 ```
 vault operator generate-root -h
@@ -11,30 +11,29 @@ vault operator generate-root -h
 `clear`{{execute T2}}
 
 
-First, execute the following command to generate a one-time password (OTP) and save it in the `otp.txt` file:
+始めに以下のコマンドを実行してone-time password (OTP)を生成し、`otp.txt`ファイルに書き留めておきます。
 
 ```
 vault operator generate-root -generate-otp > otp.txt
 ```{{execute T2}}
 
-Initialize a root token generation with the OTP code (`otp.txt`{{open}}) and save the resulting nonce in the `nonce.txt` file:
+rootトークン生成のオペレーションには、このOTP(`otp.txt`{{open}})を使い初期化します。
 
 ```
 vault operator generate-root -init -otp=$(cat otp.txt) \
     -format=json | jq -r ".nonce" > nonce.txt
 ```{{execute T2}}
 
-> The **nonce** value (`nonce.txt`{{open}}) should be distributed to all unseal key holders. Generation of a root token requires a quorum of unseal keys.
+> 上のコマンドがアウトプットした**nonce**(`nonce.txt`{{open}})は、Unsealキーの保持者に知らせる必要があります。
 
-
-**Each unseal key holder** must execute the following command providing their unseal key:
+rootトークンの生成には過半数のUnsealキーが必要で、**個々のUnsealキー保持者**が以下のコマンドを実行する必要があります。
 
 ```
 vault operator generate-root -nonce=$(cat nonce.txt) \
     $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-The output displays the progress:
+下のアウトプット例は必要な３つのUnsealキーのうち１つが入力された事を示してます。
 
 ```
 Nonce       f5368918-60c0-5122-77b5-38c5aca3375d
@@ -43,14 +42,14 @@ Progress    1/3
 Complete    false
 ```
 
-Proceed with second unseal key:
+２つ目のUnsealキーを入力します。
 
 ```
 vault operator generate-root -nonce=$(cat nonce.txt) \
     $(grep 'Key 2:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-Finally, enter the third unseal key and save the resulting encoded root token in the `encoded_root.txt` file:
+最後に３つ目のUnsealキーを入力すると、暗号化された新しいrootトークン(`encoded_root.txt`{{open}})が生成されます。
 
 ```
 vault operator generate-root -nonce=$(cat nonce.txt) \
@@ -58,20 +57,20 @@ vault operator generate-root -nonce=$(cat nonce.txt) \
     | jq -r ".encoded_root_token" > encoded_root.txt
 ```{{execute T2}}
 
-The resulting root token is encrypted (`encoded_root.txt`{{open}}). Execute the following command to decode:
+以下のコマンドを実行して暗号化されたrootトークンを解読します。（解読の際にはOTPが再び必要。）
 
 ```
 vault operator generate-root -decode=$(cat encoded_root.txt) -otp=$(cat otp.txt) \
     > root_token.txt
 ```{{execute T2}}
 
-Now, verify the newly generated root token (`root_token.txt`{{open}}):
+生成されたrootトークン(`root_token.txt`{{open}})を使いログインして確認しましょう。
 
 ```
 vault login $(cat root_token.txt)
 ```{{execute T2}}
 
-The output should show that the token policy is **root**.
+トークンのポリシーが**root**である事を確認できたら完了です。
 
 
 `clear`{{execute T2}}

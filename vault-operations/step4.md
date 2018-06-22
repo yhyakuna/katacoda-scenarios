@@ -1,9 +1,9 @@
-Initialization is the process configuring the Vault. This only happens once when the server is started against a new backend that has never been used with Vault before. During initialization, the encryption keys are generated, unseal keys are created, and the initial root token is setup.
+Vaultサーバーをインストールして初めて起動する時に、まずサーバーの初期化を行う事が必要となります。サーバーの初期化をすることにより暗号化キー、Unseal(開封)キー、そしてrootトークンの生成が行われます。
 
-To initialize Vault use `vault operator init` operation.
+初期化には`vault operator init`コマンドを使います。
 <br>
 
-In the **Terminal 2**, execute the `vault operator init` command to initialize Vault:
+**Terminal 2**にて以下のコマンドを実行してみましょう。
 
 ```
 vault operator init > key.txt

@@ -14,7 +14,6 @@ Key           Value
 ciphertext    vault:v1:Rrye8iuPT9ZrNEzpcHBa...
 ```
 
-
 Execute the following command to encrypt a plaintext and save the resulting ciphertext in a file named, `cipher.txt`:
 
 ```

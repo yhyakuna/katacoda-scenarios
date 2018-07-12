@@ -15,8 +15,16 @@
         "text": "step1.md"
       },
       {
-        "title": "Encrypt your secret",
+        "title": "Encrypt Secret",
         "text": "step2.md"
+      },
+      {
+        "title": "Rotate the Encryption Key",
+        "text": "step3.md"
+      },
+      {
+        "title": "Rewrap Data",
+        "text": "step4.md"
       }
     ],
     "intro": {

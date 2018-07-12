@@ -25,8 +25,9 @@ Upgrade already-encrypted data with a new key by invoking `transit/rewrap` endpo
 Execute the following command to rewrap your secret:
 
 ```
-vault write -format=json transit/rewrap/orders \
-      ciphertext=$(cat cipher.txt) \
+vault write transit/rewrap/orders ciphertext=$(cat cipher.txt)
 ```{{execute T2}}
+
+Notice that the resulting ciphertext now starts with `vault:v2:`.  
 
 This operation does not reveal the plaintext data. But Vault will decrypt the value using the appropriate key in the keyring and then encrypted the resulting plaintext with the newest key in the keyring.

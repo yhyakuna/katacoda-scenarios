@@ -23,7 +23,7 @@ vault write -format=json transit/encrypt/orders \
       | jq -r ".data.ciphertext" > cipher.txt
 ```{{execute T2}}
 
-The output you receive is a cipher-text.
+The output you receive is a cipher-text: `cat cipher.txt`{{execute T2}}
 
 > **NOTE:** You can pass non-text binary file such as a PDF or image. However, all plaintext data must be base64-encoded.
 

@@ -34,3 +34,7 @@ Check the `orders` key information again:
 ```
 vault read transit/keys/orders
 ```{{execute T2}}
+
+Now, there are two versions of keys.
+
+`clear`{{execute T2}}

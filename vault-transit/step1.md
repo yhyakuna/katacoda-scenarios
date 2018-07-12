@@ -3,7 +3,7 @@ The `transit` secrets engine must be configured before it can perform its operat
 First, enable the `transit` secret engine by executing the following command:
 
 ```
-vault secrets enable transit -description="Encryption as a Service"
+vault secrets enable -description="Encryption as a Service" transit
 ```{{execute T2}}
 
 By default, the secrets engine will mount at the name of the engine.  If you wish to enable it at a different path, use the `-path` argument.
@@ -22,4 +22,6 @@ Now, create an encryption key ring named, "orders" by executing the following co
 vault write -f transit/keys/orders
 ```{{execute T2}}
 
-**NOTE:** Typically, you want to create an encryption key ring for each application.
+> **NOTE:** Typically, you want to create an encryption key ring for each application.
+
+Now, the `transit` secrets engine is ready to use!

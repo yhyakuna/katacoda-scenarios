@@ -1,15 +1,13 @@
 Configure URLs for Vault CA and CRL Access
 
 ```
-vault write rootpki/config/urls \
-issuing_certificates="http://10.1.42.101:8200/v1/rootpki"
+vault write rootpki/config/urls issuing_certificates="http://10.1.42.101:8200/v1/rootpki"
 ```{{execute}}
 
 
 ```
-vault write intpki/config/urls \
-issuing_certificates="http://10.1.42.101:8200/v1/intpki/ca" \
-crl_distribution_points="http://10.1.42.101:8200/v1/intpki/crl"
+vault write intpki/config/urls issuing_certificates="http://10.1.42.101:8200/v1/intpki/ca" \
+        crl_distribution_points="http://10.1.42.101:8200/v1/intpki/crl"
 ```{{execute}}
 
 

@@ -1,14 +1,16 @@
-This section details setting up Vault PKI with a self-generated root CA, and an intermediate CA for normal signing. It demonstrates the API calls that do the following:
+This section details setting up Vault PKI with a self-generated root CA, and an intermediate CA for normal signing. It demonstrates the following operations:
 
-- Configure a root backend
-- Configure an intermediate backend
-- Create a CSR from the intermediate backend
-- Sign the CSR with root backend
-- Set back to the intermediate backend for signing new certificates
+1. Configure a root backend
+1. Configure an intermediate backend
+1. Create a CSR from the intermediate backend
+1. Sign the CSR with root backend
+1. Set back to the intermediate backend for signing new certificates
 
+First, you need to enable the `pki` secret engine. The following command enables the `pki` secret engine at `rootpki/` path. 
 
 ```
-vault mount -path=rootpki -description="Example Root CA" -max-lease-ttl=175200h pki
+vault secrets enable -path=rootpki -description="Example Root CA" \
+       -max-lease-ttl=175200h pki
 ```{{execute}}
 
 
@@ -32,7 +34,7 @@ vault write rootpki/config/urls issuing_certificates="http://10.1.42.101:8200/v1
 Create Intermediate CA, CA Certificate & CA Key:
 
 ```
-vault mount -path=intpki -description="Example Dot Com Intermediate CA" -max-lease-ttl=17520h pki
+vault secrets enable -path=intpki -description="Example Dot Com Intermediate CA" -max-lease-ttl=17520h pki
 ```{{execute}}
 
 

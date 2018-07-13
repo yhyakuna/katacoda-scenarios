@@ -52,3 +52,7 @@ vault write -field=plaintext transit/decrypt/orders \
       ciphertext=$(cat cipher.txt) \
       | base64 --decode
 ```
+
+<br>
+
+`clear`{{execute T2}}

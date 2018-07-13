@@ -8,4 +8,11 @@ The primary use case for the `transit` secrets engine is to encrypt data from ap
 
 ![Encryption as a Service](https://s3-us-west-1.amazonaws.com/education-yh/vault-encryption.png)
 
-This scenario demonstrates the usage of `transit` secrets engine. 
+<br>
+This scenario demonstrates the usage of `transit` secrets engine:
+
+- Configure Transit Secret Engine
+- Encrypt Secret
+- Rotate the Encryption Key
+- Rewrap Data
+- Update Key Configuration

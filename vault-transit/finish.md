@@ -1,11 +1,14 @@
-You learned the vault CLI commands to interact with the cubbyhole secret engines.
+This scenario demonstrated the usage of `transit` secrets engine:
 
-- Wrote secrets in Cubbyhole
-- Created a new token for apps which was wrapped
-- Unwrapped the wrapped token and tested its permissions
+- Configure Transit Secret Engine
+- Encrypt Secret
+- Rotate the Encryption Key
+- Rewrap Data
+- Update Key Configuration
 
 ### Resources:
 
-- [Cubbyhole guide](https://www.vaultproject.io/guides/secret-mgmt/cubbyhole.html)
-- [Cubbyhole Secret Engine doc](https://www.vaultproject.io/docs/secrets/cubbyhole/index.html)
-- [Cubbyhole Response Wrapping doc](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+- [Transit Secrets Re-wrapping](https://www.vaultproject.io/guides/encryption/transit-rewrap.html)
+- [Transit Secret Engine](https://www.vaultproject.io/docs/secrets/transit/index.html)
+- [Transit Secret Engine API](https://www.vaultproject.io/api/secret/transit/index.html)
+- [Transparent Data Encryption in the Modern Datacenter](https://www.hashicorp.com/blog/transparent-data-encryption-in-the-modern-datacenter)

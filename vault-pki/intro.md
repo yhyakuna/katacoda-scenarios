@@ -1,12 +1,9 @@
 <img src="https://s3-us-west-1.amazonaws.com/education-yh/Vault_Icon_FullColor.png" alt="Logo"/>
 
-[HashiCorp Vault](https://www.vaultproject.io)'s PKI secret engine supports generating self-signed root Certificate Authority (CA) and creating and signing Certificate Signing Request (CSR) for intermediate CAs.
+[HashiCorp Vault](https://www.vaultproject.io)'s PKI secret engine generates dynamic X.509 certificates. With this secrets engine, services can get certificates without going through the usual manual process of generating a private key and Certificate Signing Request (CSR), submitting to a Certificate Authority (CA), and waiting for a verification and signing process to complete.  Vault's build-in authentication and authorization mechanisms provide the verification functionality.
 
-These are different Vault PKI setups and related notes.
+In this tutorial, we’ll be setting up Vault to act as an intermediate CA to issue certificates specific to the Example application.
 
-In each instance, for security reasons, the private key can only be exported at generation time, and the ability to do so is part of the command path (so it can be put into ACL policies).
-
-If you plan on using intermediate CAs with Vault, it is suggested that you let Vault create CSRs and do not export the private key, then sign those with your root CA .
 
 
 This lab demonstrates the following:

@@ -1,36 +1,19 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Vault Secret Engines - PKI",
-  "description": "Learn how to leverage Vault's PKI (certificates) secret engine.",
+  "title": "Vault Playground",
+  "description": "HashiCorp Vault environment to explore",
   "difficulty": "beginner",
-  "time": "5 minutes",
   "details": {
     "steps": [
       {
-        "title": "Getting Started",
+        "title": "Start the Vault Server",
         "text": "getting-started.md"
-      },
-      {
-        "title": "Setup PKI Secrets Engine",
-        "text": "step1.md"
-      },
-      {
-        "title": "Cubbyhole Wrapping Token",
-        "text": "step2.md"
       }
     ],
     "intro": {
       "text": "intro.md",
       "code": "env-init.sh",
       "credits": "https://www.vaultproject.io"
-    },
-    "assets": {
-      "client": [
-        {
-          "file": "apps-policy.hcl",
-          "target": "~/"
-        }
-      ]
     },
     "finish": {
       "text": "finish.md",

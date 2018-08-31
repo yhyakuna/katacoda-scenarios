@@ -1,80 +1,87 @@
-You are going to create a new entity with base policy assigned.  The entity defines two entity aliases with each has a different policy assigned.
+Write policies which fulfill the following requirements:
 
-**Scenario:**  
+- Each _user_ can perform all operations on their allocated key/value secret path (`user-kv/data/<user_name>`)
+- The education _group_ has a dedicated key/value secret store for each region where all operations can be performed by the group members
+ (`group-kv/data/education/<region>`)
+- The _group_ members can update the group information such as metadata about the group (`identity/group/id/<group_id>`)
 
-A user, Bob Smith at ACME Inc. happened to have two sets of credentials: `bob` and `bsmith`.  To manage his accounts and link them to an identity `Bob Smith` in team, QA, you are going to create an entity for Bob.
-
-<img src="https://s3-us-west-1.amazonaws.com/education-yh/vault-acl-templating.png" alt="Entity"/>
-
-**NOTE:** For the purpose of training, you are going to work with the userpass auth method.  But in reality, the user `bob` might be a username that exists in Active Directory, and `bsmith` might be Bob's username exists in GitHub, etc.
+Policy authors can pass in a policy path containing double curly braces as templating delimiters: `{{<parameter>}}`.
 
 
-Execute the following command to enable the userpass auth method:
+## Available Templating Parameters
 
-```
-vault auth enable userpass
-```{{execute T2}}
+|                                    Name                                |                                    Description                               |
+| :--------------------------------------------------------------------- | :--------------------------------------------------------------------------- |
+| `identity.entity.id`                                                   | The entity's ID                                                              |
+| `identity.entity.name`                                                 | The entity's name                                                            |
+| `identity.entity.metadata.<<metadata key>>`                            | Metadata associated with the entity for the given key                        |
+| `identity.entity.aliases.<<mount accessor>>.id`                        | Entity alias ID for the given mount                                          |
+| `identity.entity.aliases.<<mount accessor>>.name`                      | Entity alias name for the given mount                                        |
+| `identity.entity.aliases.<<mount accessor>>.metadata.<<metadata key>>` | Metadata associated with the alias for the given mount and metadata key      |
+| `identity.groups.ids.<<group id>>.name`                                | The group name for the given group ID                                        |
+| `identity.groups.names.<<group name>>.id`                              | The group ID for the given group name                                        |
+| `identity.groups.names.<<group id>>.metadata.<<metadata key>>`         | Metadata associated with the group for the given key                         |
+| `identity.groups.names.<<group name>>.metadata.<<metadata key>>`       | Metadata associated with the group for the given key                         |
 
-Next, create a new policy named, `base`:
+<br>
+
+
+Open the `user-tmpl.hcl`{{open}} file and enter the following policy rules in the editor (the following snippet can be copied into the editor):
+
+<pre class="file" data-filename="user-tmpl.hcl" data-target="replace">
+# Grant permissions on user specific path
+path "user-kv/data/{{identity.entity.name}}/*" {
+	capabilities = [ "create", "update", "read", "delete", "list" ]
+}
+</pre>
+
+
+Next, open the `group-tmpl.hcl`{{open}} file and enter the following policy rules in the editor:
+
+<pre class="file" data-filename="group-tmpl.hcl" data-target="replace">
+# Grant permissions on the group specific path
+# The region is specified in the group metadata
+path "group-kv/data/education/{{identity.groups.names.education.metadata.region}}/*" {
+	capabilities = [ "create", "update", "read", "delete", "list" ]
+}
+
+# Group member can update the group information
+path "identity/group/id/{{identity.groups.names.education.id}}" {
+  capabilities = [ "update", "read" ]
+}
+</pre>
+
+
+This policy grants **create** and **read** operations on any path starting with `secret/data/training_`.
+
+> **NOTE:**  When you are working with [_key/value secret engine v2_](https://www.vaultproject.io/api/secret/kv/kv-v2.html), the path to write policies would be `secret/data/<path>` even though the K/V command to the path is `secret/<path>`.  When you are working with [v1](https://www.vaultproject.io/api/secret/kv/kv-v1.html), the policies should be written against `secret/<path>`.  This is because the API endpoint to invoke K/V v2 is different from v1.
+
+## Deploy policies
+
+Execute the following command to create a policy:
 
 ```
 vault policy write base base.hcl
 ```{{execute T2}}
 
-To review the created policy:
-
-```
-vault policy read base
-```{{execute T2}}
-
-This policy grants CRUD operations on the path starting with `secret/training`.
-
-<br>
-Let's create two more policies: `test` and `team-qa`.
-
-Execute the following command to create `test` policy.
-
-```
-vault policy write test test.hcl
-```{{execute T2}}
-
-
-Execute the following command to create `team-qa` policy.
-
-```
-vault policy write team-qa team-qa.hcl
-```{{execute T2}}
-
-
-At this point, you should have `base`, `test`, and `team-qa` policies:
+Run the following command to list existing policies:
 
 ```
 vault policy list
 ```{{execute T2}}
 
-<br>
+The list should include the `base` policy you just created.
 
-## Create Users
-
-Create a new user in userpass backend:
-
-- **username:** bob
-- **password:** training
-- **policy:** test
+The following command displays the policy you just created:
 
 ```
-vault write auth/userpass/users/bob password="training" \
-    policies="test"
+vault policy read base
 ```{{execute T2}}
 
+<br>
 
-Create another user in userpass backend:
-
-- **username:** bsmith
-- **password:** training
-- **policy:** team-qa
+***Optional:*** Execute the following command to examine the `default` policy.
 
 ```
-vault write auth/userpass/users/bsmith password="training" \
-      policies="team-qa"
+vault policy read default
 ```{{execute T2}}

@@ -1,71 +1,80 @@
-Execute the following command to discover the mount accessor for the `userpass` auth method since `bob` and `bsmith` are users defined using the `userpass` auth method:
+You are going to create a new entity with base policy assigned.  The entity defines two entity aliases with each has a different policy assigned.
+
+**Scenario:**  
+
+A user, Bob Smith at ACME Inc. happened to have two sets of credentials: `bob` and `bsmith`.  To manage his accounts and link them to an identity `Bob Smith` in team, QA, you are going to create an entity for Bob.
+
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/vault-acl-templating.png" alt="Entity"/>
+
+**NOTE:** For the purpose of training, you are going to work with the userpass auth method.  But in reality, the user `bob` might be a username that exists in Active Directory, and `bsmith` might be Bob's username exists in GitHub, etc.
+
+
+Execute the following command to enable the userpass auth method:
 
 ```
-vault auth list \
-    -format=json | jq -r '.["userpass/"].accessor' > accessor.txt
+vault auth enable userpass
 ```{{execute T2}}
 
-This command parses the output using `jq`, retrieves the mount accessor for `userpass` and save it in the `accessor.txt`{{open}} file.
-
-**NOTE:** The output of `vault auth list -detailed`{{execute T2}} includes the accessor ID for each auth method enabled on your Vault server. For example, if LDAP and Okta auth methods were enabled on your server, the output includes the accessor ID for those methods:
+Next, create a new policy named, `base`:
 
 ```
-Path         Type        Accessor                  ...
-----         ----        --------                  ...
-ldap/        ldap        auth_ldap_a764f919        ...
-okta/        okta        auth_okta_0e2bffe6        ...
-token/       token       auth_token_070a4d9f       ...
-userpass/    userpass    auth_userpass_329e028b    ...
+vault policy write base base.hcl
+```{{execute T2}}
+
+To review the created policy:
+
 ```
-If the identity, `bob`, is defined in LDAP and `bsmith` is defined in Okta, you would need the accessor IDs of LDAP and Okta.
+vault policy read base
+```{{execute T2}}
+
+This policy grants CRUD operations on the path starting with `secret/training`.
 
 <br>
-## Create bob-smith Entity
+Let's create two more policies: `test` and `team-qa`.
 
-Execute the following command to create a new entity named, `bob-smith` and save its ID in the `entity_id.txt` file:
-
-```
-vault write -format=json identity/entity name="bob-smith" \
-     policies="base" \
-     metadata=organization="ACME Inc." \
-     metadata=team="QA" \
-     | jq -r ".data.id" > entity_id.txt
-```{{execute T2}}
-
-> Note that the metadata are passed in `metadata=<key>=<value>` format. In the above command, the entity has organization and team as its metadata.
-
-
-Now, add user `bob` to the `bob-smith` entity by creating an entity alias:
+Execute the following command to create `test` policy.
 
 ```
-vault write identity/entity-alias name="bob" \
-     canonical_id=$(cat entity_id.txt) \
-     mount_accessor=$(cat accessor.txt)
-```{{execute T2}}
-
-> **NOTE:**  If you don't specify the `canonical_id` value, Vault automatically creates a new entity for this alias.  
-
-
-Repeat the step to add user bsmith to the `bob-smith` entity.
-
-```
-vault write identity/entity-alias name="bsmith" \
-     canonical_id=$(cat entity_id.txt) \
-     mount_accessor=$(cat accessor.txt)
+vault policy write test test.hcl
 ```{{execute T2}}
 
 
-Execute the following command to read the entity details:
+Execute the following command to create `team-qa` policy.
 
 ```
-vault read identity/entity/id/$(cat entity_id.txt)
+vault policy write team-qa team-qa.hcl
 ```{{execute T2}}
 
 
-The output should include the entity aliases (both `bob` and `bsmith`), metadata (organization, and team), and base policy.
-
-**NOTE:** It might be easier to read the output in JSON format.
+At this point, you should have `base`, `test`, and `team-qa` policies:
 
 ```
-vault read -format=json identity/entity/id/$(cat entity_id.txt)
+vault policy list
+```{{execute T2}}
+
+<br>
+
+## Create Users
+
+Create a new user in userpass backend:
+
+- **username:** bob
+- **password:** training
+- **policy:** test
+
+```
+vault write auth/userpass/users/bob password="training" \
+    policies="test"
+```{{execute T2}}
+
+
+Create another user in userpass backend:
+
+- **username:** bsmith
+- **password:** training
+- **policy:** team-qa
+
+```
+vault write auth/userpass/users/bsmith password="training" \
+      policies="team-qa"
 ```{{execute T2}}

@@ -15,15 +15,15 @@ You can specify non-static paths in ACL policies was to use globs (`*`) at the e
 
 For example:
 
-```hcl
-path "transit/keys/*" {
-  capabilities = [ "read" ]
-}
+  ```hcl
+  path "transit/keys/*" {
+    capabilities = [ "read" ]
+  }
 
-path "secret/webapp_*" {
-  capabilities = [ "create", "read", "update", "delete", "list" ]
-}
-```
+  path "secret/webapp_*" {
+    capabilities = [ "create", "read", "update", "delete", "list" ]
+  }
+  ```
 
 However, this makes the management and delegation tasks challenging. For example, allowing a user to change their own password by invoking the
 `auth/userpass/users/<user_name>/password` endpoint can require either a policy for _every user_ or requires the use of Sentinel which is a part of [Vault Enterprise](/docs/enterprise/sentinel/index.html).

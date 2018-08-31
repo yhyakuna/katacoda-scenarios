@@ -1,47 +1,51 @@
-Now, you are going to create an internal group named, engineers.  Its member is `bob-smith` entity that you created.
+To better understand how a token inherits the capabilities from entity's policy, you are going to test it by logging in as bob.
 
-To clear the screen: `clear`{{execute T2}}
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/7-entity-2.png" alt="Entity Alias"/>
 
-Log back in with the root token:
+
+Execute the following command to login as `bob`:
 
 ```
-vault login root
+vault login -method=userpass username=bob password=training
+```{{execute T2}}
+
+> Upon a successful authentication, a token will be returned. Notice that the output displays **`token_policies`** and **`identity_policies`**. The generated token has both `test` and `base` policies attached.
+
+Remember that the `test` policy grants CRUD operations on the `secret/test` path.  Check to see if the generated token has capabilities granted:
+
+```
+vault kv put secret/test owner="bob"
 ```{{execute T2}}
 
 
-First, create a new policy so that you can test the capability inheritance:
+> Although the username `bob` does not have `base` policy attached, the token inherits the capabilities granted in the base policy because `bob` is a member of the `bob-smith` entity, and the entity has base policy attached.
 
-Create a policy named, `team-eng` which grants CRUD operations on the `secret/data/team/eng` path.
-
-```
-vault policy write team-eng team-eng.hcl
-```{{execute T2}}
-
-To review the policy:  `team-eng.hcl`{{open}}
-
-<br>
-
-
-## Create Internal Group for Engineers
-
-Execute the following command to create an internal group named, `engineers` and add `bob-smith` entity as a group member.  Also, assign the newly created `team-eng` policy to the group.
+Check to see that the bob's token inherited the capabilities:
 
 ```
-vault write -format=json identity/group name="engineers" \
-      policies="team-eng" \
-      member_entity_ids=$(cat entity_id.txt) \
-      metadata=team="Engineering" \
-      metadata=region="North America" \
-      | jq -r ".data.id" > group_id.txt
+vault token capabilities secret/data/training_test
 ```{{execute T2}}
 
-The generated group ID is stored in the `group_id.txt`{{open}} file.
+Remember that the base policy grants create and read capabilities on path starting with `secret/training`.
 
-Execute the following command to read the details of the group, `qa-entineers`:
+
+## Question
+
+What about the `secret/data/team/qa` path?
+
+Does user `bob` have any permission on that path?
+
+￼<br>
+
+## Answer
+
+The user bob only inherits capability from its associating entity's policy.  The base policy nor test policy grants permissions on the `secret/data/team/qa` path.  Only the `team-qa` policy does.
 
 ```
-vault read identity/group/id/$(cat group_id.txt)
+vault token capabilities secret/data/team/qa
 ```{{execute T2}}
 
+Therefore, the current token has no permission to access the `secret/data/team/qa` path.
 
-> By default, Vault creates an internal group. When you create an internal group, you specify the group members, so you don't specify any group alias. Group aliases are mapping between Vault and external identity providers (e.g. LDAP, GitHub, etc.).  Therefore, you define group aliases only when you create external groups.  For internal groups, you have `member_entity_ids` and/or `member_group_ids` instead.
+
+> Repeat the steps and login as a user, `bsmith`, and test the token's capabilities.

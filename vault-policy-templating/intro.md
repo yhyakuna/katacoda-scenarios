@@ -25,7 +25,6 @@ For example:
   }
   ```
 
-However, this makes the management and delegation tasks challenging. For example, allowing a user to change their own password by invoking the
-`auth/userpass/users/<user_name>/password` endpoint can require either a policy for _every user_ or requires the use of Sentinel which is a part of [Vault Enterprise](/docs/enterprise/sentinel/index.html).
+However, this makes the management and delegation tasks challenging.
 
-> This guide highlights the use of ACL templating which was introduced in **Vault 0.11**.
+> This guide highlights the use of ACL policy path **templating** which was introduced in **Vault 0.11**.

@@ -1,8 +1,10 @@
 Write policies which fulfill the following policy requirements:
 
 (1) Each _user_ can perform all operations on their allocated key/value secret path (`user-kv/data/<user_name>`)
+
 (2) The education _group_ has a dedicated key/value secret store for each region where all operations can be performed by the group members
  (`group-kv/data/education/<region>`)
+ 
 (3) The _group_ members can update the group information such as metadata about the group (`identity/group/id/<group_id>`)
 
 > As of Vault 0.11, you can pass in a policy path containing double curly braces as templating delimiters: `{{<parameter>}}`.

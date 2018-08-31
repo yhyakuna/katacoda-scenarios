@@ -80,8 +80,6 @@ The user `bob` should be listed as an entity alias under the **`aliases`** block
 
 ## Create a Group
 
-To clear the screen: `clear`{{execute T2}}
-
 Execute the following command to create an internal group named, `education` and add `bob_smith` entity as a group member.  Also, assign the  `group-tmpl` policy to the group, and set some metadata.
 
 ```
@@ -93,3 +91,5 @@ vault write -format=json identity/group name="education" \
 ```{{execute T2}}
 
 The generated group ID is stored in the `group_id.txt`{{open}} file.
+
+To clear the screen: `clear`{{execute T2}}

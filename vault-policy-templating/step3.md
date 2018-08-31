@@ -58,7 +58,7 @@ vault kv put group-kv/education/us-west/db_cred password="ABCDEFGHIJKLMN"
 
 The secret should be created successfully.
 
-Now, verify that you can update the group information. The `group-tmpl` policy permits "update" and "read" on the `identity/group/id/{{identity.groups.names.education.id}}` path. The group ID is saved in the `group_id.txt` file.
+Now, verify that you can update the group information by adding contact_email metadata. The `group-tmpl` policy permits "update" and "read" on the `identity/group/id/{{identity.groups.names.education.id}}` path. The education group ID is saved in the `group_id.txt` file.
 
 ```
 vault write identity/group/id/$(cat group_id.txt) \
@@ -70,24 +70,20 @@ vault write identity/group/id/$(cat group_id.txt) \
 Read the group information to verify that the data has been updated.
 
 ```
-vault read identity/group/id/$(cat group_id.txt)
+vault read -format=json identity/group/id/$(cat group_id.txt)
 ```{{execute T2}}
 
 You should see that `contact_email` metadata has been added.
 
 ```
-Key                  Value
----                  -----
-alias                map[]
-creation_time        2018-08-29T20:38:49.383960564Z
-id                   d6ee454e-915a-4bef-9e43-4ffd7762cd4c
-last_update_time     2018-08-29T22:52:42.005544616Z
-member_entity_ids    [1a272450-d147-c3fd-63ae-f16b65b5ee02]
-member_group_ids     <nil>
-metadata             map[contact_email:james@example.com region:us-west]
-modify_index         3
-name                 education
-parent_group_ids     <nil>
-policies             [group-tmpl]
-type                 internal
+{
+  ...
+  "data": {
+    ...
+    "metadata": {
+      "contact_email": "james@example.com",
+      "region": "us-west"
+    },
+    ...
+}
 ```

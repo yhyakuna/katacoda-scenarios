@@ -2,7 +2,7 @@ Let's create an entity, **`bob_smith`** with a user **`bob`** as its entity alia
 
 <img src="https://s3-us-west-1.amazonaws.com/education-yh/vault-acl-templating.png" alt="Entity"/>
 
-**NOTE:** For the purpose of training, you are going to work with the userpass auth method.  But in reality, the user `bob` might be a username that exists in Active Directory, Okta, etc.
+**NOTE:** For the purpose of this tutorial, you are going to work with the `userpass` auth method to keep this simple.  
 
 ## Create an Entity
 
@@ -56,6 +56,25 @@ Execute the following command to read the entity details:
 ```
 vault read -format=json identity/entity/id/$(cat entity_id.txt)
 ```{{execute T2}}
+
+The user `bob` should be listed as an entity alias under the **`aliases`** block:
+
+```
+{
+  ...
+  "data": {
+    "aliases": [
+      {
+        "canonical_id": "56cba8cd-c1f4-57c3-ca26-10f25bb524e0",
+        ...
+        "mount_accessor": "auth_userpass_7a1ead56",
+        "mount_path": "auth/userpass/",
+        "mount_type": "userpass",
+        "name": "bob"
+      }
+    ],
+    ...
+```
 
 
 ## Create a Group

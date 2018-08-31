@@ -1,51 +1,91 @@
-To better understand how a token inherits the capabilities from entity's policy, you are going to test it by logging in as bob.
+Now, let's test to make sure that the templated policies work as expected.
 
-<img src="https://s3-us-west-1.amazonaws.com/education-yh/7-entity-2.png" alt="Entity Alias"/>
+First, enable key/value v2 secrets engine at `user-kv`.
+
+```
+$ vault secrets enable -path=user-kv kv-v2
+```{{execute T2}}
+
+Enable key/value v2 secrets engine at `group-kv`.
+
+```
+$ vault secrets enable -path=group-kv kv-v2
+```{{execute T2}}
+
+Now, you are ready to test.  Log in as **`bob`**.
+
+```
+$ vault login -method=userpass username="bob" password="training"
+```{{execute T2}}
+
+Notice that the generated token has `default`, `user-tmpl` and `group-tmpl` policies attached where `user-tmpl` policy was inherited from the `bob_smith` entity, and `group-tmpl` from the `education` group.
+
+```
+Key                    Value
+---                    -----
+token                  5f2b2594-f0b4-0a7b-6f51-767345091dcc
+token_accessor         78b652dd-4320-f18f-b882-0732b7ae9ac9
+token_duration         768h
+token_renewable        true
+token_policies         ["default"]
+identity_policies      ["group-tmpl" "user-tmpl"]
+policies               ["default" "group-tmpl" "user-tmpl"]
+token_meta_username    bob
+```
+Remember that `bob` is a member of the `bob_smith` entity; therefore, the "`user-kv/data/{{identity.entity.name}}/*`" expression in the `user-tmpl` policy translates to "**`user-kv/data/bob_smith/*`**".
+
+Let's test!
+
+```
+$ vault kv put user-kv/bob_smith/apikey webapp="12344567890"
+```{{execute T2}}
+
+The region was set to `us-west` for the `education` group that the `bob_smith` belongs to. Therefore, the "`group-kv/data/education/{{identity.groups.names.education.metadata.region}}/*`" expression in the `group-tmpl` policy translates to "**`group-kv/data/education/us-west/*`**". Let's verify.
+
+```
+$ vault kv put group-kv/education/us-west/db_cred password="ABCDEFGHIJKLMN"
+```{{execute T2}}
 
 
-Execute the following command to login as `bob`:
+Verify that you can update the group information. The `group-tmpl` policy permits "update" and "read" on the "`identity/group/id/{{identity.groups.names.education.id}}`" path. In [Step 2](#step2), you saved the `education` group ID in the `group_id.txt` file.
+
+```
+$ vault write identity/group/id/$(cat group_id.txt) \
+        policies="group-tmpl" \
+        metadata=region="us-west" \
+        metadata=contact_email="james@example.com"
+```{{execute T2}}
+
+Read the group information to verify that the data has been updated.
+
+```
+$ vault read identity/group/id/$(cat group_id.txt)
+```{{execute T2}}
+
+```
+Key                  Value
+---                  -----
+alias                map[]
+creation_time        2018-08-29T20:38:49.383960564Z
+id                   d6ee454e-915a-4bef-9e43-4ffd7762cd4c
+last_update_time     2018-08-29T22:52:42.005544616Z
+member_entity_ids    [1a272450-d147-c3fd-63ae-f16b65b5ee02]
+member_group_ids     <nil>
+metadata             map[contact_email:james@example.com region:us-west]
+modify_index         3
+name                 education
+parent_group_ids     <nil>
+policies             [group-tmpl]
+type                 internal
+```
+
+
+
+
+First, login as `bob`:
 
 ```
 vault login -method=userpass username=bob password=training
 ```{{execute T2}}
 
 > Upon a successful authentication, a token will be returned. Notice that the output displays **`token_policies`** and **`identity_policies`**. The generated token has both `test` and `base` policies attached.
-
-Remember that the `test` policy grants CRUD operations on the `secret/test` path.  Check to see if the generated token has capabilities granted:
-
-```
-vault kv put secret/test owner="bob"
-```{{execute T2}}
-
-
-> Although the username `bob` does not have `base` policy attached, the token inherits the capabilities granted in the base policy because `bob` is a member of the `bob-smith` entity, and the entity has base policy attached.
-
-Check to see that the bob's token inherited the capabilities:
-
-```
-vault token capabilities secret/data/training_test
-```{{execute T2}}
-
-Remember that the base policy grants create and read capabilities on path starting with `secret/training`.
-
-
-## Question
-
-What about the `secret/data/team/qa` path?
-
-Does user `bob` have any permission on that path?
-
-￼<br>
-
-## Answer
-
-The user bob only inherits capability from its associating entity's policy.  The base policy nor test policy grants permissions on the `secret/data/team/qa` path.  Only the `team-qa` policy does.
-
-```
-vault token capabilities secret/data/team/qa
-```{{execute T2}}
-
-Therefore, the current token has no permission to access the `secret/data/team/qa` path.
-
-
-> Repeat the steps and login as a user, `bsmith`, and test the token's capabilities.

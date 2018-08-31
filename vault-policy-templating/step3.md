@@ -15,7 +15,7 @@ $ vault secrets enable -path=group-kv kv-v2
 Now, you are ready to test.  Log in as **`bob`**.
 
 ```
-$ vault login -method=userpass username="bob" password="training"
+vault login -method=userpass username="bob" password="training"
 ```{{execute T2}}
 
 Notice that the generated token has `default`, `user-tmpl` and `group-tmpl` policies attached where `user-tmpl` policy was inherited from the `bob_smith` entity, and `group-tmpl` from the `education` group.
@@ -37,7 +37,7 @@ Remember that `bob` is a member of the `bob_smith` entity; therefore, the "`user
 Let's test!
 
 ```
-$ vault kv put user-kv/bob_smith/apikey webapp="12344567890"
+vault kv put user-kv/bob_smith/apikey webapp="12344567890"
 ```{{execute T2}}
 
 The region was set to `us-west` for the `education` group that the `bob_smith` belongs to. Therefore, the "`group-kv/data/education/{{identity.groups.names.education.metadata.region}}/*`" expression in the `group-tmpl` policy translates to "**`group-kv/data/education/us-west/*`**".
@@ -45,14 +45,14 @@ The region was set to `us-west` for the `education` group that the `bob_smith` b
 Let's verify.
 
 ```
-$ vault kv put group-kv/education/us-west/db_cred password="ABCDEFGHIJKLMN"
+vault kv put group-kv/education/us-west/db_cred password="ABCDEFGHIJKLMN"
 ```{{execute T2}}
 
 
 Verify that you can update the group information. The `group-tmpl` policy permits "update" and "read" on the "`identity/group/id/{{identity.groups.names.education.id}}`" path. The group ID is saved in the `group_id.txt` file.
 
 ```
-$ vault write identity/group/id/$(cat group_id.txt) \
+vault write identity/group/id/$(cat group_id.txt) \
         policies="group-tmpl" \
         metadata=region="us-west" \
         metadata=contact_email="james@example.com"
@@ -61,7 +61,7 @@ $ vault write identity/group/id/$(cat group_id.txt) \
 Read the group information to verify that the data has been updated.
 
 ```
-$ vault read identity/group/id/$(cat group_id.txt)
+vault read identity/group/id/$(cat group_id.txt)
 ```{{execute T2}}
 
 You should see that `contact_email` metadata has been added.

@@ -40,14 +40,16 @@ Let's test!
 $ vault kv put user-kv/bob_smith/apikey webapp="12344567890"
 ```{{execute T2}}
 
-The region was set to `us-west` for the `education` group that the `bob_smith` belongs to. Therefore, the "`group-kv/data/education/{{identity.groups.names.education.metadata.region}}/*`" expression in the `group-tmpl` policy translates to "**`group-kv/data/education/us-west/*`**". Let's verify.
+The region was set to `us-west` for the `education` group that the `bob_smith` belongs to. Therefore, the "`group-kv/data/education/{{identity.groups.names.education.metadata.region}}/*`" expression in the `group-tmpl` policy translates to "**`group-kv/data/education/us-west/*`**".
+
+Let's verify.
 
 ```
 $ vault kv put group-kv/education/us-west/db_cred password="ABCDEFGHIJKLMN"
 ```{{execute T2}}
 
 
-Verify that you can update the group information. The `group-tmpl` policy permits "update" and "read" on the "`identity/group/id/{{identity.groups.names.education.id}}`" path. In [Step 2](#step2), you saved the `education` group ID in the `group_id.txt` file.
+Verify that you can update the group information. The `group-tmpl` policy permits "update" and "read" on the "`identity/group/id/{{identity.groups.names.education.id}}`" path. The group ID is saved in the `group_id.txt` file.
 
 ```
 $ vault write identity/group/id/$(cat group_id.txt) \
@@ -61,6 +63,8 @@ Read the group information to verify that the data has been updated.
 ```
 $ vault read identity/group/id/$(cat group_id.txt)
 ```{{execute T2}}
+
+You should see that `contact_email` metadata has been added.
 
 ```
 Key                  Value
@@ -78,14 +82,3 @@ parent_group_ids     <nil>
 policies             [group-tmpl]
 type                 internal
 ```
-
-
-
-
-First, login as `bob`:
-
-```
-vault login -method=userpass username=bob password=training
-```{{execute T2}}
-
-> Upon a successful authentication, a token will be returned. Notice that the output displays **`token_policies`** and **`identity_policies`**. The generated token has both `test` and `base` policies attached.

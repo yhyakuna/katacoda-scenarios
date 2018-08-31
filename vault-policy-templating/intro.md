@@ -27,4 +27,4 @@ For example:
 
 However, this makes the management and delegation tasks challenging.
 
-> This guide highlights the use of ACL policy path **templating** which was introduced in **Vault 0.11**.
+> This guide highlights the use of [**templating**](https://www.vaultproject.io/docs/concepts/policies.html#templated-policies) to set non-static path in the ACL policies.  This feature was introduced in **Vault 0.11**.

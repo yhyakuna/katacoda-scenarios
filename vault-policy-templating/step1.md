@@ -1,9 +1,9 @@
 Write policies which fulfill the following policy requirements:
 
 1. Each _user_ can perform all operations on their allocated key/value secret path (`user-kv/data/<user_name>`)
-1. The education _group_ has a dedicated key/value secret store for each region where all operations can be performed by the group members
+2. The education _group_ has a dedicated key/value secret store for each region where all operations can be performed by the group members
  (`group-kv/data/education/<region>`)
-1. The _group_ members can update the group information such as metadata about the group (`identity/group/id/<group_id>`)
+3. The _group_ members can update the group information such as metadata about the group (`identity/group/id/<group_id>`)
 
 > As of Vault 0.11, you can pass in a policy path containing double curly braces as templating delimiters: `{{<parameter>}}`.
 
@@ -57,9 +57,7 @@ path "identity/group/id/{{identity.groups.names.education.id}}" {
 This policy fulfills the policy requirement 2 and 3.
 
 
-> **NOTE:**  When you are working with [_key/value secret engine v2_](https://www.vaultproject.io/api/secret/kv/kv-v2.html), the path to write policies would be `secret/data/<path>` even though the K/V command to the path is `secret/<path>`.  When you are working with [v1](https://www.vaultproject.io/api/secret/kv/kv-v1.html), the policies should be written against `secret/<path>`.  This is because the API endpoint to invoke K/V v2 is different from v1.
-
-## Deploy policies
+## Deploy Policies
 
 Execute the following command to create `user-tmpl` policy:
 

@@ -1,7 +1,3 @@
-You are going to create a new entity with base policy assigned.  The entity defines two entity aliases with each has a different policy assigned.
-
-**Scenario:**  
-
 Let's create an entity, **`bob_smith`** with a user **`bob`** as its entity alias. Also, create an internal group, **`education`** and add the **`bob_smith`** entity as its group member.
 
 <img src="https://s3-us-west-1.amazonaws.com/education-yh/vault-acl-templating.png" alt="Entity"/>

@@ -24,7 +24,9 @@ Login with the generated root token.
 vault login root
 ```{{execute T2}}
 
-## Now, you are ready to explore Vault CLI.
+**Now, you are ready to explore Vault CLI!**
+
+<br>
 
 ## Useful Links
 

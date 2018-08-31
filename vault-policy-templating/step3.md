@@ -12,7 +12,7 @@ Enable key/value v2 secrets engine at `group-kv`.
 vault secrets enable -path=group-kv kv-v2
 ```{{execute T2}}
 
-Now, you are ready to test.  Log in as **`bob`**.
+Now, you are ready to test!  Log in as **`bob`**.
 
 ```
 vault login -method=userpass username="bob" password="training"
@@ -33,6 +33,8 @@ policies               ["default" "group-tmpl" "user-tmpl"]
 token_meta_username    bob
 ```
 
+## Test user-tmpl policy
+
 Remember that `bob` is a member of the `bob_smith` entity; therefore, the "`user-kv/data/{{identity.entity.name}}/*`" expression in the `user-tmpl` policy translates to "**`user-kv/data/bob_smith/*`**".
 
 Let's test!
@@ -40,6 +42,11 @@ Let's test!
 ```
 vault kv put user-kv/bob_smith/apikey webapp="12344567890"
 ```{{execute T2}}
+
+This command should execute successfully.
+
+
+## Test group-tmpl policy
 
 The region was set to `us-west` for the `education` group that the `bob_smith` belongs to. Therefore, the "`group-kv/data/education/{{identity.groups.names.education.metadata.region}}/*`" expression in the `group-tmpl` policy translates to "**`group-kv/data/education/us-west/*`**".
 

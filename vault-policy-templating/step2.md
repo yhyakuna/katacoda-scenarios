@@ -76,6 +76,7 @@ The user `bob` should be listed as an entity alias under the **`aliases`** block
     ...
 ```
 
+<br>
 
 ## Create a Group
 

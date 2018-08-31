@@ -16,16 +16,12 @@
         "text": "step1.md"
       },
       {
-        "title": "Create an Entity",
+        "title": "Create an Entity]",
         "text": "step2.md"
       },
       {
-        "title": "Test the Entity",
-        "text": "step3.md"
-      },
-      {
         "title": "Test the Policies",
-        "text": "step4.md"
+        "text": "step3.md"
       }
     ],
     "intro": {

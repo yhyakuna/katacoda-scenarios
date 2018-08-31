@@ -1,11 +1,11 @@
-Write policies which fulfill the following requirements:
+Write policies which fulfill the following policy requirements:
 
-- Each _user_ can perform all operations on their allocated key/value secret path (`user-kv/data/<user_name>`)
-- The education _group_ has a dedicated key/value secret store for each region where all operations can be performed by the group members
+1. Each _user_ can perform all operations on their allocated key/value secret path (`user-kv/data/<user_name>`)
+1. The education _group_ has a dedicated key/value secret store for each region where all operations can be performed by the group members
  (`group-kv/data/education/<region>`)
-- The _group_ members can update the group information such as metadata about the group (`identity/group/id/<group_id>`)
+1. The _group_ members can update the group information such as metadata about the group (`identity/group/id/<group_id>`)
 
-Policy authors can pass in a policy path containing double curly braces as templating delimiters: `{{<parameter>}}`.
+> As of Vault 0.11, you can pass in a policy path containing double curly braces as templating delimiters: `{{<parameter>}}`.
 
 
 ## Available Templating Parameters
@@ -26,6 +26,8 @@ Policy authors can pass in a policy path containing double curly braces as templ
 <br>
 
 
+## Author ACL Policies
+
 Open the `user-tmpl.hcl`{{open}} file and enter the following policy rules in the editor (the following snippet can be copied into the editor):
 
 <pre class="file" data-filename="user-tmpl.hcl" data-target="replace">
@@ -35,6 +37,7 @@ path "user-kv/data/{{identity.entity.name}}/*" {
 }
 </pre>
 
+This policy fulfills the policy requirement 1.
 
 Next, open the `group-tmpl.hcl`{{open}} file and enter the following policy rules in the editor:
 
@@ -51,37 +54,27 @@ path "identity/group/id/{{identity.groups.names.education.id}}" {
 }
 </pre>
 
+This policy fulfills the policy requirement 2 and 3.
 
-This policy grants **create** and **read** operations on any path starting with `secret/data/training_`.
 
 > **NOTE:**  When you are working with [_key/value secret engine v2_](https://www.vaultproject.io/api/secret/kv/kv-v2.html), the path to write policies would be `secret/data/<path>` even though the K/V command to the path is `secret/<path>`.  When you are working with [v1](https://www.vaultproject.io/api/secret/kv/kv-v1.html), the policies should be written against `secret/<path>`.  This is because the API endpoint to invoke K/V v2 is different from v1.
 
 ## Deploy policies
 
-Execute the following command to create a policy:
+Execute the following command to create `user-tmpl` policy:
 
 ```
-vault policy write base base.hcl
+vault policy write user-tmpl user-tmpl.hcl
 ```{{execute T2}}
 
-Run the following command to list existing policies:
+Similarly, execute the following command to create `group-tmpl` policy:
+
+```
+vault policy write group-tmpl group-tmpl.hcl
+```{{execute T2}}
+
+List the available policies to verify:
 
 ```
 vault policy list
-```{{execute T2}}
-
-The list should include the `base` policy you just created.
-
-The following command displays the policy you just created:
-
-```
-vault policy read base
-```{{execute T2}}
-
-<br>
-
-***Optional:*** Execute the following command to examine the `default` policy.
-
-```
-vault policy read default
 ```{{execute T2}}

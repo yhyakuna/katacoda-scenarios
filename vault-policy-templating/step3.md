@@ -1,71 +1,51 @@
-Execute the following command to discover the mount accessor for the `userpass` auth method since `bob` and `bsmith` are users defined using the `userpass` auth method:
+To better understand how a token inherits the capabilities from entity's policy, you are going to test it by logging in as bob.
+
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/7-entity-2.png" alt="Entity Alias"/>
+
+
+Execute the following command to login as `bob`:
 
 ```
-vault auth list \
-    -format=json | jq -r '.["userpass/"].accessor' > accessor.txt
+vault login -method=userpass username=bob password=training
 ```{{execute T2}}
 
-This command parses the output using `jq`, retrieves the mount accessor for `userpass` and save it in the `accessor.txt`{{open}} file.
+> Upon a successful authentication, a token will be returned. Notice that the output displays **`token_policies`** and **`identity_policies`**. The generated token has both `test` and `base` policies attached.
 
-**NOTE:** The output of `vault auth list -detailed`{{execute T2}} includes the accessor ID for each auth method enabled on your Vault server. For example, if LDAP and Okta auth methods were enabled on your server, the output includes the accessor ID for those methods:
-
-```
-Path         Type        Accessor                  ...
-----         ----        --------                  ...
-ldap/        ldap        auth_ldap_a764f919        ...
-okta/        okta        auth_okta_0e2bffe6        ...
-token/       token       auth_token_070a4d9f       ...
-userpass/    userpass    auth_userpass_329e028b    ...
-```
-If the identity, `bob`, is defined in LDAP and `bsmith` is defined in Okta, you would need the accessor IDs of LDAP and Okta.
-
-<br>
-## Create bob-smith Entity
-
-Execute the following command to create a new entity named, `bob-smith` and save its ID in the `entity_id.txt` file:
+Remember that the `test` policy grants CRUD operations on the `secret/test` path.  Check to see if the generated token has capabilities granted:
 
 ```
-vault write -format=json identity/entity name="bob-smith" \
-     policies="base" \
-     metadata=organization="ACME Inc." \
-     metadata=team="QA" \
-     | jq -r ".data.id" > entity_id.txt
-```{{execute T2}}
-
-> Note that the metadata are passed in `metadata=<key>=<value>` format. In the above command, the entity has organization and team as its metadata.
-
-
-Now, add user `bob` to the `bob-smith` entity by creating an entity alias:
-
-```
-vault write identity/entity-alias name="bob" \
-     canonical_id=$(cat entity_id.txt) \
-     mount_accessor=$(cat accessor.txt)
-```{{execute T2}}
-
-> **NOTE:**  If you don't specify the `canonical_id` value, Vault automatically creates a new entity for this alias.  
-
-
-Repeat the step to add user bsmith to the `bob-smith` entity.
-
-```
-vault write identity/entity-alias name="bsmith" \
-     canonical_id=$(cat entity_id.txt) \
-     mount_accessor=$(cat accessor.txt)
+vault kv put secret/test owner="bob"
 ```{{execute T2}}
 
 
-Execute the following command to read the entity details:
+> Although the username `bob` does not have `base` policy attached, the token inherits the capabilities granted in the base policy because `bob` is a member of the `bob-smith` entity, and the entity has base policy attached.
+
+Check to see that the bob's token inherited the capabilities:
 
 ```
-vault read identity/entity/id/$(cat entity_id.txt)
+vault token capabilities secret/data/training_test
 ```{{execute T2}}
 
+Remember that the base policy grants create and read capabilities on path starting with `secret/training`.
 
-The output should include the entity aliases (both `bob` and `bsmith`), metadata (organization, and team), and base policy.
 
-**NOTE:** It might be easier to read the output in JSON format.
+## Question
+
+What about the `secret/data/team/qa` path?
+
+Does user `bob` have any permission on that path?
+
+￼<br>
+
+## Answer
+
+The user bob only inherits capability from its associating entity's policy.  The base policy nor test policy grants permissions on the `secret/data/team/qa` path.  Only the `team-qa` policy does.
 
 ```
-vault read -format=json identity/entity/id/$(cat entity_id.txt)
+vault token capabilities secret/data/team/qa
 ```{{execute T2}}
+
+Therefore, the current token has no permission to access the `secret/data/team/qa` path.
+
+
+> Repeat the steps and login as a user, `bsmith`, and test the token's capabilities.

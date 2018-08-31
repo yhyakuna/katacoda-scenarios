@@ -35,7 +35,7 @@ token_meta_username    bob
 
 ## Test user-tmpl policy
 
-Remember that `bob` is a member of the `bob_smith` entity; therefore, the "`user-kv/data/{{identity.entity.name}}/*`" expression in the `user-tmpl` policy translates to "**`user-kv/data/bob_smith/*`**".
+Remember that `bob` is a member of the `bob_smith` entity; therefore, the `user-kv/data/{{identity.entity.name}}/*` expression in the `user-tmpl` policy translates to **`user-kv/data/bob_smith/*`**.
 
 Let's test!
 
@@ -43,12 +43,12 @@ Let's test!
 vault kv put user-kv/bob_smith/apikey webapp="12344567890"
 ```{{execute T2}}
 
-This command should execute successfully.
+The secret should be created successfully.
 
 
 ## Test group-tmpl policy
 
-The region was set to `us-west` for the `education` group that the `bob_smith` belongs to. Therefore, the "`group-kv/data/education/{{identity.groups.names.education.metadata.region}}/*`" expression in the `group-tmpl` policy translates to "**`group-kv/data/education/us-west/*`**".
+The region was set to `us-west` for the `education` group that the `bob_smith` belongs to. Therefore, the `group-kv/data/education/{{identity.groups.names.education.metadata.region}}/*` expression in the `group-tmpl` policy translates to **`group-kv/data/education/us-west/*`**.
 
 Let's verify.
 
@@ -56,8 +56,9 @@ Let's verify.
 vault kv put group-kv/education/us-west/db_cred password="ABCDEFGHIJKLMN"
 ```{{execute T2}}
 
+The secret should be created successfully.
 
-Verify that you can update the group information. The `group-tmpl` policy permits "update" and "read" on the "`identity/group/id/{{identity.groups.names.education.id}}`" path. The group ID is saved in the `group_id.txt` file.
+Now, verify that you can update the group information. The `group-tmpl` policy permits "update" and "read" on the `identity/group/id/{{identity.groups.names.education.id}}` path. The group ID is saved in the `group_id.txt` file.
 
 ```
 vault write identity/group/id/$(cat group_id.txt) \

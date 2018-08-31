@@ -32,6 +32,7 @@ identity_policies      ["group-tmpl" "user-tmpl"]
 policies               ["default" "group-tmpl" "user-tmpl"]
 token_meta_username    bob
 ```
+
 Remember that `bob` is a member of the `bob_smith` entity; therefore, the "`user-kv/data/{{identity.entity.name}}/*`" expression in the `user-tmpl` policy translates to "**`user-kv/data/bob_smith/*`**".
 
 Let's test!

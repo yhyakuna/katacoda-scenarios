@@ -4,7 +4,7 @@ Write policies which fulfill the following policy requirements:
 
 (2) The education _group_ has a dedicated key/value secret store for each region where all operations can be performed by the group members
  (`group-kv/data/education/<region>`)
- 
+
 (3) The _group_ members can update the group information such as metadata about the group (`identity/group/id/<group_id>`)
 
 > As of Vault 0.11, you can pass in a policy path containing double curly braces as templating delimiters: `{{<parameter>}}`.
@@ -78,3 +78,5 @@ List the available policies to verify:
 ```
 vault policy list
 ```{{execute T2}}
+
+To clear the screen: `clear`{{execute T2}}

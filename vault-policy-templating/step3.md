@@ -1,15 +1,15 @@
 Now, let's test to make sure that the templated policies work as expected.
 
-First, enable key/value v2 secrets engine at `user-kv`.
+First, enable key/value v2 secrets engine at `user-kv` to match the policy:
 
 ```
-$ vault secrets enable -path=user-kv kv-v2
+vault secrets enable -path=user-kv kv-v2
 ```{{execute T2}}
 
 Enable key/value v2 secrets engine at `group-kv`.
 
 ```
-$ vault secrets enable -path=group-kv kv-v2
+vault secrets enable -path=group-kv kv-v2
 ```{{execute T2}}
 
 Now, you are ready to test.  Log in as **`bob`**.

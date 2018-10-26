@@ -1,6 +1,7 @@
 Now, let's login with the batch token:
 
 ```
+clear
 vault login $(cat token.txt)
 ```{{execute T2}}
 
@@ -27,7 +28,7 @@ Let's try creating a child token:
 vault token create -policy=default
 ```{{execute T2}}
 
-Batch token cannot create child tokens even if its policy grants permission
+Batch token **cannot** create child tokens even if its policy grants permission
 
 ```
 Error creating token: Error making API request.
@@ -50,7 +51,7 @@ Execute the following command to try revoking the batch token:
 vault token revoke $(cat token.txt)
 ```{{execute T2}}
 
-Batch tokens have an explicit TTL that they cannot be renewed nor revoked before reaching its TTL.
+Batch tokens have an explicit TTL that they **cannot** be renewed nor revoked before reaching its TTL.
 
 ```
 Error revoking token: Error making API request.
@@ -61,8 +62,6 @@ Code: 400. Errors:
 * batch tokens cannot be revoked
 ```
 
-
-## Summary
-
-There are some trade-offs for using batch tokens; however, depending on your use
-case, batch tokens improve the Vault performance significantly.
+Batch tokens have a limited features; however, they are more desirable when you
+have stateless microservices requesting a large number of client tokens in any
+given moment.

@@ -27,7 +27,7 @@ Execute the following command:
 vault token create -type="batch"
 ```{{execute T2}}
 
-Currently, you are logged in with `root` token; therefore, the child token inherits its creator's policy in absence of `-policy` flag. Therefore, you received the following error:
+Currently, you are logged in with `root` token; therefore, the child token inherits its creator's policy in absence of `-policy` flag.
 
 ```
 URL: POST http://127.0.0.1:8200/v1/auth/token/create
@@ -36,10 +36,10 @@ Code: 400. Errors:
 * batch tokens cannot be root tokens
 ```
 
-Batch tokens **cannot** be root tokens.
+Batch tokens **cannot** be root tokens.  `clear`{{execute T2}}
 
 
-Let's create a policy named, `base`{{open}}.
+Let's create a policy named, `base`.
 
 ```
 vault policy write base base.hcl

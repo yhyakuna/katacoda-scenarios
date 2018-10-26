@@ -68,3 +68,5 @@ Let's lookup the token's properties:
 ```
 vault token lookup $(cat app_token.txt)
 ```{{execute T2}}
+
+The generated tokens **type** should be `batch` with TTL of 1 minute.

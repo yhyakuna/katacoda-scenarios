@@ -1,9 +1,8 @@
-This scenario highlights the use of ACL templating which was introduced in **Vault 0.11**.
+This scenario demonstrated the sharacteristics of **batch tokens** introduced in Vault 1.0 **(currently in Beta)**.
 
 ### Resources:
 
-- [Templated Policies](https://www.vaultproject.io/docs/concepts/policies.html#templated-policies)
-- [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html)
-- [Identity: Entities and Groups](https://learn.hashicorp.com/vault/identity-access-management/iam-identity)
+- [Tokens documentation](https://www.vaultproject.io/docs/concepts/tokens.html)
+- [Token Auth Method (API)](https://www.vaultproject.io/api/auth/token/index.html)
 
 <br>

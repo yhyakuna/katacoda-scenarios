@@ -1,7 +1,7 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Vault ACL Policy Templating",
-  "description": "Learn how to write ACL policies with non-static paths.",
+  "title": "[Vault 1.0 Beta] Batch Tokens",
+  "description": "Learn how batch tokens work in Vault",
   "difficulty": "beginner",
   "time": "10 minutes",
   "icon": "fa-vault",
@@ -12,16 +12,20 @@
         "text": "getting-started.md"
       },
       {
-        "title": "Create Policies",
+        "title": "Create a Batch Token",
         "text": "step1.md"
       },
       {
-        "title": "Create Entities and Groups",
+        "title": "Characteristics of Batch Tokens ",
         "text": "step2.md"
       },
       {
-        "title": "Test the Policies",
+        "title": "Apply Batch Tokens",
         "text": "step3.md"
+      },
+      {
+        "title": "Tune the Default TTLs",
+        "text": "step4.md"
       }
     ],
     "intro": {
@@ -31,8 +35,8 @@
     },
     "assets": {
       "client": [
-        { "file": "user-tmpl.hcl", "target": "~/" },
-        { "file": "group-tmpl.hcl", "target": "~/" }
+        { "file": "base.hcl", "target": "~/" },
+        { "file": "shipping.hcl", "target": "~/" }
       ]
     },
     "finish": {

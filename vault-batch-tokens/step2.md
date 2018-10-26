@@ -65,3 +65,7 @@ Code: 400. Errors:
 Batch tokens have a limited features; however, they are more desirable when you
 have stateless microservices requesting a large number of client tokens in any
 given moment.
+
+
+
+`clear`{{execute T2}}

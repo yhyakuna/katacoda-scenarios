@@ -9,7 +9,7 @@ policies attached.
 
 Let's talk about [AppRole](https://learn.hashicorp.com/vault/developer/iam-authentication) auth method configuration.
 
-## Generate batch tokens
+## Generate batch tokens with AppRole
 
 First, enable the `approle` auth method first.
 
@@ -17,7 +17,7 @@ First, enable the `approle` auth method first.
 vault auth enable approle
 ```{{execute T2}}
 
-Let's create a policy named, `shipping`{{open}}.
+Let's create a policy named, `shipping` (`shipping.hcl`{{open}}).
 
 ```
 vault policy write shipping shipping.hcl
@@ -25,7 +25,7 @@ vault policy write shipping shipping.hcl
 
 Now configure the `approle` auth method to generate a batch token for your app:
 
-```plaintext
+```
 vault write auth/approle/role/shipping policies="shipping" token_ttl="60s" \
       token_type="batch"         
 ```{{execute T2}}

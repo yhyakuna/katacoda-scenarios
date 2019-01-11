@@ -7,8 +7,6 @@ host_commands=(
 "unzip -d ~/.bin ~/vault.zip && rm ~/vault.zip"
 
 "apt-get install -y jq"
-"curl -L https://github.com/yhyakuna/katacoda-scenarios/tree/master/vault-playground/assets/config.hcl"
-"vault server -config=config.hcl"
 )
 
 all_commands=$(awk -v sep=' && ' 'BEGIN{ORS=OFS="";for(i=1;i<ARGC;i++){print ARGV[i],ARGC-i-1?sep:""}}' "${host_commands[@]}")

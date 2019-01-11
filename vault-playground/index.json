@@ -1,43 +1,20 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "[Vault 1.0 Beta] Batch Tokens",
-  "description": "Learn how batch tokens work in Vault",
+  "title": "Vault Playground",
+  "description": "HashiCorp Vault environment to explore Vault CLI",
   "difficulty": "beginner",
-  "time": "10 minutes",
   "icon": "fa-vault",
   "details": {
     "steps": [
       {
-        "title": "Getting Started",
+        "title": "Start the Vault Server",
         "text": "getting-started.md"
-      },
-      {
-        "title": "Create a Batch Token",
-        "text": "step1.md"
-      },
-      {
-        "title": "Characteristics of Batch Tokens ",
-        "text": "step2.md"
-      },
-      {
-        "title": "Apply Batch Tokens",
-        "text": "step3.md"
-      },
-      {
-        "title": "Tune the Default TTLs",
-        "text": "step4.md"
       }
     ],
     "intro": {
       "text": "intro.md",
       "code": "env-init.sh",
       "credits": "https://www.vaultproject.io"
-    },
-    "assets": {
-      "client": [
-        { "file": "base.hcl", "target": "~/" },
-        { "file": "shipping.hcl", "target": "~/" }
-      ]
     },
     "finish": {
       "text": "finish.md",

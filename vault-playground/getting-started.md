@@ -7,7 +7,7 @@ vault server -dev -dev-root-token-id="root"
 ```{{execute T1}}
 
 
-[Web UI](https://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/)
+[Web UI](https://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui)
 
 ## Login with root token
 

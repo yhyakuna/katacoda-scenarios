@@ -28,7 +28,6 @@
   },
   "backend": {
     "imageid": "docker",
-    "port": "8200",
-    "dashboards": [{"name": "Vault UI", "port": 8200}]
+    "port": "8200"
   }
 }

@@ -16,6 +16,11 @@
       "code": "env-init.sh",
       "credits": "https://www.vaultproject.io"
     },
+    "assets": {
+      "client": [
+        { "file": "config.hcl", "target": "~/" }
+      ]
+    },
     "finish": {
       "text": "finish.md",
       "credits": "https://www.vaultproject.io"

@@ -23,6 +23,9 @@
   },
   "environment": {
       "showdashboard": true,
+      "dashboards": [
+        {"name": "Web UI", "port": 8200}
+      ],
       "uilayout": "editor-terminal",
       "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
   },

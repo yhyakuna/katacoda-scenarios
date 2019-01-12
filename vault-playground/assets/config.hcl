@@ -2,7 +2,7 @@ ui = true
 disable_mlock = true
 
 storage "file" {
-  path = "/root/data"
+  path = "~/data"
 }
 
 listener "tcp" {

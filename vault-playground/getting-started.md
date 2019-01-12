@@ -3,9 +3,7 @@ Enter the following command to start the Vault server in development mode.
 > Click on the command (`⮐`) will automatically copy it into the terminal and execute it.
 
 ```
-ssh root@host01
-
-vault server -config=/root/config.hcl
+vault server -config=config.hcl
 ```{{execute T1}}
 
 Click the **+** next to the opened Terminal, and select **Open New Terminal**.
@@ -19,11 +17,10 @@ export VAULT_ADDR='http://0.0.0.0:8200'
 
 vault operator init -key-shares=1 -key-threshold=1 > key.txt
 
-vault operator unseal \
-    $(grep 'Key 1:' key.txt | awk '{print $NF}')
+vault operator unseal $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-[Web UI](https://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com)
+- [Web UI](https://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com)
 
 
 

@@ -21,7 +21,7 @@ vault operator unseal \
     $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-[Web UI](https://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui)
+[Web UI](https://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com)
 
 
 

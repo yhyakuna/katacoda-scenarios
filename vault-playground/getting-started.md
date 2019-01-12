@@ -13,29 +13,16 @@ Click the **+** next to the opened Terminal, and select **Open New Terminal**.
 In the **Terminal 2**, set the `VAULT_ADDR` environment variable:
 
 ```
-export VAULT_ADDR='http://127.0.0.1:8200'
-```{{execute T2}}
+export VAULT_ADDR='http://0.0.0.0:8200'
 
-
-```
 vault operator init -key-shares=1 -key-threshold=1 > key.txt
-```{{execute T2}}
 
-```
 vault operator unseal \
     $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-[Web UI](http://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui)
+[Web UI](https://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui)
 
 
 
 **Now, you are ready to explore Vault CLI!**
-
-<br>
-
-## Useful Links
-
-- [Getting Started: Built-in Help](https://www.vaultproject.io/intro/getting-started/help.html)
-- [Vault Basic Concepts](https://www.vaultproject.io/docs/concepts/index.html)
-- [Secrets Engines](https://www.vaultproject.io/docs/secrets/index.html)

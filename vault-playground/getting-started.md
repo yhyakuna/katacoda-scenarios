@@ -3,7 +3,7 @@ Enter the following command to start the Vault server in development mode.
 > Click on the command (`⮐`) will automatically copy it into the terminal and execute it.
 
 ```
-vault server -dev -dev-root-token-id="root"
+vault server -config=config.hcl
 ```{{execute T1}}
 
 

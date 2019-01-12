@@ -6,6 +6,14 @@ Enter the following command to start the Vault server in development mode.
 vault server -config=config.hcl
 ```{{execute T1}}
 
+```
+vault operator init > key.txt
+```{{execute T2}}
+
+```
+vault operator unseal \
+    $(grep 'Key 1:' key.txt | awk '{print $NF}')
+```{{execute T2}}
 
 [Web UI](http://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui)
 

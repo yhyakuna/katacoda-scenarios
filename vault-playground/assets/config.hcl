@@ -2,7 +2,7 @@ ui = true
 disable_mlock = true
 
 storage "file" {
-  path = "~/data/vault"
+  path = "/etc/vault.d/data"
 }
 
 listener "tcp" {

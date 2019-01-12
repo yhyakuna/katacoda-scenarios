@@ -18,7 +18,7 @@
     },
     "assets": {
       "client": [
-        { "file": "config.hcl", "target": "~/" }
+        { "file": "config.hcl", "target": "/etc/vault.d" }
       ]
     },
     "finish": {

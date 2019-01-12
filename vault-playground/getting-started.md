@@ -5,7 +5,7 @@ Enter the following command to start the Vault server in development mode.
 ```
 ssh root@host01
 
-vault server -config=/etc/vault.d/config.hcl
+vault server -config=/root/config.hcl
 ```{{execute T1}}
 
 Click the **+** next to the opened Terminal, and select **Open New Terminal**.

@@ -3,6 +3,8 @@ Enter the following command to start the Vault server in development mode.
 > Click on the command (`⮐`) will automatically copy it into the terminal and execute it.
 
 ```
+ssh root@host01
+
 vault server -config=config.hcl
 ```{{execute T1}}
 

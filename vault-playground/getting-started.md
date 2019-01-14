@@ -3,6 +3,12 @@ Enter the following command to start the Vault server in development mode.
 > Click on the command (`⮐`) will automatically copy it into the terminal and execute it.
 
 ```
+vault server -dev -dev-listen-address=0.0.0.0:8200
+```{{execute T1}}
+
+or
+
+```
 vault server -config=config.hcl
 ```{{execute T1}}
 
@@ -20,8 +26,9 @@ vault operator init -key-shares=1 -key-threshold=1 > key.txt
 vault operator unseal $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-- [Web UI](https://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com)
+- [https://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui](https://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui)
 
+- [http://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui](http://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui)
 
 
 **Now, you are ready to explore Vault CLI!**

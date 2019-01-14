@@ -13,7 +13,7 @@ Launch the Web UI:
 
 - http://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui
 
-
+<br>
 
 ## Starting in non-dev mode
 

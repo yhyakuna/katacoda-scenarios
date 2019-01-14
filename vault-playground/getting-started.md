@@ -26,9 +26,9 @@ vault operator init -key-shares=1 -key-threshold=1 > key.txt
 vault operator unseal $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-- [https://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui](https://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui)
+- https://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui
 
-- [http://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui](http://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui)
+- http://[[HOST_SUBDOMAIN]]-8200-[[KATACODA_HOST]].environments.katacoda.com/ui
 
 
 **Now, you are ready to explore Vault CLI!**

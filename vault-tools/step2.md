@@ -1,6 +1,7 @@
-## Generate Client Token
-
 Consul Template tool itself is a Vault client. Therefore it must have a valid token with policies permitting it to retrieve secrets from KV secrets engine. So, first, you need to create a policy allowing Consul Template to read from `kv-v1` and `kv-v2` paths.
+
+
+## Generate a Client Token
 
 Policy file has been provided: `readonly.hcl`{{open}}
 
@@ -24,17 +25,11 @@ clear
 vault token lookup $(cat token.txt)
 ```{{execute T2}}
 
-
+<br>
 
 ## Write Template Files
 
-Assume that your application needs to retrieve a portion of the customer data from KV secrets engine, and generate a file output as follow:
-
-```
-Organization: </_organization-name/_>
-ID: </_customer-id/_>
-Contact: </_contact-email/_>
-```
+Assume that your application needs to retrieve `organization`, `customer_id` and `contact_email` of the customer data from KV secrets engine.
 
 To have Consul Template to populate those values, you need to create a **template file** with Consul Template [templating language](https://github.com/hashicorp/consul-template#templating-language).
 

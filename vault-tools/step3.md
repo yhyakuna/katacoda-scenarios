@@ -37,6 +37,12 @@ KV_V1_CUSTOMERS_ACME_STATUS=active
 
 Assume that you have an application script, `test-app.sh`{{open}}
 
+```
+clear
+chmod 0777 test-app.sh
+cat test-app.sh
+```{{execute T2}}
+
 Execute the following command to properly populate the script:
 
 ```

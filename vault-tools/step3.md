@@ -3,6 +3,7 @@ Envconsul launches a subprocess which dynamically populates environment variable
 Envconsul has been installed. Execute the following command to check the version:
 
 ```
+clear
 envconsul -v
 ```{{execute T2}}
 
@@ -30,7 +31,7 @@ KV_V1_CUSTOMERS_ACME_STATUS=active
 ...
 ```
 
-> **NOTE:** Currently, Envconsul does not support KV v2, yet.
+> **NOTE:** Currently version of Envconsul does not support KV v2, yet.
 
 <br>
 
@@ -38,7 +39,7 @@ Assume that you have an application script, `test-app.sh`{{open}}
 
 Update the app script to read values from matching environment variables as follow:
 
-<pre class="file" data-filename="customer-v1.tpl" data-target="replace">
+<pre class="file" data-filename="test-app.sh" data-target="replace">
 #!/usr/bin/env bash
 
 cat <<EOT
@@ -54,5 +55,5 @@ EOT
 Execute the following command to properly populate the script:
 
 ```
-VAULT_TOKEN=$(cat token.txt) envconsul -upcase -secret kv-v1/customers/acme test-app.sh
+VAULT_TOKEN=$(cat token.txt) envconsul -upcase -secret kv-v1/customers/acme ./test-app.sh
 ```{{execute T2}}

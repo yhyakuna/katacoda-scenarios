@@ -17,11 +17,11 @@
         "text": "getting-started.md"
       },
       {
-        "title": "Secret Engine List",
+        "title": "Setup Secret Engines",
         "text": "step1.md"
       },
       {
-        "title": "Write Secrets",
+        "title": "Consul Template",
         "text": "step2.md"
       }
     ],
@@ -37,7 +37,8 @@
     }
   },
   "files": [
-    "customer.tpl"
+    "customer-v1.tpl",
+    "customer-v2.tpl"
   ],
   "environment": {
       "showdashboard": true,

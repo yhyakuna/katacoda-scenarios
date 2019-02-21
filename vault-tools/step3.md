@@ -37,21 +37,6 @@ KV_V1_CUSTOMERS_ACME_STATUS=active
 
 Assume that you have an application script, `test-app.sh`{{open}}
 
-Update the app script to read values from matching environment variables as follow:
-
-<pre class="file" data-filename="test-app.sh" data-target="replace">
-#!/usr/bin/env bash
-
-cat <<EOT
-Customer info is:
-
-  Organization: ${KV_V1_CUSTOMERS_ACME_ORGANIZATION}
-  ID: ${KV_V1_CUSTOMERS_ACME_CUSTOMER_ID}
-  Contact: ${KV_V1_CUSTOMERS_ACME_CONTACT_EMAIL}
-EOT
-</pre>
-
-
 Execute the following command to properly populate the script:
 
 ```

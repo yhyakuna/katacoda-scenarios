@@ -1,7 +1,7 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Vault Secret Engines - Versioned Key/Value",
-  "description": "Learn how to manage your secrets using Vault.",
+  "title": "Vault - Direct App Integration",
+  "description": "Learn how to intebrate Vault with your applications.",
   "difficulty": "beginner",
   "time": "10 minutes",
   "icon": "fa-vault",
@@ -23,22 +23,6 @@
       {
         "title": "Write Secrets",
         "text": "step2.md"
-      },
-      {
-        "title": "Upload Secrets from a File",
-        "text": "step3.md"
-      },
-      {
-        "title": "List Secret Keys",
-        "text": "step4.md"
-      },
-      {
-        "title": "Delete Secrets and Recover",
-        "text": "step5.md"
-      },
-      {
-        "title": "Permanently Delete Secrets",
-        "text": "step6.md"
       }
     ],
     "finish": {

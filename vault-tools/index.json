@@ -23,6 +23,10 @@
       {
         "title": "Consul Template",
         "text": "step2.md"
+      },
+      {
+        "title": "Envconsul",
+        "text": "step3.md"
       }
     ],
     "finish": {

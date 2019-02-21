@@ -45,6 +45,8 @@ Contact: {{ .Data.contact_email }}
 
 This template file will be used to retrieve data from `kv-v1`.
 
+> As of [v0.20.0](https://github.com/hashicorp/consul-template/blob/v0.20.0/CHANGELOG.md), Consul Template supports KV v2 secrets engine. Therefore, if you are using KV v2, you would need Consul Template 0.20.0 or later.
+
 Open the `customer-v2.tpl`{{open}} file and enter the following:
 
 <pre class="file" data-filename="customer-v2.tpl" data-target="replace">
@@ -55,9 +57,9 @@ Contact: {{ .Data.data.contact_email }}
 {{ end }}
 </pre>
 
-> Notice the difference. In `customer-v2.tpl`, you need to specify the version of the secrets you wish to retrieve (`kv-v2/data/customers/acme?version=1`).  Also, the path contains `data`. This is because the API endpoint to interact with KV version 1 and version 2 are slightly different. Read the [KV v2 documentation](https://www.vaultproject.io/api/secret/kv/kv-v2.html#read-secret-version) for more detail.
+> Notice the difference. In `customer-v2.tpl`, it specifies the version of the secrets you wish to retrieve (`kv-v2/data/customers/acme?version=1`).  Also, the path contains `data`. This is because the API endpoint to interact with KV version 1 and version 2 are slightly different. Read the [KV v2 documentation](https://www.vaultproject.io/api/secret/kv/kv-v2.html#read-secret-version) for more detail.
 
-
+<br>
 
 ## Run Consul Template
 

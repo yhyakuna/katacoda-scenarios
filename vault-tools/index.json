@@ -36,6 +36,7 @@
     "assets": {
       "client": [
         { "file": "readonly.hcl", "target": "~/" },
+        { "file": "test-app.sh", "target": "~/" },
         { "file": "data.json", "target": "~/" }
       ]
     }

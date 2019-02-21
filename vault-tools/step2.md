@@ -57,7 +57,7 @@ Contact: {{ .Data.data.contact_email }}
 {{ end }}
 </pre>
 
-> Notice the difference. In `customer-v2.tpl`, it specifies the version of the secrets you wish to retrieve (`kv-v2/data/customers/acme?version=1`).  Also, the path contains `data`. This is because the API endpoint to interact with KV version 1 and version 2 are slightly different. Read the [KV v2 documentation](https://www.vaultproject.io/api/secret/kv/kv-v2.html#read-secret-version) for more detail.
+Notice the difference. In `customer-v2.tpl`, it specifies the version of the secrets you wish to retrieve (`kv-v2/data/customers/acme?version=1`).  Also, the path contains `data`. This is because the API endpoint to interact with KV version 1 and version 2 are slightly different. Read the [KV v2 documentation](https://www.vaultproject.io/api/secret/kv/kv-v2.html#read-secret-version) for more detail.
 
 <br>
 

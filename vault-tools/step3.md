@@ -35,7 +35,7 @@ KV_V1_CUSTOMERS_ACME_STATUS=active
 
 <br>
 
-Assume that you have an application script, `test-app.sh`{{open}}
+View an application script, `test-app.sh`{{open}}
 
 ```
 clear

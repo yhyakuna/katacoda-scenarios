@@ -1,4 +1,11 @@
-First, check the current version of the key/value secret engine that is ready to use.  Run the following command:
+To see the difference between Key/Value secrets engine [version 1](https://www.vaultproject.io/docs/secrets/kv/kv-v1.html) and [version 2](https://www.vaultproject.io/docs/secrets/kv/kv-v1.html), first enable additional KV secret engines.
+
+```
+vault secrets enable -path="kv-v1" -version=1 kv
+vault secrets enable -path="kv-v2" -version=2 kv
+```{{execute T2}}
+
+Let's list enabled secrets engines to verify:
 
 ```
 vault secrets list -detailed
@@ -15,26 +22,30 @@ secret/       kv           ...    map[version:2]    key/value secret storage
 sys/          system       ...    map[]             system endpoints used for control, policy and debugging
 ```
 
-Under **Options**, it should display that the kv version is 2.  
-
-> When you run Vault in development mode, the [key/value version 2](https://www.vaultproject.io/docs/secrets/kv/kv-v2.html) gets enabled by default.  If you are running your vault in non-dev mode, [key/value version 1](https://www.vaultproject.io/docs/secrets/kv/kv-v1.html) gets enabled.
-
-Execute the following command to read secrets at `secret/training` path:
+Now, store some secrets at `kv-v1` and `kv-v2` paths. Some test data are provided in the `data.json`{{open}} file.
 
 ```
-vault kv get secret/training
+{
+  "organization": "ACME Inc.",
+  "customer_id": "ABXX2398YZPIE7391",
+  "region": "US-West",
+  "zip_code": "94105",
+  "type": "premium",
+  "contact_email": "james@acme.com",
+  "status": "active"
+}
+```
+
+Execute the following commands:
+
+```
+vault kv put kv-v1/customers/acme @data.json
+vault kv put kv-v2/customers/acme @data.json
 ```{{execute T2}}
 
-Expected output: `No value found at secret/training`
 
 <br>
 
-### Get Help
 
-Run the following command to view the full list of optional parameters `vault kv` operation:
-
-```
-vault kv -h
-```{{execute T2}}
 
 To clear the screen: `clear`{{execute T2}}

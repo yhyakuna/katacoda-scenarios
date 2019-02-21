@@ -2,19 +2,9 @@
 
 [HashiCorp Vault](https://www.vaultproject.io)'s secret engines are components responsible for managing secrets:
 
-- Secrets are pieces of sensitive information that can be used to access infrastructure, resources, data, etc.
-- Some secret engines simply store and read data
-    - Like encrypted Redis/Memcached
-- Some connect to other services and generate dynamic credentials on-demand
-- Others provide encryption as a service (EaaS), TOTP generation, certificates, etc.
 
-This scenario demonstrates the [key/value secret engine v2](https://www.vaultproject.io/docs/secrets/kv/index.html).
+A modern system requires access to a multitude of secrets: database credentials, API keys for external services, credentials for service-oriented architecture communication, etc. Vault steps in to provide a centralized secret management system. The next step is to decide how your applications acquire the secrets from Vault.
 
-Key/Value secret engine is used to store arbitrary secrets:
+This guide introduces [**Consul Template**](https://github.com/hashicorp/consul-template) and [**Envconsul**](https://github.com/hashicorp/consul-template) to help you determine if these tools speed up the integration of your applications once secrets are securely managed by Vault.
 
-- Secrets are accessible via interactive or automated means
-- Enforced access control via policies
-- Fully audited access
-
-> The secrets are ***encrypted*** using 256-bits AES in GCM mode with a randomly generated nonce prior to writing them to its storage backend.
-Anything that leaves Vault is encrypted.
+**NOTE:** Both Consul Template and Envconsul are open source tools.

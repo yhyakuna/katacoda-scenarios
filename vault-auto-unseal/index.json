@@ -31,10 +31,6 @@
     "assets": {
       "client": [
         {
-          "file": "autounseal.hcl",
-          "target": "~/"
-        },
-        {
           "file": "config-vault-1.hcl",
           "target": "~/"
         }
@@ -45,6 +41,10 @@
       "credits": "https://www.vaultproject.io"
     }
   },
+  "files": [
+     "config-vault-1.hcl",
+     "autounseal.hcl"
+  ],
   "environment": {
       "showdashboard": true,
       "uilayout": "editor-terminal",

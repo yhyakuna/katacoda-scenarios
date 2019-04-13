@@ -3,21 +3,22 @@ To enable **Transit Auto-Unseal**, you would need **two** Vault servers. Two opt
 <img src="https://s3-us-west-1.amazonaws.com/education-yh/screenshots/3-autounseal-2.png">
 
 
-Review the server configuration file for **Vault 1**: `config-vault-1.hcl`{{open}}
+Enter the following in the `config-vault-1.hcl`{{open}} file to create a server configuration file for **Vault 1**:
 
-```
+<pre class="file" data-filename="config-vault-1.hcl" data-target="replace">
 disable_mlock = true
 ui=true
 
 storage "file" {
-  path = "/vault-1/data"
+  path = "~/vault-1/data"
 }
 
 listener "tcp" {
   address     = "0.0.0.0:8200"
   tls_disable = 1
 }
-```
+</pre>
+
 
 For the purpose of demonstration, the **file** storage backend stores Vault's data on the filesystem using a standard directory structure (`/vault-1/data`) in this example.
 

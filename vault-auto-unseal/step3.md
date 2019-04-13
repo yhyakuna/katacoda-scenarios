@@ -31,6 +31,6 @@ vault policy write autounseal autounseal.hcl
 Create a new token with `autounseal` policy attached and save it in a file named, `client_token.txt`.
 
 ```
-vault token create -role="autounseal" \
+vault token create -policy="autounseal" \
       -format=json | jq -r ".auth.client_token" > client_token.txt
 ```{{execute T2}}

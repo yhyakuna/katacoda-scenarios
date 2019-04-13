@@ -51,9 +51,6 @@ Click the **+** next to the opened Terminal, and select **Open New Terminal**.
 
 ```
 export VAULT_ADDR="http://127.0.0.1:8200"
-```{{execute T2}}
-
-```
 vault operator init -key-shares=1 -key-threshold=1 > key.txt
 ```{{execute T2}}
 

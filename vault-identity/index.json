@@ -1,9 +1,9 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Vault Identity - Entities & Groups",
-  "description": "Learn how to create entities and groups in Vault.",
+  "title": "Vault Auto-Unseal",
+  "description": "Learn how to automatically unseal your Vault server",
   "difficulty": "beginner",
-  "time": "10 minutes",
+  "time": "5 minutes",
   "icon": "fa-vault",
   "details": {
     "steps": [
@@ -12,28 +12,20 @@
         "text": "getting-started.md"
       },
       {
-        "title": "Create Users",
+        "title": "Installing Vault",
         "text": "step1.md"
       },
       {
-        "title": "Create an Entity",
+        "title": "Run Vault in Development Mode",
         "text": "step2.md"
       },
       {
-        "title": "Test the Entity",
+        "title": "Configure Auto-unseal Key Provider (Vault 1)",
         "text": "step3.md"
       },
       {
-        "title": "Create an Internal Group",
+        "title": "Configure Auto-unseal (Vault 2)",
         "text": "step4.md"
-      },
-      {
-        "title": "Test the Internal Group",
-        "text": "step5.md"
-      },
-      {
-        "title": "Challenge: Create an External Group",
-        "text": "step6.md"
       }
     ],
     "intro": {
@@ -43,10 +35,6 @@
     },
     "assets": {
       "client": [
-        { "file": "base.hcl", "target": "~/" },
-        { "file": "test.hcl", "target": "~/" },
-        { "file": "team-eng.hcl", "target": "~/" },
-        { "file": "team-qa.hcl", "target": "~/" },
         { "file": "config-vault-1.hcl", "target": "~/" },
         { "file": "config-vault-2.hcl", "target": "~/" },
         { "file": "autounseal.hcl", "target": "~/" }

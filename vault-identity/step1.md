@@ -1,80 +1,37 @@
-You are going to create a new entity with base policy assigned.  The entity defines two entity aliases with each has a different policy assigned.
+Vault is distributed as a [binary package](https://www.vaultproject.io/downloads.html) for all supported platforms and architectures.
 
-**Scenario:**  
+To install Vault, find the appropriate package for your system and download it. (NOTE: Vault is packaged as a zip archive.)  
 
-A user, Bob Smith at ACME Inc. happened to have two sets of credentials: `bob` and `bsmith`.  To manage his accounts and link them to an identity `Bob Smith` in team, QA, you are going to create an entity for Bob.
-
-<img src="https://s3-us-west-1.amazonaws.com/education-yh/7-entity.png" alt="Entity"/>
-
-**NOTE:** For the purpose of training, you are going to work with the userpass auth method.  But in reality, the user `bob` might be a username that exists in Active Directory, and `bsmith` might be Bob's username exists in GitHub, etc.
-
-
-Execute the following command to enable the userpass auth method:
+> Enter the following command into the terminal, or click on the command (`⮐`) to automatically copy it into the terminal and execute to downloads the `1.1.1` of the Vault binary for Linux.
 
 ```
-vault auth enable userpass
-```{{execute T2}}
+export VAULT=1.1.1
+wget https://releases.hashicorp.com/vault/${VAULT}/vault_${VAULT}_linux_amd64.zip
+```{{execute}}
 
-Next, create a new policy named, `base`:
 
-```
-vault policy write base base.hcl
-```{{execute T2}}
-
-To review the created policy:
+After downloading Vault, unzip the package, and go ahead and remove the zip file:
 
 ```
-vault policy read base
-```{{execute T2}}
+unzip vault_${VAULT}_linux_amd64.zip && rm vault_${VAULT}_linux_amd64.zip
+```{{execute}}
 
-This policy grants CRUD operations on the path starting with `secret/training`.
-
-<br>
-Let's create two more policies: `test` and `team-qa`.
-
-Execute the following command to create `test` policy.
+Vault runs as a single binary named vault. Any other files in the package can be safely removed and Vault will still function.
 
 ```
-vault policy write test test.hcl
-```{{execute T2}}
+ls -al | grep vault
+```{{execute}}
 
-
-Execute the following command to create `team-qa` policy.
-
-```
-vault policy write team-qa team-qa.hcl
-```{{execute T2}}
-
-
-At this point, you should have `base`, `test`, and `team-qa` policies:
+Finally, make sure that the vault binary is available on the `PATH`:
 
 ```
-vault policy list
-```{{execute T2}}
+install -c -m 0755 vault /usr/bin
+```{{execute}}
 
-<br>
+**That's it!**
 
-## Create Users
-
-Create a new user in userpass backend:
-
-- **username:** bob
-- **password:** training
-- **policy:** test
+Execute the following command to verify the vault version:
 
 ```
-vault write auth/userpass/users/bob password="training" \
-    policies="test"
-```{{execute T2}}
-
-
-Create another user in userpass backend:
-
-- **username:** bsmith
-- **password:** training
-- **policy:** team-qa
-
-```
-vault write auth/userpass/users/bsmith password="training" \
-      policies="team-qa"
-```{{execute T2}}
+vault version
+```{{execute}}

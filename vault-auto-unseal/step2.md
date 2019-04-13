@@ -48,4 +48,26 @@ Click the **+** next to the opened Terminal, and select **Open New Terminal**.
 
 <img src="https://s3-us-west-1.amazonaws.com/education-yh/ops-another-terminal.png" alt="New Terminal"/>
 
+```
+export VAULT_ADDR="http://127.0.0.1:8200"
+```{{execute T2}}
+
+```
+vault operator init -key-shares=1 -key-threshold=1 > key.txt
+```{{execute T2}}
+
+Execute the `vault operator unseal` command to enter the first unseal key:
+
+```
+vault operator unseal \
+    $(grep 'Key 1:' key.txt | awk '{print $NF}')
+```{{execute T2}}
+
+Log into Vault using the **initial root token** (`key.txt`{{open}}):
+
+```
+vault login $(grep 'Initial Root Token:' key.txt | awk '{print $NF}')
+```{{execute T2}}
+
+
 Next, you are going to setup a `transit` secrets engine in **Vault 1**.

@@ -26,17 +26,14 @@
     },
     "assets": {
       "client": [
-        { "file": "config-vault-1.hcl" },
-        { "file": "autounseal.hcl" }
+        { "file": "config-vault-1.hcl", "target": "~/" },
+        { "file": "autounseal.hcl", "target": "~/" }
       ]
     },
     "finish": {
       "text": "finish.md"
     }
   },
-  "files": [
-    "config.hcl"
-  ],
   "environment": {
       "showdashboard": true,
       "uilayout": "editor-terminal",

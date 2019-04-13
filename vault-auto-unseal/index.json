@@ -30,12 +30,19 @@
     },
     "assets": {
       "client": [
-        { "file": "config-vault-1.hcl", "target": "~/" },
-        { "file": "autounseal.hcl", "target": "~/" }
+        {
+          "file": "autounseal.hcl",
+          "target": "~/"
+        },
+        {
+          "file": "config-vault-1.hcl",
+          "target": "~/"
+        }
       ]
     },
     "finish": {
-      "text": "finish.md"
+      "text": "finish.md",
+      "credits": "https://www.vaultproject.io"
     }
   },
   "environment": {

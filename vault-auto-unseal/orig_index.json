@@ -32,15 +32,15 @@
       "client": [
         {
           "file": "config-vault-1.hcl",
-          "target": "/root"
+          "target": "~/"
         },
         {
           "file": "config-vault-2.hcl",
-          "target": "/root"
+          "target": "~/"
         },
         {
           "file": "autounseal.hcl",
-          "target": "/root"
+          "target": "~/"
         }
       ]
     },

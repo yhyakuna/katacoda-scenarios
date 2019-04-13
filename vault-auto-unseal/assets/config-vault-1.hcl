@@ -2,7 +2,7 @@ disable_mlock = true
 ui=true
 
 storage "file" {
-  path = "/vault-1/data"
+  path = "~/vault-1/data"
 }
 
 listener "tcp" {

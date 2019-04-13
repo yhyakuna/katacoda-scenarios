@@ -1,53 +1,75 @@
-Initialization is the process configuring the Vault. This only happens once when the server is started against a new backend that has never been used with Vault before. During initialization, the encryption keys are generated, unseal keys are created, and the initial root token is setup.
 
-To initialize Vault use `vault operator init` operation.
-<br>
-
-In the **Terminal 2**, execute the `vault operator init` command to initialize Vault:
+Execute the following command to create a server configuration file for **Vault 2**.
 
 ```
-vault operator init > key.txt
+tee config-vault-2.hcl <<"EOF"
+  disable_mlock = true
+  ui=true
+
+  storage "file" {
+    path = "~/vault-2/data"
+  }
+
+  listener "tcp" {
+    address     = "0.0.0.0:8100"
+    tls_disable = 1
+  }
+
+  seal "transit" {
+    address = "http://127.0.0.1:8200"
+    token = "$(cat client_token.txt)"
+    disable_renewal = "false"
+    key_name = "autounseal"
+    mount_path = "transit/"
+    tls_skip_verify = "true"
+  }
+EOF
 ```{{execute T2}}
 
-<br>
-## Unseal Vault
+Examine the configuration file: `config-vault-2.hcl`{{open}}
 
-Every initialized Vault server starts in the **sealed** state. From the configuration, Vault can access the physical storage, but it can't read any of it because it doesn't know how to decrypt it.
+Notice that the storage backend is set to `/vault-2/data`, and the **Vault 2** will be listening to port **8100**.
 
-In order to prevent no one person from having complete access to the system, Vault employs [Shamir's Secret Sharing Algorithm](https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing). Under this process, a secret is divided into a subset of parts such that a subset of those parts are needed to reconstruct the original secret. Vault makes heavy use of this algorithm as part of the unsealing process.
 
-<img src="https://s3-us-west-1.amazonaws.com/education-yh/ops-shamirs-secret-sharing.png" alt="Shamir's Secret Sharing"/>
-
-Typically each of these key shares is distributed to trusted parties in the organization. These parties must come together to "unseal" the Vault by entering their key share.
-
-By default, the number of shared keys is `5` and quorum of `3` unseal keys are required to unseal vault (`key.txt`{{open}}).  
-
-> NOTE: This is configurable during the initialization using `-key-shares` and `-key-threshold` parameters.)
-
-<br>
-
-Execute the `vault operator unseal` command to enter the first unseal key:
+Start the vault server with configuration file.
 
 ```
-vault operator unseal \
-    $(grep 'Key 1:' key.txt | awk '{print $NF}')
+vault server -config=config-vault-2.hcl
 ```{{execute T2}}
 
-Notice that the output indicates that the **unseal progress** is now `1/3`.
-
-Pass the second unseal key:
+In the second terminal, initialize your second Vault server (**Vault 2**).
 
 ```
-vault operator unseal \
-    $(grep 'Key 2:' key.txt | awk '{print $NF}')
+VAULT_ADDR=http://127.0.0.1:8100 vault operator init -recovery-shares=1 \
+         -recovery-threshold=1 > recovery-key.txt
 ```{{execute T2}}
 
+By passing the `VAULT_ADDR`, the subsequent command gets executed against the second Vault server (http://127.0.0.1:8100). Notice that you are setting the number of **recovery** key and **recovery** threshold because there is no unseal keys with auto-unseal. Vault 2's master key is now protected by the `transit` secret engine of **Vault 1**.
 
-Finally, pass the third unseal key:
+In the terminal where the server is running, you should see entries similar to:
 
 ```
-vault operator unseal \
-    $(grep 'Key 3:' key.txt | awk '{print $NF}')
-```{{execute T2}}
+...
+[INFO]  core: security barrier not initialized
+[INFO]  core: security barrier initialized: shares=1 threshold=1
+[INFO]  core: post-unseal setup starting
+...
+[INFO]  core: vault is unsealed
+[INFO]  core.cluster-listener: starting listener: listener_address=0.0.0.0:8101
+...
+```
 
-Now, Vault is unsealed and ready to accept requests.
+Check the Vault 2 status.
+
+```
+VAULT_ADDR=http://127.0.0.1:8100 vault status
+
+Key                      Value
+---                      -----
+Recovery Seal Type       shamir
+Initialized              true
+Sealed                   false
+Total Recovery Shares    1
+Threshold                1
+...
+```{{execute T2}}

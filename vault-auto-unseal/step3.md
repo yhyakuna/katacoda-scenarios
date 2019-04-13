@@ -1,7 +1,6 @@
 Execute the following command to enable the `transit` secrets engine and create a key.
 
 ```
-export VAULT_ADDR="http://127.0.0.1:8200"
 vault secrets enable transit
 ```{{execute T2}}
 
@@ -11,8 +10,19 @@ Create a key named 'autounseal'
 vault write -f transit/keys/autounseal
 ```{{execute T2}}
 
+Enter the following in the `autounseal.hcl`{{open}} file to create a policy file.
 
-Create `autounseal` policy defined by `autounseal.hcl`{{open}} policy file.
+<pre class="file" data-filename="autounseal.hcl" data-target="replace">
+path "transit/encrypt/autounseal" {
+   capabilities = [ "update" ]
+}
+
+path "transit/decrypt/autounseal" {
+   capabilities = [ "update" ]
+}
+</pre>
+
+Execute the following file to create `autounseal` policy defined by `autounseal.hcl`{{open}} policy file.
 
 ```
 vault policy write autounseal autounseal.hcl

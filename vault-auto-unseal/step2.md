@@ -43,6 +43,7 @@ Notice the output indicating that the **Storage** is set to `file` system, and t
          Version: Vault v1.1.1
      Version Sha: a3dcd63451cf6da1d04928b601bbe9748d53842e
 ```
+<br>
 
 Click the **+** next to the opened Terminal, and select **Open New Terminal**.
 

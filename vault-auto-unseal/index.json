@@ -32,7 +32,15 @@
       "client": [
         {
           "file": "config-vault-1.hcl",
-          "target": "~/"
+          "target": "/root"
+        },
+        {
+          "file": "config-vault-2.hcl",
+          "target": "/root"
+        },
+        {
+          "file": "autounseal.hcl",
+          "target": "/root"
         }
       ]
     },
@@ -41,10 +49,6 @@
       "credits": "https://www.vaultproject.io"
     }
   },
-  "files": [
-     "config-vault-1.hcl",
-     "autounseal.hcl"
-  ],
   "environment": {
       "showdashboard": true,
       "uilayout": "editor-terminal",

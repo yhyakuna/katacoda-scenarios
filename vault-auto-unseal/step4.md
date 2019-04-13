@@ -17,7 +17,6 @@ tee config-vault-2.hcl <<"EOF"
 
   seal "transit" {
     address = "http://127.0.0.1:8200"
-    token = "$(cat client_token.txt)"
     disable_renewal = "false"
     key_name = "autounseal"
     mount_path = "transit/"
@@ -34,6 +33,7 @@ Notice that the storage backend is set to `/vault-2/data`, and the **Vault 2** w
 Start the vault server with configuration file.
 
 ```
+export VAULT_TOKEN="$(cat client_token.txt)"
 vault server -config=config-vault-2.hcl
 ```{{execute T2}}
 

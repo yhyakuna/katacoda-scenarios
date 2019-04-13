@@ -26,8 +26,8 @@
     },
     "assets": {
       "client": [
-        { "file": "config-vault-1.hcl", "target": "~/" },
-        { "file": "autounseal.hcl", "target": "~/" }
+        { "file": "config-vault-1.hcl" },
+        { "file": "autounseal.hcl" }
       ]
     },
     "finish": {

@@ -1,12 +1,11 @@
-[HashiCorp Vault](https://www.vaultproject.io) secures, stores, and tightly controls access to tokens, passwords, certificates, API keys, and other secrets in modern computing.
-
-[![YouTube](https://s3-us-west-1.amazonaws.com/education-yh/Armon_whiteboard.png)](https://youtu.be/VYfl-DpZ5wM)
-
-
-In this lab, you are going to perform the following tasks necessary to setup Transit Auto-Unseal:
-
-- Task 1:  Configure Auto-unseal Key Provider
-- Task 2:  Configure Auto-unseal
-- Task 3:  Audit the incoming request
-
 <img src="https://s3-us-west-1.amazonaws.com/education-yh/Vault_Icon_FullColor.png" alt="Logo"/>
+
+ Identity secrets engine is the identity management solution for Vault. It internally maintains the clients who are recognized by [HashiCorp Vault](https://www.vaultproject.io). Each client is internally termed as an _Entity_. An entity can have multiple Aliases. For example, a single user who has accounts in both Github and LDAP, can be mapped to a single entity in Vault that has 2 aliases, one of type Github and one of type LDAP. When a client authenticates via any of the credential backend (except the Token backend), Vault creates a new entity and attaches a new alias to it, if a corresponding entity doesn't already exist. The entity identifier will be tied to the authenticated token. When such tokens are put to use, their entity identifiers are audit logged, marking a trail of actions performed by specific users.
+
+
+ In this lab, you are going to learn the API-based commands to create entities, entity aliases, and groups.  For the purpose of the training, you are going to leverage the userpass auth method.  The challenge exercise walks you through creating an external group by mapping a GitHub group to an identity group.
+
+1. Create an Entity with Alias
+2. Test the Entity
+3. Create an Internal Group
+4. Test the Internal Group

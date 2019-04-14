@@ -8,10 +8,6 @@
   "details": {
     "steps": [
       {
-        "title": "Getting Started",
-        "text": "getting-started.md"
-      },
-      {
         "title": "Installing Vault",
         "text": "step1.md"
       },

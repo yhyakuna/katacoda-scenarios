@@ -20,7 +20,7 @@ seal "transit" {
   mount_path = "transit/"
   tls_skip_verify = "true"
 }
-```{{execute T2}}
+```
 
 
 Notice that the storage backend is set to `~/vault-2/data`, and the **Vault 2** will be listening to port **8100**.

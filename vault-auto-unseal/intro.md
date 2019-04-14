@@ -1,11 +1,15 @@
 <img src="https://s3-us-west-1.amazonaws.com/education-yh/Vault_Icon_FullColor.png" alt="Logo"/>
 
- Identity secrets engine is the identity management solution for Vault. It internally maintains the clients who are recognized by [HashiCorp Vault](https://www.vaultproject.io). Each client is internally termed as an _Entity_. An entity can have multiple Aliases. For example, a single user who has accounts in both Github and LDAP, can be mapped to a single entity in Vault that has 2 aliases, one of type Github and one of type LDAP. When a client authenticates via any of the credential backend (except the Token backend), Vault creates a new entity and attaches a new alias to it, if a corresponding entity doesn't already exist. The entity identifier will be tied to the authenticated token. When such tokens are put to use, their entity identifiers are audit logged, marking a trail of actions performed by specific users.
+When a Vault server is started, it starts in a [**_sealed_**](https://www.vaultproject.io/docs/concepts/seal.html) state and it does not know how to decrypt data. Before any operation can be performed on the Vault, it must be unsealed. Unsealing is the process of constructing the master key necessary to decrypt the data encryption key.
 
+Vault supports opt-in automatic unsealing via cloud technologies: AliCloud KMS, Amazon KMS, Azure Key Vault, Google Cloud KMS as well as Transit Secrets Engine. This feature enables operators to delegate the unsealing process to trusted cloud providers to ease operations in the event of partial failure and to aid in the creation of new or ephemeral clusters.
 
- In this lab, you are going to learn the API-based commands to create entities, entity aliases, and groups.  For the purpose of the training, you are going to leverage the userpass auth method.  The challenge exercise walks you through creating an external group by mapping a GitHub group to an identity group.
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/screenshots/vault-autounseal-2.png">
 
-1. Create an Entity with Alias
-2. Test the Entity
-3. Create an Internal Group
-4. Test the Internal Group
+This scenario demonstrates how to [auto-unseal Vault with Transit Secrets Engine](https://www.vaultproject.io/docs/configuration/seal/transit.html).
+
+ In this lab, you are going to perform the following tasks:
+
+1. Configure Auto-unseal Key Provider
+1. Configure Auto-unseal
+1. Audit the incoming request

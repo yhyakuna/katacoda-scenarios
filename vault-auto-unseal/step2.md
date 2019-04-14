@@ -10,18 +10,6 @@ Create a key named 'autounseal'
 vault write -f transit/keys/autounseal
 ```{{execute T2}}
 
-Enter the following in the `autounseal.hcl`{{open}} file to create a policy file.
-
-<pre class="file" data-filename="autounseal.hcl" data-target="replace">
-path "transit/encrypt/autounseal" {
-   capabilities = [ "update" ]
-}
-
-path "transit/decrypt/autounseal" {
-   capabilities = [ "update" ]
-}
-</pre>
-
 Execute the following file to create `autounseal` policy defined by `autounseal.hcl`{{open}} policy file.
 
 ```
@@ -33,4 +21,10 @@ Create a new token with `autounseal` policy attached and save it in a file named
 ```
 vault token create -policy="autounseal" \
       -format=json | jq -r ".auth.client_token" > client_token.txt
+```{{execute T2}}
+
+Set `VAULT_TOKEN` environment variable to the token you just generated.
+
+```
+export VAULT_TOKEN="$(cat client_token.txt)"
 ```{{execute T2}}

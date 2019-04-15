@@ -22,8 +22,7 @@ seal "transit" {
 }
 ```
 
-
-Notice that the storage backend is set to `~/vault-2/data`, and the **Vault 2** will be listening to port **8100**.
+Notice that the storage backend is set to `~/vault-2/data`, and the **Vault 2** will be listening to port **8100**. The **seal** stanza points to the **Vault 1** which is listening to port 8200. (**NOTE:** Since the client token is stored as `VAULT_TOKEN` environment variable, you don't need to set the `token` property in the configuration file.)
 
 
 Start the vault server with configuration file.

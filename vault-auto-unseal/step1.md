@@ -49,6 +49,8 @@ Click the **+** next to the opened Terminal, and select **Open New Terminal**.
 
 <img src="https://s3-us-west-1.amazonaws.com/education-yh/ops-another-terminal.png" alt="New Terminal"/>
 
+Execute the following command to initialize the Vault.
+
 ```
 export VAULT_ADDR="http://127.0.0.1:8200"
 vault operator init -key-shares=1 -key-threshold=1 > key.txt

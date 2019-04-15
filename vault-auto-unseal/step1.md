@@ -67,11 +67,5 @@ Log into Vault using the **initial root token** (`key.txt`{{open}}):
 vault login $(grep 'Initial Root Token:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
-Let's enable an audit device by executing the following command.
-
-```
-vault audit enable file file_path="~/vault-1/audit.log"
-```{{execute T2}}
-
 
 Next, you are going to setup a `transit` secrets engine in **Vault 1**.

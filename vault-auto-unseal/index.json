@@ -8,15 +8,15 @@
   "details": {
     "steps": [
       {
-        "title": "Installing Vault",
+        "title": "Configure and Start Vault 1",
         "text": "step1.md"
       },
       {
-        "title": "Run Vault in Development Mode",
+        "title": "Configure Auto-unseal Key Provider (Vault 1)",
         "text": "step2.md"
       },
       {
-        "title": "Configure Auto-unseal Key Provider (Vault 1)",
+        "title": "Configure Auto-unseal (Vault 2)",
         "text": "step3.md"
       }
     ],

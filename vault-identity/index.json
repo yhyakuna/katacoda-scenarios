@@ -12,7 +12,7 @@
         "text": "getting-started.md"
       },
       {
-        "title": "Run Vault Agent",
+        "title": "Vault Agent Auto-Auth",
         "text": "step1.md"
       },
       {
@@ -45,7 +45,7 @@
       "client": [
         { "file": "agent-config.hcl", "target": "~/" },
         { "file": "db_readonly.hcl", "target": "~/" },
-        { "file": "team-qa.hcl", "target": "~/" }
+        { "file": "agent-config-caching.hcl", "target": "~/" }
       ]
     },
     "finish": {

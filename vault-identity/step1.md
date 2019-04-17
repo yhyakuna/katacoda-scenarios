@@ -22,34 +22,31 @@ Execute the following command to create a role named, "apps" with `db_readonly` 
 vault write auth/approle/role/apps policies="db_readonly"
 ```{{execute T2}}
 
-Now, generate a role ID and stores it in a file named, "roleID".  Also, generate a secret ID and stores it in the "secretID" file.
+Now, generate a role ID and stores it in a file named, "roleID".
 
 ```
-vault read -format=json auth/approle/role/apps/role-id | jq  -r '.data.role_id' > roleID
-vault write -f -format=json auth/approle/role/apps/secret-id | jq -r '.data.secret_id' > secretID
+vault read -format=json auth/approle/role/apps/role-id \
+        | jq  -r '.data.role_id' > roleID
 ```{{execute T2}}
 
+The `approle` auth method allows machines or apps to authenticate with Vault using Vault-defined roles. The generated **roleID**{{open}} is equivalent to username.
 
+Also, generate a secret ID and stores it in the "secretID" file.
 
-
-
-The `approle` auth method allows machines or apps to authenticate with Vault using Vault-defined roles. The **role ID** is equivalent to username, and the **secret ID** is equivalent to a password.
-
-Refer to the _AppRole Pull Authentication_ guide ([https://learn.hashicorp.com/vault/identity-access-management/iam-authentication](https://learn.hashicorp.com/vault/identity-access-management/iam-authentication)) as well as _AppRole with Terraform & Chef_ guide ([https://learn.hashicorp.com/vault/identity-access-management/iam-approle-trusted-entities](https://learn.hashicorp.com/vault/identity-access-management/iam-approle-trusted-entities)) to learn more.
-
-### Step 7.1.2
-Execute the `setup-approle.sh` script.
-
-```plaintext
-$ ./setup-approle.sh
 ```
+vault write -f -format=json auth/approle/role/apps/secret-id \
+        | jq -r '.data.secret_id' > secretID
+```{{execute T2}}
 
-### Step 7.1.3
-Examine the Vault Agent configuration file, `/workstation/vault102/agent-config.hcl`.
+The generated **secretID**{{open}} is equivalent to a password.
 
-```plaintext
-$ cat agent-config.hcl
+Refer to the [_AppRole Pull Authentication_](https://learn.hashicorp.com/vault/identity-access-management/iam-authentication) guide to learn more.
 
+## Vault Agent Configuration
+
+Examine the Vault Agent configuration file, `agent-config.hcl`{{open}}.
+
+```
 exit_after_auth = false
 pid_file = "./pidfile"
 
@@ -65,18 +62,9 @@ auto_auth {
 
    sink "file" {
        config = {
-           path = "/workstation/vault102/approleToken"
+           path = "~/approleToken"
        }
    }
-}
-
-cache {
-   use_auto_auth_token = true
-}
-
-listener "tcp" {
-   address = "127.0.0.1:8007"
-   tls_disable = true
 }
 
 vault {
@@ -84,17 +72,12 @@ vault {
 }
 ```
 
-The `auto_auth` block points to the `approle` auth method which `setup-approle.sh` script configured. The acquired token gets stored in `/workstation/vault102/approleToken` (this is the sink location).
+The `auto_auth` block points to the `approle` auth method, and the acquired token gets stored in `approleToken`{{open}} file which is the sink location.
 
-The `cache` block specifies the agent to listen to port **`8007`**.
-
-### Step 7.1.4
-
-> **NOTE:** If you want to run Vault Agent against your neighbor's Vault server instead, edit the `vault` block so that it points to the correct Vault server address. Needless to say, your neighbor has to provide you the **roleID** and **secretID** to successfully authenticate.
 
 Execute the following command to start the Vault Agent with `debug` logs.
 
-```plaintext
+```
 $ vault agent -config=agent-config.hcl -log-level=debug
 
 ==> Vault server started! Log data will stream in below:
@@ -107,89 +90,4 @@ $ vault agent -config=agent-config.hcl -log-level=debug
                  Version: Vault v1.1.0
              Version Sha: 36aa8c8dd1936e10ebd7a4c1d412ae0e6f7900bd
 ...
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```
-vault auth enable userpass
-```{{execute T2}}
-
-Next, create a new policy named, `base`:
-
-```
-vault policy write base base.hcl
-```{{execute T2}}
-
-To review the created policy:
-
-```
-vault policy read base
-```{{execute T2}}
-
-This policy grants CRUD operations on the path starting with `secret/training`.
-
-<br>
-Let's create two more policies: `test` and `team-qa`.
-
-Execute the following command to create `test` policy.
-
-```
-vault policy write test test.hcl
-```{{execute T2}}
-
-
-Execute the following command to create `team-qa` policy.
-
-```
-vault policy write team-qa team-qa.hcl
-```{{execute T2}}
-
-
-At this point, you should have `base`, `test`, and `team-qa` policies:
-
-```
-vault policy list
-```{{execute T2}}
-
-<br>
-
-## Create Users
-
-Create a new user in userpass backend:
-
-- **username:** bob
-- **password:** training
-- **policy:** test
-
-```
-vault write auth/userpass/users/bob password="training" \
-    policies="test"
-```{{execute T2}}
-
-
-Create another user in userpass backend:
-
-- **username:** bsmith
-- **password:** training
-- **policy:** team-qa
-
-```
-vault write auth/userpass/users/bsmith password="training" \
-      policies="team-qa"
 ```{{execute T2}}

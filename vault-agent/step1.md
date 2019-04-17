@@ -127,6 +127,6 @@ id                   s.YKo3MLA6dSshKgeStGuIxIsJ
 meta                 map[role_name:apps]
 ...
 path                 auth/approle/login
-policies             [token_update default]
+policies             [default token_update]
 ...
 ```

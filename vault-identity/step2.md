@@ -1,5 +1,7 @@
-**BEFORE RESUME:**
+**!!! BEFORE RESUME !!!**
+
 Return to the **Terminal 2** and press **Ctl + C** to stop the running Vault Agent.  We are going to modify the agent configuration to support Caching.
+
 
 
 ## Vault Agent Configuration
@@ -45,10 +47,10 @@ vault {
 }
 ```
 
+In this example, the agent listens to port **8007**.
 
-
-
+Execute the following command to start the Vault Agent with `debug` logs.
 
 ```
-docker exec -it mysql-demo mysql -uroot -proot
+vault agent -config=agent-config.hcl -log-level=debug
 ```{{execute T2}}

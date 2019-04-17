@@ -74,7 +74,7 @@ vault {
 }
 ```
 
-The `auto_auth` block points to the `approle` auth method, and the acquired token gets stored in `approleToken`{{open}} file which is the sink location.
+The `auto_auth` block points to the `approle` auth method, and the acquired token gets stored in `approleToken` file which is the sink location.
 
 
 Execute the following command to start the Vault Agent with `debug` logs.

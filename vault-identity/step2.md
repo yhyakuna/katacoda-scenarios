@@ -1,34 +1,12 @@
+**BEFORE RESUME:**
 Return to the **Terminal 2** and press **Ctl + C** to stop the running Vault Agent.  We are going to modify the agent configuration to support Caching.
 
-First, enable database secrets engine.
-
-```
-vault secrets enable database
-```{{execute T2}}
-
-
-Execute the following command to configure the database secrets engine.
-
-```
-vault write database/config/mysql \
-      plugin_name=mysql-database-plugin \
-      connection_url="root:root@tcp(127.0.0.1:3306)/" \
-      allowed_roles="readonly"
-```{{execute T2}}
-
-# Create MySQL readonly role
-
-```
-vault write database/roles/readonly \
-      db_name=mysql \
-      creation_statements="CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT SELECT ON *.* TO '{{name}}'@'%';" \
-      default_ttl="30m" \
-      max_ttl="24h"
-```{{execute T2}}
-
-<br>
 
 ## Vault Agent Configuration
+
+To enable Vault Agent Caching, the agent configuration file must define `cache` and `listener` stanzas. The `listener` stanza specifies the proxy address which Vault Agent listens. All the requests will be made through this address and forwarded to the Vault server.
+
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/screenshots/vault-agent-caching.png">
 
 Examine the Vault Agent configuration file, `agent-config-caching.hcl`{{open}}.
 

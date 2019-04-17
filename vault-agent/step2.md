@@ -4,6 +4,8 @@ Return to the **Terminal 2** and press **Ctl + C** to stop the running Vault Age
 
 Clear the terminal: `clear`{{execute T2}}
 
+<br>
+
 ## Vault Agent Configuration
 
 To enable Vault Agent Caching, the agent configuration file must define `cache` and `listener` stanzas. The `listener` stanza specifies the proxy address which Vault Agent listens. All the requests will be made through this address and forwarded to the Vault server.

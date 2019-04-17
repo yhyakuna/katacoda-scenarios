@@ -105,10 +105,6 @@ VAULT_TOKEN=$(cat approleToken) vault token create -ttl=30s -explicit-max-ttl=2m
 
 It should be the same token.
 
-
-
-
-
 Examine the agent log to see how it manages the token's lifecycle.
 
 ```
@@ -128,8 +124,6 @@ Vault Agent renews the token before its TTL until the token reaches its maximum 
 ```
 
 When the token renewal failed, the agent automatically evicts the token from the cache since it's a stale cache.
-
-
 
 
 ## Evict Cached Leases

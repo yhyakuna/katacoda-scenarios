@@ -54,7 +54,7 @@ In this example, the agent listens to port **8007**.
 Execute the following command to start the Vault Agent with `debug` logs.
 
 ```
-vault agent -config=agent-config.hcl -log-level=debug
+vault agent -config=agent-config-caching.hcl -log-level=debug
 ```{{execute T2}}
 
 In the **Terminal 3**, set the `VAULT_AGENT_ADDR` environment variable.

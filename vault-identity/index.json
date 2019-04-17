@@ -22,18 +22,6 @@
       {
         "title": "Test the Entity",
         "text": "step3.md"
-      },
-      {
-        "title": "Create an Internal Group",
-        "text": "step4.md"
-      },
-      {
-        "title": "Test the Internal Group",
-        "text": "step5.md"
-      },
-      {
-        "title": "Challenge: Create an External Group",
-        "text": "step6.md"
       }
     ],
     "intro": {

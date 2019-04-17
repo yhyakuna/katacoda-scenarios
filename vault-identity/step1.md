@@ -107,5 +107,26 @@ Click the **+** next to the opened Terminal, and select **Open New Terminal** to
 Execute the following command to verify the token information.
 
 ```
+export VAULT_ADDR='http://127.0.0.1:8200'
+
 vault token lookup $(cat approleToken)
 ```{{execute T3}}
+
+Verify that the token has the db_readonly policy attached.
+
+```
+Key                  Value
+---                  -----
+...
+display_name         approle
+entity_id            f06b5047-6174-eda5-8530-d067c77e26bc
+expire_time          2019-05-19T01:32:26.451100637Z
+explicit_max_ttl     0s
+id                   s.YKo3MLA6dSshKgeStGuIxIsJ
+...
+meta                 map[role_name:apps]
+...
+path                 auth/approle/login
+policies             [db_readonly default]
+...
+```

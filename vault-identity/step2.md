@@ -1,71 +1,76 @@
-Execute the following command to discover the mount accessor for the `userpass` auth method since `bob` and `bsmith` are users defined using the `userpass` auth method:
+Return to the **Terminal 2** and press **Ctl + C** to stop the running Vault Agent.  We are going to modify the agent configuration to support Caching.
+
+First, enable database secrets engine.
 
 ```
-vault auth list \
-    -format=json | jq -r '.["userpass/"].accessor' > accessor.txt
+vault secrets enable database
 ```{{execute T2}}
 
-This command parses the output using `jq`, retrieves the mount accessor for `userpass` and save it in the `accessor.txt`{{open}} file.
 
-**NOTE:** The output of `vault auth list -detailed`{{execute T2}} includes the accessor ID for each auth method enabled on your Vault server. For example, if LDAP and Okta auth methods were enabled on your server, the output includes the accessor ID for those methods:
+Execute the following command to configure the database secrets engine.
 
 ```
-Path         Type        Accessor                  ...
-----         ----        --------                  ...
-ldap/        ldap        auth_ldap_a764f919        ...
-okta/        okta        auth_okta_0e2bffe6        ...
-token/       token       auth_token_070a4d9f       ...
-userpass/    userpass    auth_userpass_329e028b    ...
+vault write database/config/mysql \
+      plugin_name=mysql-database-plugin \
+      connection_url="root:root@tcp(127.0.0.1:3306)/" \
+      allowed_roles="readonly"
+```{{execute T2}}
+
+# Create MySQL readonly role
+
 ```
-If the identity, `bob`, is defined in LDAP and `bsmith` is defined in Okta, you would need the accessor IDs of LDAP and Okta.
+vault write database/roles/readonly \
+      db_name=mysql \
+      creation_statements="CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT SELECT ON *.* TO '{{name}}'@'%';" \
+      default_ttl="30m" \
+      max_ttl="24h"
+```{{execute T2}}
 
 <br>
-## Create bob-smith Entity
 
-Execute the following command to create a new entity named, `bob-smith` and save its ID in the `entity_id.txt` file:
+## Vault Agent Configuration
 
-```
-vault write -format=json identity/entity name="bob-smith" \
-     policies="base" \
-     metadata=organization="ACME Inc." \
-     metadata=team="QA" \
-     | jq -r ".data.id" > entity_id.txt
-```{{execute T2}}
-
-> Note that the metadata are passed in `metadata=<key>=<value>` format. In the above command, the entity has organization and team as its metadata.
-
-
-Now, add user `bob` to the `bob-smith` entity by creating an entity alias:
+Examine the Vault Agent configuration file, `agent-config-caching.hcl`{{open}}.
 
 ```
-vault write identity/entity-alias name="bob" \
-     canonical_id=$(cat entity_id.txt) \
-     mount_accessor=$(cat accessor.txt)
-```{{execute T2}}
+exit_after_auth = false
+pid_file = "./pidfile"
 
-> **NOTE:**  If you don't specify the `canonical_id` value, Vault automatically creates a new entity for this alias.  
+auto_auth {
+   method "approle" {
+       mount_path = "auth/approle"
+       config = {
+           role_id_file_path = "roleID"
+           secret_id_file_path = "secretID"
+           remove_secret_id_file_after_reading = false
+       }
+   }
+
+   sink "file" {
+       config = {
+           path = "approleToken"
+       }
+   }
+}
+
+cache {
+   use_auto_auth_token = true
+}
+
+listener "tcp" {
+   address = "127.0.0.1:8007"
+   tls_disable = true
+}
+
+vault {
+   address = "http://127.0.0.1:8200"
+}
+```
 
 
-Repeat the step to add user bsmith to the `bob-smith` entity.
+
+
 
 ```
-vault write identity/entity-alias name="bsmith" \
-     canonical_id=$(cat entity_id.txt) \
-     mount_accessor=$(cat accessor.txt)
-```{{execute T2}}
-
-
-Execute the following command to read the entity details:
-
-```
-vault read identity/entity/id/$(cat entity_id.txt)
-```{{execute T2}}
-
-
-The output should include the entity aliases (both `bob` and `bsmith`), metadata (organization, and team), and base policy.
-
-**NOTE:** It might be easier to read the output in JSON format.
-
-```
-vault read -format=json identity/entity/id/$(cat entity_id.txt)
+docker exec -it mysql-demo mysql -uroot -proot
 ```{{execute T2}}

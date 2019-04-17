@@ -13,7 +13,7 @@ auto_auth {
 
    sink "file" {
        config = {
-           path = "/workstation/vault102/approleToken"
+           path = "approleToken"
        }
    }
 }

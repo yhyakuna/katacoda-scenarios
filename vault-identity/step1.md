@@ -29,7 +29,7 @@ vault read -format=json auth/approle/role/apps/role-id \
         | jq  -r '.data.role_id' > roleID
 ```{{execute T2}}
 
-The `approle` auth method allows machines or apps to authenticate with Vault using Vault-defined roles. The generated **roleID**{{open}} is equivalent to username.
+The `approle` auth method allows machines or apps to authenticate with Vault using Vault-defined roles. The generated `roleID`{{open}} is equivalent to username.
 
 Also, generate a secret ID and stores it in the "secretID" file.
 
@@ -38,9 +38,11 @@ vault write -f -format=json auth/approle/role/apps/secret-id \
         | jq -r '.data.secret_id' > secretID
 ```{{execute T2}}
 
-The generated **secretID**{{open}} is equivalent to a password.
+The generated `secretID`{{open}} is equivalent to a password.
 
 Refer to the [_AppRole Pull Authentication_](https://learn.hashicorp.com/vault/identity-access-management/iam-authentication) guide to learn more.
+
+<br>
 
 ## Vault Agent Configuration
 
@@ -62,7 +64,7 @@ auto_auth {
 
    sink "file" {
        config = {
-           path = "~/approleToken"
+           path = "approleToken"
        }
    }
 }
@@ -78,16 +80,32 @@ The `auto_auth` block points to the `approle` auth method, and the acquired toke
 Execute the following command to start the Vault Agent with `debug` logs.
 
 ```
-$ vault agent -config=agent-config.hcl -log-level=debug
-
-==> Vault server started! Log data will stream in below:
-
-==> Vault agent configuration:
-
-           Api Address 1: http://127.0.0.1:8007
-                     Cgo: disabled
-               Log Level: debug
-                 Version: Vault v1.1.0
-             Version Sha: 36aa8c8dd1936e10ebd7a4c1d412ae0e6f7900bd
-...
+vault agent -config=agent-config.hcl -log-level=debug
 ```{{execute T2}}
+
+The agent log should include the following messages:
+
+```
+...
+[INFO]  sink.file: creating file sink
+[INFO]  sink.file: file sink configured: path=approleToken
+[INFO]  auth.handler: starting auth handler
+[INFO]  auth.handler: authenticating
+[INFO]  sink.server: starting sink server
+[INFO]  auth.handler: authentication successful, sending token to sinks
+[INFO]  auth.handler: starting renewal process
+[INFO]  sink.file: token written: path=approleToken
+...
+```
+
+The acquired client token is now stored in the `approleToken`{{open}} file.  Your applications can read the token from `approleToken` and use it to invoke the Vault API.
+
+Click the **+** next to the opened Terminal, and select **Open New Terminal** to open another terminal.
+
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/ops-another-terminal.png" alt="New Terminal"/>
+
+Execute the following command to verify the token information.
+
+```
+vault token lookup $(cat approleToken)
+```{{execute T3}}

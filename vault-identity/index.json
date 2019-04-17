@@ -1,0 +1,64 @@
+{
+  "pathwayTitle": "Learn HashiCorp Vault",
+  "title": "Vault Agent",
+  "description": "Learn how to leverage Vault Agent to tackle secret zero problem",
+  "difficulty": "beginner",
+  "time": "5 minutes",
+  "icon": "fa-vault",
+  "details": {
+    "steps": [
+      {
+        "title": "Getting Started",
+        "text": "getting-started.md"
+      },
+      {
+        "title": "Run Vault Agent",
+        "text": "step1.md"
+      },
+      {
+        "title": "Create an Entity",
+        "text": "step2.md"
+      },
+      {
+        "title": "Test the Entity",
+        "text": "step3.md"
+      },
+      {
+        "title": "Create an Internal Group",
+        "text": "step4.md"
+      },
+      {
+        "title": "Test the Internal Group",
+        "text": "step5.md"
+      },
+      {
+        "title": "Challenge: Create an External Group",
+        "text": "step6.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md",
+      "code": "env-init.sh",
+      "credits": "https://www.vaultproject.io"
+    },
+    "assets": {
+      "client": [
+        { "file": "agent-config.hcl", "target": "~/" },
+        { "file": "db_readonly.hcl", "target": "~/" },
+        { "file": "team-qa.hcl", "target": "~/" }
+      ]
+    },
+    "finish": {
+      "text": "finish.md",
+      "credits": "https://www.vaultproject.io"
+    }
+  },
+  "environment": {
+      "showdashboard": true,
+      "uilayout": "editor-terminal",
+      "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
+  },
+  "backend": {
+    "imageid": "docker"
+  }
+}

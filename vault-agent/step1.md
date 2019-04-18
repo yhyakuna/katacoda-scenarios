@@ -102,7 +102,7 @@ The acquired client token is now stored in the `approleToken`{{open}} file.  You
 
 Click the **+** next to the opened Terminal, and select **Open New Terminal** to open another terminal.
 
-<img src="https://s3-us-west-1.amazonaws.com/education-yh/ops-another-terminal.png" alt="New Terminal"/>
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/screenshots/ops-another-terminal-2.png" alt="New Terminal"/>
 
 Execute the following command to verify the token information.
 
@@ -130,3 +130,9 @@ path                 auth/approle/login
 policies             [default token_update]
 ...
 ```
+
+You should be able to create a token using this token (permitted by the `token_update` policy).
+
+```
+VAULT_TOKEN=$(cat approleToken) vault token create
+```{{execute T3}}

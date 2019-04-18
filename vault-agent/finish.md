@@ -1,7 +1,12 @@
-This scenario gave you a quick introduction to creating an entity and a group.
+This scenario gave you a quick introduction to Vault Agent.
+
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/screenshots/vault-secure-intro-5.png">
 
 ### Resources:
 
-- [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html)
-- [Identity Secrets Engine (API)](https://www.vaultproject.io/api/secret/identity/index.html)
-- [External vs Internal Groups](https://www.vaultproject.io/docs/secrets/identity/index.html#external-vs-internal-groups)
+- [Secure Introduction of Vault Clients](https://learn.hashicorp.com/vault/identity-access-management/iam-secure-intro)
+- [Vault Agent Auto-Auth](https://www.vaultproject.io/docs/agent/autoauth/index.html)
+- [Vault Agent Caching](https://www.vaultproject.io/docs/agent/caching/index.html)
+- [Vault Agent with AWS](https://learn.hashicorp.com/vault/identity-access-management/vault-agent-aws)
+- [Vault Agent with Kubernetes](https://learn.hashicorp.com/vault/identity-access-management/vault-agent-k8s)
+- [Vault Agent Caching](https://learn.hashicorp.com/vault/identity-access-management/agent-caching)

@@ -57,6 +57,8 @@ Execute the following command to start the Vault Agent with `debug` logs.
 vault agent -config=agent-config-caching.hcl -log-level=debug
 ```{{execute T2}}
 
+<br>
+
 In the **Terminal 3**, set the `VAULT_AGENT_ADDR` environment variable.
 
 ```
@@ -107,7 +109,15 @@ VAULT_TOKEN=$(cat approleToken) vault token create -ttl=30s -explicit-max-ttl=2m
 
 It should be the same token.
 
-Examine the agent log to see how it manages the token's lifecycle.
+The agent log indicates the following:
+
+```
+...
+[INFO]  cache: received request: path=/v1/auth/token/create method=POST
+[DEBUG] cache.leasecache: returning cached response: path=/v1/auth/token/create
+```
+
+Continue watching the agent log to see how it manages the token's lifecycle.
 
 ```
 ...

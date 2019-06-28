@@ -32,6 +32,7 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO "vault-edu";
 Open another terminal and execute the following command to enable the database secrets engine at `database/` path.
 
 ```
+export VAULT_ADDR='http://127.0.0.1:8200'
 vault secrets enable database
 ```{{execute T3}}
 

@@ -137,6 +137,7 @@ Vault Agent renews the token before its TTL until the token reaches its maximum 
 
 When the token renewal failed, the agent automatically evicts the token from the cache since it's a stale cache.
 
+<br>
 
 ## Evict Cached Leases
 

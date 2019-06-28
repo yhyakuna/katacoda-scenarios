@@ -11,21 +11,45 @@ Let's connect to the `postgres` container:
 docker exec -it postgres bash
 ```{{execute T2}}
 
-Start the `psql` as a root user:
+Connect to the `psql` as a root user:
 
 ```
-psql -U root -password rootpassword
+export PGPASSWORD='rootpassword'; psql -U root -d postgres
 ```{{execute T2}}
 
-
+Create a new database user, "vault-edu" with password, "mypassword":
 
 ```
 CREATE ROLE "vault-edu" WITH LOGIN PASSWORD 'mypassword';
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO "vault-edu";
+\du
+\q
 ```{{execute T2}}
 
-Execute the following command to create a role named, "apps" with `token_update` policy attached.
+
+## Enable and configure database secrets engine
+
+Open another terminal and execute the following command to enable the database secrets engine at `database/` path.
 
 ```
-vault write auth/approle/role/apps policies="token_update"
-```{{execute T2}}
+vault secrets enable database
+```{{execute T3}}
+
+This guide assumes that you enabled the database secrets engine at `database`. If you enabled it at a different path, be sure to use the correct path as you follow this guide.
+
+Execute the following command to configure the database secret engine which uses `postgresql-database-plugin`.
+
+```
+vault write database/config/postgresql plugin_name=postgresql-database-plugin \
+       allowed_roles="*" \
+       connection_url=postgresql://{{username}}:{{password}}@localhost:5432/postgres?sslmode=disable \
+       username="root" password="rootpassword"
+```{{execute T3}}
+
+Execute the following command to rotate the root credentials:
+
+```
+vault write -force database/rotate-root/postgresql
+```{{execute T3}}
+
+**NOTE:** As a best practice, this example is using the **templated credentials** and rotate its root password immediately since the initial password was `rootpassword` which is too simple. For more details, refer to the [Database Root Credential Rotation](https://learn.hashicorp.com/vault/secrets-management/db-root-rotation) guide.

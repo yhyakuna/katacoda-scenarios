@@ -101,13 +101,7 @@ Initialized            true
 Sealed                 false
 Total Shares           1
 Threshold              1
-Version                1.2.2
-Cluster Name           vault-cluster-f3d944c5
-Cluster ID             a1f0da51-f78d-3c8b-1257-deb04e4db244
-HA Enabled             true
-HA Cluster             n/a
-HA Mode                standby
-Active Node Address    <none>
+...
 ```
 
 Now, `node1` is ready for operation.
@@ -118,3 +112,32 @@ Log into Vault using the **initial root token** (`key.txt`{{open}}):
 ```
 vault login $(grep 'Initial Root Token:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
+
+Execute the following command to view the node1's Raft cluster configuration.
+
+```
+vault operator raft configuration -format=json
+```{{execute T2}}
+
+```
+{
+  ...
+  "data": {
+    "config": {
+      "index": 1,
+      "servers": [
+        {
+          "address": "127.0.0.1:8201",
+          "leader": true,
+          "node_id": "node1",
+          "protocol_version": "3",
+          "voter": true
+        }
+      ]
+    }
+  },
+  "warnings": null
+}
+```
+
+At this point, `node1` is the only cluster member; therefore, it becomes the `leader` by default. 

@@ -12,8 +12,12 @@
         "text": "step1.md"
       },
       {
-        "title": "Complete the Cluster",
+        "title": "Setup a Cluster Member",
         "text": "step2.md"
+      },
+      {
+        "title": "Complete the Cluster",
+        "text": "step3.md"
       }
     ],
     "intro": {

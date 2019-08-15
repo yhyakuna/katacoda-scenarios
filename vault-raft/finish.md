@@ -1,12 +1,11 @@
-This scenario gave you a quick introduction to Vault Agent.
+This scenario gave you a quick introduction to Vault's Integrated Storage.
 
-<img src="https://s3-us-west-1.amazonaws.com/education-yh/screenshots/vault-secure-intro-5.png">
+![](https://education-yh.s3-us-west-1.amazonaws.com/screenshots/raft-cluster.png)
 
 ### Resources:
 
-- [Secure Introduction of Vault Clients](https://learn.hashicorp.com/vault/identity-access-management/iam-secure-intro)
-- [Vault Agent Auto-Auth](https://www.vaultproject.io/docs/agent/autoauth/index.html)
-- [Vault Agent Caching](https://www.vaultproject.io/docs/agent/caching/index.html)
-- [Vault Agent with AWS](https://learn.hashicorp.com/vault/identity-access-management/vault-agent-aws)
-- [Vault Agent with Kubernetes](https://learn.hashicorp.com/vault/identity-access-management/vault-agent-k8s)
-- [Vault Agent Caching](https://learn.hashicorp.com/vault/identity-access-management/agent-caching)
+- [Katacoda - Vault Operations](https://www.katacoda.com/hashicorp/scenarios/vault-operations) 
+- [Vault HA Cluster with Integrated Storage](https://learn.hashicorp.com/vault/operations/raft-storage)
+- [Raft Storage Backend](https://www.vaultproject.io/docs/configuration/storage/raft.html)
+- [Raft GitHub repository](https://github.com/hashicorp/raft)
+- [High Availability with Consul](https://learn.hashicorp.com/vault/day-one/ops-vault-ha-consul)

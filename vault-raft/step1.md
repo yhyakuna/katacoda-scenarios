@@ -1,5 +1,5 @@
 -----
-Wait until the initial setup completes.
+Wait until the initial setup completes before start.
 -----
 
 In this tutorial, you are going to create a highly available (HA) Vault cluster using the integrated storage backend as its persistent storage.
@@ -9,7 +9,7 @@ For the purpose of demonstration, you are going to start up 3 instances of Vault
 ![](https://education-yh.s3-us-west-1.amazonaws.com/screenshots/raft-cluster.png)
 
 
-### Start Vault server 1 (node1)
+### Start Vault Server 1 (node1)
 
 First review the server configuration file, `config-node1.hcl`{{open}}.
 
@@ -65,7 +65,7 @@ Scroll up the Terminal to locate the following output:
 Now, you need to initialize and unseal the Vault server (`node1`).
 
 
-## Initialize and Unseal Vault
+## Initialize and Unseal node1
 
 Click the **+** next to the opened Terminal, and select **Open New Terminal**.
 
@@ -92,6 +92,26 @@ Execute the `vault operator unseal` command to enter unseal `node1`:
 vault operator unseal \
     $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
+
+```
+Key                    Value
+---                    -----
+Seal Type              shamir
+Initialized            true
+Sealed                 false
+Total Shares           1
+Threshold              1
+Version                1.2.2
+Cluster Name           vault-cluster-f3d944c5
+Cluster ID             a1f0da51-f78d-3c8b-1257-deb04e4db244
+HA Enabled             true
+HA Cluster             n/a
+HA Mode                standby
+Active Node Address    <none>
+```
+
+Now, `node1` is ready for operation.
+
 
 Log into Vault using the **initial root token** (`key.txt`{{open}}):
 

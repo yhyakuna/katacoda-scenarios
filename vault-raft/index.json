@@ -8,7 +8,7 @@
   "details": {
     "steps": [
       {
-        "title": "Start a Vault Server (node1)",
+        "title": "Scenario Introduction",
         "text": "step1.md"
       },
       {

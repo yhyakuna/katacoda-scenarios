@@ -1,12 +1,43 @@
+-----
 Wait until the initial setup completes.
+-----
 
-Enter the following command to start the Vault server in development mode.  
+In this tutorial, you are going to create a highly available (HA) Vault cluster using the integrated storage backend as its persistent storage.
+
+For the purpose of demonstration, you are going to start up 3 instances of Vault server each listens to different port: **node1** listens to port `8200`, **node2** listens to port `2200` and **node3** listens to port `3200`.
+
+![](https://education-yh.s3-us-west-1.amazonaws.com/screenshots/raft-cluster.png)
+
+
+### Start Vault server 1 (node1)
+
+First review the server configuration file, `config-node1.hcl`{{open}}.
+
+```
+storage "raft" {
+  path    = "/workstation/vault/raft-node1/"
+  node_id = "node1"
+}
+
+listener "tcp" {
+  address = "127.0.0.1:8200"
+  cluster_address = "127.0.0.1:8201"
+  tls_disable = true
+}
+
+disable_mlock = true
+api_addr = "http://127.0.0.1:8200"
+cluster_addr = "http://127.0.0.1:8201"
+```
+
+The `storage` stanza is set to use `raft` which is the integrated storage. The `path` specifies the filesystem path where the data gets stored. The `node_id` sets the identifier for this node in the cluster. In this case, the node ID is `node1`.
+
+Enter the following command to start the `node1` Vault server.  
 
 > Click on the command (`⮐`) will automatically copy it into the terminal and execute it.
 
-
 ```
-vault server -dev -dev-root-token-id="root"
+vault server -config=config-node1.hcl
 ```{{execute T1}}
 
 

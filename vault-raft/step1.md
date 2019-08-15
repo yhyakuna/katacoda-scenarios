@@ -1,138 +1,100 @@
-Vault Agent runs on the **client** side to automate leases and tokens lifecycle management.
+-----
+Wait until the initial setup completes.
+-----
 
-<img src="https://s3-us-west-1.amazonaws.com/education-yh/screenshots/vault-agent-auto-auth.png">
+In this tutorial, you are going to create a highly available (HA) Vault cluster using the integrated storage backend as its persistent storage.
 
-For this scenario, you are going to run the Vault Agent on the same machine as where the Vault server is running. However, the basic working is the same except the host machine address.
+For the purpose of demonstration, you are going to start up 3 instances of Vault server each listens to different port: **node1** listens to port `8200`, **node2** listens to port `2200` and **node3** listens to port `3200`.
 
-First, setup the auth method on the Vault server. In this example, you are going to enable [`approle`](https://www.vaultproject.io/docs/auth/approle.html) auth method.
+![](https://education-yh.s3-us-west-1.amazonaws.com/screenshots/raft-cluster.png)
 
-```
-vault auth enable approle
-```{{execute T2}}
 
-Create a policy named, "token_update" which is defined by the `token_update.hcl`{{open}} file.
+### Start Vault server 1 (node1)
 
-```
-vault policy write token_update token_update.hcl
-```{{execute T2}}
-
-Execute the following command to create a role named, "apps" with `token_update` policy attached.
+First review the server configuration file, `config-node1.hcl`{{open}}.
 
 ```
-vault write auth/approle/role/apps policies="token_update"
-```{{execute T2}}
-
-Now, generate a role ID and stores it in a file named, "roleID".
-
-```
-vault read -format=json auth/approle/role/apps/role-id \
-        | jq  -r '.data.role_id' > roleID
-```{{execute T2}}
-
-The `approle` auth method allows machines or apps to authenticate with Vault using Vault-defined roles. The generated `roleID`{{open}} is equivalent to username.
-
-Also, generate a secret ID and stores it in the "secretID" file.
-
-```
-vault write -f -format=json auth/approle/role/apps/secret-id \
-        | jq -r '.data.secret_id' > secretID
-```{{execute T2}}
-
-The generated `secretID`{{open}} is equivalent to a password.
-
-Refer to the [_AppRole Pull Authentication_](https://learn.hashicorp.com/vault/identity-access-management/iam-authentication) guide to learn more.
-
-<br>
-
-## Vault Agent Configuration
-
-Examine the Vault Agent configuration file, `agent-config.hcl`{{open}}.
-
-```
-exit_after_auth = false
-pid_file = "./pidfile"
-
-auto_auth {
-   method "approle" {
-       mount_path = "auth/approle"
-       config = {
-           role_id_file_path = "roleID"
-           secret_id_file_path = "secretID"
-           remove_secret_id_file_after_reading = false
-       }
-   }
-
-   sink "file" {
-       config = {
-           path = "approleToken"
-       }
-   }
+storage "raft" {
+  path    = "/home/scrapbook/tutorial/raft-node1/"
+  node_id = "node1"
 }
 
-vault {
-   address = "http://127.0.0.1:8200"
+listener "tcp" {
+  address = "127.0.0.1:8200"
+  cluster_address = "127.0.0.1:8201"
+  tls_disable = true
 }
+
+disable_mlock = true
+api_addr = "http://127.0.0.1:8200"
+cluster_addr = "http://127.0.0.1:8201"
 ```
 
-The `auto_auth` block points to the `approle` auth method, and the acquired token gets stored in `approleToken` file which is the sink location.
+The `storage` stanza is set to use `raft` which is the integrated storage. The `path` specifies the filesystem path where the data gets stored. The `node_id` sets the identifier for this node in the cluster. In this case, the node ID is `node1`.
+
+> Refer to the [Raft Storage Backend](https://www.vaultproject.io/docs/configuration/storage/raft.html) documentation.
 
 
-Execute the following command to start the Vault Agent with `debug` logs.
+Enter the following command to start the `node1` Vault server.  
 
-```
-vault agent -config=agent-config.hcl -log-level=debug
-```{{execute T2}}
-
-The agent log should include the following messages:
+> Click on the command (`⮐`) will automatically copy it into the terminal and execute it.
 
 ```
-...
-[INFO]  sink.file: creating file sink
-[INFO]  sink.file: file sink configured: path=approleToken
-[INFO]  auth.handler: starting auth handler
-[INFO]  auth.handler: authenticating
-[INFO]  sink.server: starting sink server
-[INFO]  auth.handler: authentication successful, sending token to sinks
-[INFO]  auth.handler: starting renewal process
-[INFO]  sink.file: token written: path=approleToken
-...
+mkdir raft-node1
+vault server -config=config-node1.hcl
+```{{execute T1}}
+
+
+Scroll up the Terminal to locate the following output:
+
+```
+==> Vault server configuration:
+
+             Api Address: http://127.0.0.1:8200
+                     Cgo: disabled
+         Cluster Address: https://127.0.0.1:8201
+              Listener 1: tcp (addr: "127.0.0.1:8200", cluster address: "127.0.0.1:8201", max_request_duration: "1m30s", max_request_size: "33554432", tls: "disabled")
+               Log Level: info
+                   Mlock: supported: true, enabled: false
+                 Storage: raft (HA available)
+                 Version: Vault v1.2.2
+
+==> Vault server started! Log data will stream in below:
 ```
 
-The acquired client token is now stored in the `approleToken`{{open}} file.  Your applications can read the token from `approleToken` and use it to invoke the Vault API.
+Now, you need to initialize and unseal the Vault server (`node1`).
 
-Click the **+** next to the opened Terminal, and select **Open New Terminal** to open another terminal.
 
-<img src="https://s3-us-west-1.amazonaws.com/education-yh/screenshots/ops-another-terminal-2.png" alt="New Terminal"/>
+## Initialize and Unseal Vault
 
-Execute the following command to verify the token information.
+Click the **+** next to the opened Terminal, and select **Open New Terminal**.
+
+<img src="https://s3-us-west-1.amazonaws.com/education-yh/ops-another-terminal.png" alt="New Terminal"/>
+
+In the **Terminal 2**, set the `VAULT_ADDR` environment variable:
 
 ```
 export VAULT_ADDR='http://127.0.0.1:8200'
+```{{execute T2}}
 
-vault token lookup $(cat approleToken)
-```{{execute T3}}
-
-Verify that the token has the token_update policy attached.
+Now, execute the `vault operator init` command to initialize the `node1`:
 
 ```
-Key                  Value
----                  -----
-...
-display_name         approle
-entity_id            f06b5047-6174-eda5-8530-d067c77e26bc
-expire_time          2019-05-19T01:32:26.451100637Z
-explicit_max_ttl     0s
-id                   s.YKo3MLA6dSshKgeStGuIxIsJ
-...
-meta                 map[role_name:apps]
-...
-path                 auth/approle/login
-policies             [default token_update]
-...
-```
+vault operator init -key-shares=1 -key-threshold=1 > key.txt
+```{{execute T2}}
 
-You should be able to create a token using this token (permitted by the `token_update` policy).
+> **NOTE:** For the simplicity, setting the number of unseal keys to `1` as well as the key threshold, and storing the generated unseal key and initial root token in a local file named, `key.txt`.
+
+
+Execute the `vault operator unseal` command to enter unseal `node1`:
 
 ```
-VAULT_TOKEN=$(cat approleToken) vault token create
-```{{execute T3}}
+vault operator unseal \
+    $(grep 'Key 1:' key.txt | awk '{print $NF}')
+```{{execute T2}}
+
+Log into Vault using the **initial root token** (`key.txt`{{open}}):
+
+```
+vault login $(grep 'Initial Root Token:' key.txt | awk '{print $NF}')
+```{{execute T2}}

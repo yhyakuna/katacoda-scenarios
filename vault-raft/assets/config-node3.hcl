@@ -1,5 +1,5 @@
 storage "raft" {
-  path    = "/workstation/vault/raft-node3/"
+  path    = "/home/scrapbook/tutorial/raft-node3/"
   node_id = "node3"
 }
 

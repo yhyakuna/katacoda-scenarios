@@ -8,15 +8,11 @@
   "details": {
     "steps": [
       {
-        "title": "Getting Started",
-        "text": "getting-started.md"
-      },
-      {
-        "title": "Vault Agent Auto-Auth",
+        "title": "Start a Vault Server (node1)",
         "text": "step1.md"
       },
       {
-        "title": "Vault Agent Caching",
+        "title": "Complete the Cluster",
         "text": "step2.md"
       }
     ],

@@ -5,3 +5,5 @@
 In Vault 1.2, an integrated storage was introduced to persist the encrypted data. The Raft algorithm used in Consul is directly embedded into Vault to provide a built-in storage.
 
 **NOTE:** Vault Integrated Storage is currently in _Technical Preview_ mode; therefore, not suitable for deployment in production.
+
+> If you are new to Vault, please complete the [Vault Operations](https://www.katacoda.com/hashicorp/scenarios/vault-operations) first, and then proceed with this tutorial to better understand what is demonstrated in this scenario. 

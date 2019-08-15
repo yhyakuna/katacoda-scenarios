@@ -1,7 +1,7 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "[Vault 1.2 BETA] Vault DB Credential Rotation",
-  "description": "Learn how to delegate the database credential management to Vault using Database Secrets Engine",
+  "title": "Vault Agent",
+  "description": "Learn how to leverage Vault Agent to tackle secret zero problem",
   "difficulty": "beginner",
   "time": "5 minutes",
   "icon": "fa-vault",
@@ -39,7 +39,7 @@
   },
   "environment": {
       "showdashboard": true,
-      "uilayout": "terminal",
+      "uilayout": "editor-terminal",
       "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
   },
   "backend": {

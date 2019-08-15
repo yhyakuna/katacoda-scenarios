@@ -50,7 +50,7 @@ You can verify that the **Api Address** is `http://127.0.0.1:3200`.
 
 Click the **+** next to the opened Terminal, and select **Open New Terminal** to start sixth terminal (**Terminal 6**).
 
-![](https://education-yh.s3-us-west-1.amazonaws.com/katacoda-images/katacoda-terminal.png)s
+![](https://education-yh.s3-us-west-1.amazonaws.com/katacoda-images/katacoda-terminal.png)
 
 In **Terminal 6**, set the VAULT_ADDR to `http://127.0.0.1:3200`.
 
@@ -95,12 +95,19 @@ vault operator raft configuration -format=json
   ...
   "data": {
     "config": {
-      "index": 51,
+      "index": 32,
       "servers": [
         {
           "address": "127.0.0.1:8201",
           "leader": true,
           "node_id": "node1",
+          "protocol_version": "3",
+          "voter": true
+        },
+        {
+          "address": "127.0.0.1:2201",
+          "leader": false,
+          "node_id": "node2",
           "protocol_version": "3",
           "voter": true
         },
@@ -118,3 +125,17 @@ vault operator raft configuration -format=json
 ```
 
 You should see `node1`, `node2` and `node3` listed.
+
+
+In **Terminal 5**, you will find the following entries in the server log:
+
+```
+...
+[INFO]  storage.raft: Initial configuration (index=1): [{Suffrage:Voter ID:node1 Address:127.0.0.1:8201} {Suffrage:Voter ID:node2 Address:127.0.0.1:2201} {Suffrage:Voter ID:node3 Address:127.0.0.1:3201}]
+[INFO]  storage.raft: Node at 127.0.0.1:3201 [Follower] entering Follower state (Leader: "")
+...
+[INFO]  core: vault is unsealed
+[INFO]  core: entering standby mode
+```
+
+Next, learn about taking a data backup.

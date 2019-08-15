@@ -106,6 +106,7 @@ Threshold              1
 
 Now, `node1` is ready for operation.
 
+<br />
 
 Log into Vault using the **initial root token** (`key.txt`{{open}}):
 
@@ -140,4 +141,4 @@ vault operator raft configuration -format=json
 }
 ```
 
-At this point, `node1` is the only cluster member; therefore, it becomes the `leader` by default. 
+At this point, `node1` is the only cluster member; therefore, it becomes the `leader` by default.

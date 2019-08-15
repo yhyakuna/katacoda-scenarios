@@ -22,6 +22,7 @@ Verify that you can read the data.
 vault kv get secret/credentials
 ```{{execute T2}}
 
+<br>
 
 ## Take a snapshot
 
@@ -44,12 +45,14 @@ vault kv get secret/credentials
 vault kv list secret
 ```{{execute T2}}
 
+<br />
+
 ## Recover data from a Snapshot
 
 If the data was lost due to unexpected event, you can recover the Vault data from the snapshot.
 
 ```
-vault operator raft restore BACKUP-1.snap
+vault operator raft snapshot restore BACKUP-1.snap
 ```{{execute T2}}
 
 You should be able to read the secrets at `secret/credentials` again.

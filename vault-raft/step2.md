@@ -47,6 +47,8 @@ vault server -config=config-node2.hcl
 
 You can verify that the **Api Address** is `http://127.0.0.1:2200`.  
 
+<br />
+
 Click the **+** next to the opened Terminal, and select **Open New Terminal** to start fourth terminal (**Terminal 4**).
 
 ![](https://education-yh.s3-us-west-1.amazonaws.com/katacoda-images/katacoda-terminal.png)

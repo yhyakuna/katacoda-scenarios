@@ -32,8 +32,6 @@ cluster_addr = "http://127.0.0.1:8201"
 
 The `storage` stanza is set to use `raft` which is the integrated storage. The `path` specifies the filesystem path where the data gets stored. The `node_id` sets the identifier for this node in the cluster. In this case, the node ID is `node1`.
 
-> Refer to the [Raft Storage Backend](https://www.vaultproject.io/docs/configuration/storage/raft.html) documentation.
-
 
 Enter the following command to start the `node1` Vault server.  
 

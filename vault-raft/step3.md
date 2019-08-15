@@ -48,6 +48,8 @@ vault server -config=config-node3.hcl
 
 You can verify that the **Api Address** is `http://127.0.0.1:3200`.  
 
+<br />
+
 Click the **+** next to the opened Terminal, and select **Open New Terminal** to start sixth terminal (**Terminal 6**).
 
 ![](https://education-yh.s3-us-west-1.amazonaws.com/katacoda-images/katacoda-terminal.png)

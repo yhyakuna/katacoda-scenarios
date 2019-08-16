@@ -4,7 +4,7 @@ Wait until the initial setup completes before start.
 
 In this tutorial, you are going to create a highly available (HA) Vault cluster using the integrated storage backend as its persistent storage.
 
-For the purpose of demonstration, you are going to start up 3 instances of Vault server each listens to different port: **node1** listens to port `8200`, **node2** listens to port `2200` and **node3** listens to port `3200`.
+For the purpose of demonstration, you are going to run 3 Vault server instances each listens to a different port: **node1** listens to port `8200`, **node2** listens to port `2200` and **node3** listens to port `3200`.
 
 ![](https://education-yh.s3-us-west-1.amazonaws.com/screenshots/raft-cluster.png)
 
@@ -62,7 +62,7 @@ Scroll up the Terminal to locate the following output:
 
 Now, you need to initialize and unseal the Vault server (`node1`).
 
-
+<br />
 ## Initialize and Unseal node1
 
 Click the **+** next to the opened Terminal, and select **Open New Terminal**.
@@ -81,14 +81,13 @@ Now, execute the `vault operator init` command to initialize the `node1`:
 vault operator init -key-shares=1 -key-threshold=1 > key.txt
 ```{{execute T2}}
 
-> **NOTE:** For the simplicity, setting the number of unseal keys to `1` as well as the key threshold, and storing the generated unseal key and initial root token in a local file named, `key.txt`.
+> **NOTE:** For the simplicity, setting the number of unseal keys to `1` as well as the key threshold, and storing the generated unseal key and initial root token in a local file named, `key.txt`{{open}}.
 
 
 Execute the `vault operator unseal` command to enter unseal `node1`:
 
 ```
-vault operator unseal \
-    $(grep 'Key 1:' key.txt | awk '{print $NF}')
+vault operator unseal $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T2}}
 
 ```
@@ -109,7 +108,8 @@ Now, `node1` is ready for operation.
 Log into Vault using the **initial root token** (`key.txt`{{open}}):
 
 ```
-vault login $(grep 'Initial Root Token:' key.txt | awk '{print $NF}')
+export VAULT_TOKEN=$(grep 'Initial Root Token:' key.txt | awk '{print $NF}')
+vault login $VAULT_TOKEN
 ```{{execute T2}}
 
 Execute the following command to view the node1's Raft cluster configuration.

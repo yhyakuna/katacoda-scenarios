@@ -16,7 +16,7 @@ listener "tcp" {
 ui = true
 </pre>
 
-<pre class="file" data-filename="config.hcl" data-target="insert">
+<pre class="file" data-filename="config.hcl" data-target="clipboard">
 # Adding comments
 </pre>
 

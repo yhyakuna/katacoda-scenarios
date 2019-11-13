@@ -16,7 +16,7 @@ listener "tcp" {
 ui = true
 </pre>
 
-<pre class="file" data-filename="config.hcl" data-target="add">
+<pre class="file" data-filename="config.hcl" data-target="regex???">
 # Adding comments
 </pre>
 

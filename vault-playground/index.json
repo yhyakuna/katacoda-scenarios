@@ -20,6 +20,11 @@
     "finish": {
       "text": "finish.md",
       "credits": "https://www.vaultproject.io"
+    },
+    "assets": {
+      "client": [
+        { "file": "main.tf", "target": "~/" }
+      ]
     }
   },
   "environment": {

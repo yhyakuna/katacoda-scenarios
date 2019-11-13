@@ -14,6 +14,17 @@ vault login root
 
 **Now, you are ready to explore Vault CLI!**
 
+
+Open the `main.tf`{{open}} file and edit:
+
+<pre class="file" data-filename="main.tf" data-target="add">
+# Create 'training' policy
+resource "vault_policy" "training" {
+    name   = "training"
+    policy = "${data.vault_policy_document.training.hcl}"
+}
+</pre>
+
 <br>
 
 ## Useful Links

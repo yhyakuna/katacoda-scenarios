@@ -22,10 +22,12 @@
   },
   "environment": {
       "showdashboard": true,
-      "uilayout": "editor-terminal",
+      "dashboard": "Dashboard",
+      "uilayout": "terminal-terminal",
       "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
   },
   "backend": {
+    "port": 8080,
     "imageid": "kubernetes-cluster"
   }
 }

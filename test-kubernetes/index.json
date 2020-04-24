@@ -18,12 +18,17 @@
     },
     "finish": {
       "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        { "file": "helm-consul-values.yml", "target": "~/" }
+      ]
     }
   },
   "environment": {
       "showdashboard": true,
       "dashboard": "Dashboard",
-      "uilayout": "terminal-terminal",
+      "uilayout": "editor-terminal",
       "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
   },
   "backend": {

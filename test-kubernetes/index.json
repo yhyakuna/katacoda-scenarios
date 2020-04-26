@@ -1,6 +1,6 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "[TEST] Kubernetes",
+  "title": "[WIP] Kubernetes",
   "description": "Test the Kubernetes environment",
   "difficulty": "beginner",
   "time": "10 minutes",
@@ -8,12 +8,13 @@
   "details": {
     "steps": [
       {
-        "title": "Installing Vault Enterprise",
+        "title": "Deployment with Helm",
         "text": "step1.md"
       }
     ],
     "intro": {
       "text": "intro.md",
+      "code": "set-env.sh",
       "credits": "https://learn.hashicorp.com/vault"
     },
     "finish": {
@@ -21,18 +22,17 @@
     },
     "assets": {
       "host01": [
-        { "file": "helm-consul-values.yml", "target": "~/" }
+        { "file": "helm-consul-values.yml", "target": "/manifests" }
       ]
     }
   },
   "environment": {
-      "showdashboard": true,
-      "dashboard": "Dashboard",
-      "uilayout": "editor-terminal",
-      "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
+    "uilayout": "editor-terminal",
+    "uieditorpath": "/manifests",
+    "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\r\nStart Kubernetes using `launch.sh`\u001b[m\r\n",
+    "icon": "fa-kubernetes"
   },
   "backend": {
-    "port": 8080,
     "imageid": "kubernetes-cluster-running"
   }
 }

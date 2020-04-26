@@ -23,11 +23,40 @@ kubectl get pods --namespace kube-system
 
 ## Install Consul
 
-Consul's Helm chart by default starts more services than required to act as Vault's storage backend.
+First, clone the `consul-helm` Github repo:
 
-Display the parameters in `helm-consul-values.yml`{{open}}.
+```
+git clone https://github.com/hashicorp/consul-helm.git
+```{{execute}}
 
-Install the Consul Helm chart version 0.18.0 with pods prefixed with the name consul and apply the values found in `helm-consul-values.yml`.
+Create a Kubernetes service account called `tiller`:
+
+```
+kubectl --namespace kube-system create serviceaccount tiller
+```{{execute}}
+
+Next, create a Kubernetes clusterrolebinding between the cluster-admin role and the tiller service account. You do not need to customize the following command:
+
+```
+kubectl create clusterrolebinding tiller-cluster-rule \
+  --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+```{{execute}}
+
+Patch your kube-system namespace to respect the tiller service account:
+
+```
+kubectl --namespace kube-system patch deploy tiller-deploy \
+  -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+```{{execute}}
+
+Now, you can deploy Consul using helm install.
+
+```
+helm install -f helm-consul-values.yaml hashicorp ./consul-helm
+```{{execute}}
+
+or try...
+
 
 ```
 helm install consul \

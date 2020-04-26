@@ -1,7 +1,7 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
   "title": "[WIP] Kubernetes",
-  "description": "Test the Kubernetes environment",
+  "description": "Test the Kubernetes environment.",
   "difficulty": "beginner",
   "time": "10 minutes",
   "icon": "fa-vault",

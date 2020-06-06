@@ -1,0 +1,57 @@
+{
+  "pathwayTitle": "Learn HashiCorp Vault",
+  "title": "Vault Integrated Storage",
+  "description": "Learn how to configure a HA cluster backed by integrated storage (Raft).",
+  "difficulty": "beginner",
+  "time": "5 minutes",
+  "icon": "fa-vault",
+  "details": {
+    "steps": [
+      {
+        "title": "Scenario Introduction",
+        "text": "step1.md"
+      },
+      {
+        "title": "Setup a Cluster Member",
+        "text": "step2.md"
+      },
+      {
+        "title": "Complete the Cluster",
+        "text": "step3.md"
+      },
+      {
+        "title": "Taking a Data Snapshot",
+        "text": "step4.md"
+      },
+      {
+        "title": "Manage the Cluster Members",
+        "text": "step5.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md",
+      "code": "env-init.sh",
+      "credits": "https://learn.hashicorp.com/vault"
+    },
+    "assets": {
+      "client": [
+        { "file": "config-node1.hcl", "target": "~/" },
+        { "file": "config-node2.hcl", "target": "~/" },
+        { "file": "config-node3.hcl", "target": "~/" }
+      ]
+    },
+    "finish": {
+      "text": "finish.md",
+      "credits": "https://learn.hashicorp.com/vault"
+    }
+  },
+  "environment": {
+      "showdashboard": true,
+      "uilayout": "terminal-terminal",
+      "hideHiddenFiles": true,
+      "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
+  },
+  "backend": {
+    "imageid": "docker"
+  }
+}

@@ -69,8 +69,6 @@ In order to complete the joining operation, `node3` must be unsealed.
 
 Click the **+** next to the opened Terminal, and select **Open New Terminal** to start sixth terminal (**Terminal 6**).
 
-![](https://education-yh.s3-us-west-2.amazonaws.com/screenshots/ops-another-terminal-2.png)
-
 In **Terminal 6**, set the VAULT_ADDR to `http://127.0.0.1:3200`.
 
 ```

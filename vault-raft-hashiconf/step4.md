@@ -6,14 +6,6 @@ Let's enable K/V secrets engine.
 vault secrets enable -path=secret kv-v2
 ```{{execute T6}}
 
-This is because all requests are forwarded to the active node.
-
-Now, create some secrets.
-
-```
-vault kv put secret/credentials user_id="student" passcode="vaultrocks"
-```{{execute T6}}
-
 Return to the **Terminal**, you should find the following message in the active node (`node1`) server log:
 
 ```
@@ -23,6 +15,12 @@ Return to the **Terminal**, you should find the following message in the active 
 ```
 
 However, you don't see this entry in either `node2` (**Terminal 3**) or `node3` (**Terminal 5**) server logs since they are standby nodes. All requests get forwarded to the active node.
+
+Now, create some secrets.
+
+```
+vault kv put secret/credentials user_id="student" passcode="vaultrocks"
+```{{execute T6}}
 
 
 Verify that you can read the data from any of the node.

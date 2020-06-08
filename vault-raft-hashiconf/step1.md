@@ -40,7 +40,7 @@ Enter the following command to start the `node1` Vault server.
 
 ```
 mkdir raft-node1
-vault server -config=config-node1.hcl
+vault server -config=config-node1.hcl -log-level=debug
 ```{{execute T1}}
 
 

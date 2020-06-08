@@ -17,7 +17,6 @@ listener "tcp" {
   tls_disable = true
 }
 
-ui = true
 disable_mlock = true
 api_addr = "http://127.0.0.1:3200"
 cluster_addr = "http://127.0.0.1:3201"

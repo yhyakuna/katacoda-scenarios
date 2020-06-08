@@ -26,6 +26,14 @@
       {
         "title": "Manage the Cluster Members",
         "text": "step5.md"
+      },
+      {
+        "title": "Challenge",
+        "text": "challenge-1.md"
+      },
+      {
+        "title": "Challenge Sample Solution",
+        "text": "challenge-1-solution.md"
       }
     ],
     "intro": {

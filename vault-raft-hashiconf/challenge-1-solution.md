@@ -96,3 +96,25 @@ node1    127.0.0.1:8201    follower    true
 node2    127.0.0.1:2201    leader      true
 node4    127.0.0.1:4201    follower    true
 ```
+
+You should be able to read the secrets you created earlier.
+
+```
+vault kv get secret/credentials
+```{{execute T8}}
+
+```
+====== Metadata ======
+Key              Value
+---              -----
+created_time     2020-06-08T23:19:23.275510367Z
+deletion_time    n/a
+destroyed        false
+version          1
+
+====== Data ======
+Key         Value
+---         -----
+passcode    vaultrocks
+user_id     student
+```

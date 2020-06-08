@@ -87,6 +87,21 @@ vault operator unseal $(grep 'Key 1:' key.txt | awk '{print $NF}')
 ```{{execute T6}}
 
 
+In **Terminal 5**, you should find the following messages in the server log:
+
+```
+...
+[DEBUG] core: unseal key supplied
+[INFO]  core: security barrier not initialized
+[INFO]  core: waiting for raft retry join process to complete
+[INFO]  core: security barrier not initialized
+[INFO]  core: attempting to join possible raft leader node: leader_addr=http://127.0.0.1:8200
+...
+[INFO]  core: successfully joined the raft cluster: leader_addr=http://127.0.0.1:8200
+[INFO]  storage.raft: entering follower state: follower="Node at 127.0.0.1:3201 [Follower]" leader=
+...
+```
+
 Once Vault is unsealed, you can login using the root token.
 
 ```
@@ -109,16 +124,5 @@ node3    127.0.0.1:3201    follower    true
 
 You should see `node1`, `node2` and `node3` listed.
 
-
-In **Terminal 5**, you will find the following entries in the server log:
-
-```
-...
-[INFO]  storage.raft: Initial configuration (index=1): [{Suffrage:Voter ID:node1 Address:127.0.0.1:8201} {Suffrage:Voter ID:node2 Address:127.0.0.1:2201} {Suffrage:Voter ID:node3 Address:127.0.0.1:3201}]
-[INFO]  storage.raft: Node at 127.0.0.1:3201 [Follower] entering Follower state (Leader: "")
-...
-[INFO]  core: vault is unsealed
-[INFO]  core: entering standby mode
-```
 
 Next, learn about taking a data backup.

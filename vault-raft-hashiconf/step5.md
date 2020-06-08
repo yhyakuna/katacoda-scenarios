@@ -22,6 +22,7 @@ node2    127.0.0.1:2201    leader      true
 node3    127.0.0.1:3201    follower    true
 ```
 
+<br />
 
 ## Leave the Cluster
 

@@ -1,4 +1,4 @@
-Add a new Vault node which listens to port **`4200`** to the raft cluster.
+Add a new Vault node (`node4`) which listens to port **`4200`** to the raft cluster.
 
 To create a new file, right-click the editor pane, and select **New > File**.
 

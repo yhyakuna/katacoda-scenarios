@@ -66,6 +66,8 @@ Return to the first **Terminal** to examine the `node1` server log.  You should 
 
 ```
 ...
+[INFO]  storage.raft: restored user snapshot: index=51
+...
 [INFO]  core: successfully setup plugin catalog: plugin-directory=
 [INFO]  core: successfully mounted backend: type=system path=sys/
 [INFO]  core: successfully mounted backend: type=identity path=identity/

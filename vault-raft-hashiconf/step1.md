@@ -119,14 +119,12 @@ Since `node1` is currently the only cluster member, it gets elected to be the **
 
 ```
 ...
-[WARN]  storage.raft: Heartbeat timeout from "" reached, starting election
-[INFO]  storage.raft: Node at 127.0.0.1:8201 [Candidate] entering Candidate state in term 2
-[INFO]  storage.raft: Election won. Tally: 1
-[INFO]  storage.raft: Node at 127.0.0.1:8201 [Leader] entering Leader state
+[INFO]  storage.raft: entering candidate state: node="Node at 127.0.0.1:8201 [Candidate]" term=2
+[INFO]  storage.raft: election won: tally=1
+[INFO]  storage.raft: entering leader state: leader="Node at 127.0.0.1:8201 [Leader]"
 [INFO]  core: acquired lock, enabling active operation
 [INFO]  core: post-unseal setup starting
 ...
-[INFO]  core: post-unseal setup complete
 ```
 
 Now, `node1` is ready!

@@ -16,6 +16,7 @@ listener "tcp" {
   tls_disable = true
 }
 
+ui = true
 disable_mlock = true
 api_addr = "http://127.0.0.1:2200"
 cluster_addr = "http://127.0.0.1:2201"
@@ -41,7 +42,7 @@ vault server -config=config-node2.hcl
                     Mlock: supported: true, enabled: false
             Recovery Mode: false
                   Storage: raft (HA available)
-                  Version: Vault v1.4.0
+                  Version: Vault v1.4.2
 
 ==> Vault server started! Log data will stream in below:
 ```
@@ -99,7 +100,7 @@ Total Shares       1
 Threshold          1
 Unseal Progress    0/1
 Unseal Nonce       n/a
-Version            1.4.0
+Version            1.4.2
 HA Enabled         true
 ```
 

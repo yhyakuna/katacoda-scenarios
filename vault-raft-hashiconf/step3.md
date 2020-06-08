@@ -9,20 +9,23 @@ Open the `node3` server configuration file, `config-node3.hcl`{{open}}.
 storage "raft" {
   path    = "/home/scrapbook/tutorial/raft-node3/"
   node_id = "node3"
+
+  retry_join {
+    leader_api_addr = "http://127.0.0.1:8200"
+  }
+
+  retry_join {
+    leader_api_addr = "http://127.0.0.1:2200"
+  }
 }
 
-listener "tcp" {
-  address = "127.0.0.1:3200"
-  cluster_address = "127.0.0.1:3201"
-  tls_disable = true
-}
-
-disable_mlock = true
-api_addr = "http://127.0.0.1:3200"
-cluster_addr = "http://127.0.0.1:3201"
+...
 ```
 
 Notice that the `node_id` is set to `node3` and this server will listen to port **`3200`**.
+
+Inside the **storage** stanza, two-sets of **`retry_join`** parameters are defined. One points to the `node1` API address, and another points to the `node2` API address. If the connection details of all nodes are known beforehand, configure the `retry_join` so that the node will automatically join the raft cluster upon start up.
+
 
 Execute the following command to start `node3`:
 
@@ -42,7 +45,7 @@ vault server -config=config-node3.hcl
                    Mlock: supported: true, enabled: false
            Recovery Mode: false
                  Storage: raft (HA available)
-                 Version: Vault v1.4.0
+                 Version: Vault v1.4.2
 
 ==> Vault server started! Log data will stream in below:
 ```

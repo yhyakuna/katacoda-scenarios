@@ -1,9 +1,9 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Vault Integrated Storage",
+  "title": "[HashiConf EU Digital] Integrated Storage Workshop",
   "description": "Learn how to configure a HA cluster backed by integrated storage (Raft).",
   "difficulty": "beginner",
-  "time": "5 minutes",
+  "time": "25 minutes",
   "icon": "fa-vault",
   "details": {
     "steps": [
@@ -49,6 +49,9 @@
       "showdashboard": true,
       "uilayout": "editor-terminal",
       "hideHiddenFiles": true,
+      "dashboards": [
+        { "name": "Vault UI", "port": 8200 }
+      ],
       "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
   },
   "backend": {

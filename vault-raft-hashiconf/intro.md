@@ -2,9 +2,11 @@
 
 # HA Cluster with Integrated Storage Workshop
 
-This hands-on exercise will walk you through the basic administrative operations for integrated storage. You are going to deploy an HA Vault cluster using integrated storage. 
+This hands-on exercise will walk you through the basic administrative operations for integrated storage. You are going to deploy an HA Vault cluster using integrated storage.
 
 ![](https://education-yh.s3-us-west-2.amazonaws.com/screenshots/raft-storage.png)
+
+<br />
 
 ## Additional resources on Vault's Integrated Storage
 

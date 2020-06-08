@@ -8,6 +8,7 @@ For the purpose of demonstration, you are going to run 3 Vault server instances 
 
 ![](https://education-yh.s3-us-west-2.amazonaws.com/screenshots/raft-storage.png)
 
+<br />
 
 ### Start Vault Server 1 (node1)
 
@@ -40,7 +41,7 @@ Enter the following command to start the `node1` Vault server.
 
 ```
 mkdir raft-node1
-vault server -config=config-node1.hcl -log-level=debug
+vault server -config=config-node1.hcl
 ```{{execute T1}}
 
 

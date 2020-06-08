@@ -28,7 +28,7 @@ Execute the following command to start `node2`:
 
 ```
 mkdir raft-node2
-vault server -config=config-node2.hcl -log-level=debug
+vault server -config=config-node2.hcl
 ```{{execute T3}}
 
 ```

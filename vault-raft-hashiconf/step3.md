@@ -1,8 +1,5 @@
 Click the **+** next to the opened Terminal, and select **Open New Terminal** to start fifth terminal (**Terminal 5**).
 
-![](https://education-yh.s3-us-west-2.amazonaws.com/screenshots/ops-another-terminal-2.png)
-
-
 Open the `node3` server configuration file, `config-node3.hcl`{{open}}.
 
 ```
@@ -99,6 +96,9 @@ In **Terminal 5**, you should find the following messages in the server log:
 ...
 [INFO]  core: successfully joined the raft cluster: leader_addr=http://127.0.0.1:8200
 [INFO]  storage.raft: entering follower state: follower="Node at 127.0.0.1:3201 [Follower]" leader=
+...
+[INFO]  core: vault is unsealed
+[INFO]  core: entering standby mode
 ...
 ```
 

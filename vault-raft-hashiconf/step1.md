@@ -110,8 +110,9 @@ Notice that right after `node1` was unsealed, it first goes into **standby** mod
 ```
 ...
 [INFO]  core: vault is unsealed
+[INFO]  storage.raft: entering follower state: follower="Node at 127.0.0.1:8201 [Follower]" leader=
 [INFO]  core: entering standby mode
-[INFO]  storage.raft: Node at 127.0.0.1:8201 [Follower] entering Follower state (Leader: "")
+[WARN]  storage.raft: heartbeat timeout reached, starting election: last-leader=
 ...
 ```
 

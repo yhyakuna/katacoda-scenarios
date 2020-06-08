@@ -31,7 +31,7 @@ Execute the following command to start `node4`:
 
 ```
 mkdir raft-node4
-vault server -config=config-node3.hcl -log-level=debug
+vault server -config=config-node4.hcl -log-level=debug
 ```{{execute T7}}
 
 **Open New Terminal** to start a new terminal (**Terminal 8**), and set the VAULT_ADDR to `http://127.0.0.1:4200`.

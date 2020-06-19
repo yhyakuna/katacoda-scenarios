@@ -59,6 +59,7 @@
     },
     "assets": {
       "host01": [
+        { "file": "pod-payroll.yml", "target": "~/" },
         { "file": "service-account-internal-app.yml", "target": "~/" },
         { "file": "deployment-orgchart.yml", "target": "~/" },
         { "file": "patch-inject-secrets.yml", "target": "~/" },

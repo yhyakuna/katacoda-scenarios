@@ -38,8 +38,8 @@
     },
     "assets": {
       "host01": [
-        { "file": "admin-policy.hcl", "target": "~/policies" },
-        { "file": "eaas-client-policy.hcl", "target": "~/policies" },
+        { "file": "policies/admin-policy.hcl", "target": "~/policies" },
+        { "file": "policies/eaas-client-policy.hcl", "target": "~/policies" },
         { "file": "main.tf", "target": "~/" }
       ]
     },

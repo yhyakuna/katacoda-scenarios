@@ -35,3 +35,6 @@ Execute the following command to verify the vault version:
 ```
 vault version
 ```{{execute}}
+
+
+Change the working diretory to `oss` and examine the `policies/admin-policy.hcl`{{open}} file contents. 

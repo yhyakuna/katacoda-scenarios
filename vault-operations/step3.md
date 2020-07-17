@@ -3,7 +3,7 @@ Outside of development mode, Vault servers are configured using a file. The form
 
 Open `config_node1.hcl`{{open}}.
 
-<pre class="file" data-filename="config.hcl" data-target="append">
+<pre class="file" data-filename="config_node1.hcl" data-target="append">
 # Use the file system as storage backend
 ha_storage "raft" {
   path    = "/home/scrapbook/tutorial/raft-node1/"

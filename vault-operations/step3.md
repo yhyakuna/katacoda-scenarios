@@ -1,8 +1,20 @@
 Outside of development mode, Vault servers are configured using a file. The format of this file is [HCL](https://github.com/hashicorp/hcl) or JSON. The configuration file for Vault is relatively simple.
 
-Enter the following in the `config.hcl`{{open}} file:
+
+Open `config_node1.hcl`{{open}}.
 
 <pre class="file" data-filename="config.hcl" data-target="append">
+# Use the file system as storage backend
+ha_storage "raft" {
+  path    = "/home/scrapbook/tutorial/raft-node1/"
+  node_id = "node1"
+}
+</pre>
+
+
+Enter the following in the `config.hcl`{{open}} file:
+
+<pre class="file" data-filename="config.hcl" data-target="replace">
 # Use the file system as storage backend
 storage "file" {
   path = "/data/vault"

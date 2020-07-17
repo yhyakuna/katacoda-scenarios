@@ -36,16 +36,6 @@
       "text": "intro.md",
       "credits": "https://learn.hashicorp.com/vault"
     },
-    "assets": {
-      "host01": [
-        { "file": "/enterprise/main.tf", "target": "~/enterprise" },
-        { "file": "/enterprise/policies/admin-policy.hcl", "target": "~/enterprise/policies" },
-        { "file": "/enterprise/policies/fpe-client-policy.hcl", "target": "~/enterprise/policies" },
-        { "file": "/oss/main.tf", "target": "~/oss" },
-        { "file": "/oss/policies/admin-policy.hcl", "target": "~/oss/policies" },
-        { "file": "/oss/policies/eaas-client-policy.hcl", "target": "~/oss/policies" }
-      ]
-    },
     "finish": {
       "text": "finish.md"
     }

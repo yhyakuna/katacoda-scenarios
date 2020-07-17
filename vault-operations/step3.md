@@ -2,7 +2,7 @@ Outside of development mode, Vault servers are configured using a file. The form
 
 Enter the following in the `config.hcl`{{open}} file:
 
-<pre class="file" data-filename="config.hcl" data-target="replace">
+<pre class="file" data-filename="config.hcl" data-target="append">
 # Use the file system as storage backend
 storage "file" {
   path = "/data/vault"

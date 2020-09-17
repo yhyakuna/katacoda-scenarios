@@ -1,8 +1,8 @@
 {
-    "pathwayTitle": "Secure Consul with ACLs",
+    "pathwayTitle": "Generate Consul Tokens with HashiCorp Vault",
     "icon": "fa-consul",
-    "title": "Secure Consul with ACLs",
-    "description": "Enable ACLs for Consul datacenters.",
+    "title": "Generate Consul Tokens with HashiCorp Vault",
+    "description": "Use Vault's Consul secrets engine to generate Consul ACL tokens",
     "details": {
         "steps": [
             {
@@ -13,32 +13,39 @@
                 "verify": "provision.verify.sh"
             },
             {
-                "title": "Setup server agent",
+                "title": "Configure and start Vault",
+                "code": "set-env.sh",
+                "text": "step0.md"
+            },
+            {
+                "title": "Configure and start Consul",
+                "code": "set-env.sh",
                 "text": "step1.md"
             },
             {
-                "title": "Bootstrap ACLs",
+                "title": "Configure Consul secrets engine in Vault",
+                "code": "set-env.sh",
                 "text": "step2.md"
             },
             {
-                "title": "Set the bootstrap token",
+                "title": "Create Consul server policy",
+                "code": "set-env.sh",
                 "text": "step3.md"
             },
             {
-                "title": "Setup server agent",
+                "title": "Create Vault server role",
+                "code": "set-env.sh",
                 "text": "step4.md"
             },
             {
-                "title": "Setup client agent",
+                "title": "Obtain and test Consul token",
+                "code": "set-env.sh",
                 "text": "step5.md"
-            },
-            {
-                "title": "Create non-privileged policy & token",
-                "text": "step6.md"
             }
         ],
     "intro": {
         "text": "intro.md",
+        "code": "courseBase.sh",
         "credits": "https://learn.hashicorp.com/consul"
         },
     "finish": {
@@ -48,9 +55,7 @@
     "assets": {
         "client": [
           { "file": "server.hcl", "target": "./" },
-          { "file": "client_policy.hcl", "target": "./" },
-          { "file": "server_policy.hcl", "target": "./" },
-          { "file": "read_policy.hcl", "target": "./" }
+          { "file": "server_policy.hcl", "target": "./" }
         ]
     }
     },
@@ -61,12 +66,10 @@
         "hideHiddenFiles": true,
         "uimessage1": "\u001b[32mOperator node terminal.\u001b[m\r\n",
         "dashboards": [
-            {"name": "Consul UI", "port": 8500}
+            {"name": "Consul UI", "port": 8500},
+            {"name": "Vault UI", "port": 8200}
         ],
-        "terminals": [
-            {"name": "server", "target": "host01"},
-            {"name": "client", "target": "host01"}
-        ]
+        "terminals": []
     },
     "backend": {
         "port": 8080,

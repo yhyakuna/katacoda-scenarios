@@ -53,6 +53,5 @@
   },
   "backend": {
     "imageid": "docker"
-  },
-  "private": true
+  }
 }

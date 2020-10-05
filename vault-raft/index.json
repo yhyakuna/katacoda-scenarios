@@ -34,10 +34,10 @@
       "credits": "https://learn.hashicorp.com/vault"
     },
     "assets": {
-      "client": [
-        { "file": "config-node1.hcl", "target": "~/" },
-        { "file": "config-node2.hcl", "target": "~/" },
-        { "file": "config-node3.hcl", "target": "~/" }
+      "host01": [
+        { "file": "config-node1.hcl", "target": "/root" },
+        { "file": "config-node2.hcl", "target": "/root" },
+        { "file": "config-node3.hcl", "target": "/root" }
       ]
     },
     "finish": {

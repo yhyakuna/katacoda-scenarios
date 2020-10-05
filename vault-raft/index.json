@@ -1,18 +1,18 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Raft HA Storage",
-  "description": "Learn how to configure ha_storage when non-HA storage backend is used.",
+  "title": "Integrated Storage",
+  "description": "Learn how to configure a Highly Available (HA) cluster backed by integrated storage.",
   "difficulty": "beginner",
   "time": "10 minutes",
   "icon": "fa-vault",
   "details": {
     "steps": [
       {
-        "title": "Setup a single node Vault environment",
+        "title": "Scenario Introduction",
         "text": "step1.md"
       },
       {
-        "title": "Add more nodes",
+        "title": "Setup a Cluster Member",
         "text": "step2.md"
       },
       {
@@ -20,8 +20,12 @@
         "text": "step3.md"
       },
       {
-        "title": "Verification",
+        "title": "Taking a Data Snapshot",
         "text": "step4.md"
+      },
+      {
+        "title": "Manage the Cluster Members",
+        "text": "step5.md"
       }
     ],
     "intro": {

@@ -1,6 +1,4 @@
-This tutorial demonstrate the Vault installation on Ubuntu. For other operating systems, refer to [Install Vault](https://learn.hashicorp.com/vault/getting-started/install).
-
-> Enter the following command into the terminal, or click on the command (`⮐`) to automatically copy it into the terminal and execute to downloads the Vault binary for Linux.
+This tutorial demonstrate the Boundary installation on Ubuntu. For other operating systems, refer to the [Install Boundary](https://learn.hashicorp.com/tutorials/boundary/getting-started-install) tutorial.
 
 
 First, add the HashiCorp GPG key.
@@ -19,7 +17,7 @@ sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(l
 Finally, update and install Vault.
 
 ```
-sudo apt-get update && sudo apt-get install vault
+sudo apt-get update && sudo apt-get install boundary
 ```{{execute}}
 
 **That's it!**
@@ -27,5 +25,5 @@ sudo apt-get update && sudo apt-get install vault
 Execute the following command to verify the vault version.
 
 ```
-vault version
+boundary help
 ```{{execute}}

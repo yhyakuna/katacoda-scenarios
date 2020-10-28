@@ -36,11 +36,6 @@
       "text": "intro.md",
       "credits": "https://learn.hashicorp.com/vault"
     },
-    "assets": {
-      "client": [
-        { "file": "config_node1.hcl", "target": "~/" }
-      ]
-    },
     "finish": {
       "text": "finish.md"
     }
@@ -56,5 +51,6 @@
   },
   "backend": {
     "imageid": "ubuntu"
-  }
+  },
+  "private": true
 }

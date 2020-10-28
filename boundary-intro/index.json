@@ -34,7 +34,7 @@
       "uilayout": "editor-terminal",
       "hideHiddenFiles": true,
       "dashboards": [
-        { "name": "Admin Console", "port": 8200 }
+        { "name": "Admin Console", "port": 9200 }
       ],
       "uimessage1": "\u001b[32mCommand Terminal\u001b[m\r\n"
   },

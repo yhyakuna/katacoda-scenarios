@@ -24,9 +24,11 @@
       "text": "finish.md"
     }
   },
-  "files": [
-    "config.hcl"
-  ],
+  "assets": {
+    "host01": [
+      { "file": "main.tf", "target": "~/" }
+    ]
+  },
   "environment": {
       "showdashboard": true,
       "uilayout": "editor-terminal",

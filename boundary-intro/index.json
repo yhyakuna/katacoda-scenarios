@@ -19,14 +19,14 @@
       "text": "intro.md",
       "credits": "https://learn.hashicorp.com/boundary"
     },
+    "assets": {
+      "host01": [
+        { "file": "main.tf", "target": "~/" }
+      ]
+    },
     "finish": {
       "text": "finish.md"
     }
-  },
-  "assets": {
-    "host01": [
-      { "file": "main.tf", "target": "~/" }
-    ]
   },
   "environment": {
       "showdashboard": true,

@@ -88,7 +88,7 @@ Error opening keyring: Specified keyring backend not available
 Token must be provided via BOUNDARY_TOKEN env var or -token flag. Reading the token can also be disabled via -keyring-type=none.
 ```
 
-Set the `BOUNDARY_TOKEN` environment variable.
+Set the `BOUNDARY_TOKEN` environment variable.  
 
 ```
 export BOUNDARY_TOKEN=$(cat boundary_token.txt)

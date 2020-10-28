@@ -17,6 +17,10 @@
       {
         "title": "Connect to your first target",
         "text": "step3.md"
+      },
+      {
+        "title": "Configure Boundary with Terraform",
+        "text": "step4.md"
       }
     ],
     "intro": {
@@ -35,9 +39,6 @@
   "environment": {
       "showdashboard": true,
       "uilayout": "terminal",
-      "dashboards": [
-        { "name": "Admin Console", "port": 9200 }
-      ],
       "uimessage1": "\u001b[32mCommand Terminal\u001b[m\r\n"
   },
   "backend": {

@@ -81,7 +81,12 @@ boundary authenticate password -auth-method-id=ampw_1234567890 \
       -keyring-type=none -format=json | jq -r ".token" > boundary_token.txt
 ```{{execute T2}}
 
-**Example output:**
+The output suggests that token must be provided via `BOUNDARY_TOKEN` env var or `-token` flag.
+
+```
+Error opening keyring: Specified keyring backend not available
+Token must be provided via BOUNDARY_TOKEN env var or -token flag. Reading the token can also be disabled via -keyring-type=none.
+```
 
 Set the `BOUNDARY_TOKEN` environment variable.
 

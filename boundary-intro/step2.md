@@ -25,14 +25,14 @@ boundary dev
 ```
 ==> Boundary server configuration:
 
-       [Controller] AEAD Key Bytes: WO1h2kTypqzGqPUs+zoDioVAWIoHDtYxRy4m56DEe8A=
-         [Recovery] AEAD Key Bytes: xL3hZ1ePrJW2QUYx8mRgh4lGmRIf6+fOMFjHRfQJi9s=
-      [Worker-Auth] AEAD Key Bytes: GJmSp2MHslM698m8i2a14Mvc/9/5bq7/jZLlN9c/oi0=
+       [Controller] AEAD Key Bytes: MLOunPBTyqFIrfvuftSFKYns+7d1OJIvYh3x3+vajXc=
+         [Recovery] AEAD Key Bytes: rUoYQrfgqBPpcsBm1C175oH3kGtq7q1ICVpFWGfrvGo=
+      [Worker-Auth] AEAD Key Bytes: qBoyf0BqflM9rA/v+wGosGloM6xI+6UlsDaiBjKVCEY=
               [Recovery] AEAD Type: aes-gcm
                   [Root] AEAD Type: aes-gcm
            [Worker-Auth] AEAD Type: aes-gcm
                                Cgo: disabled
-            Dev Database Container: happy_wing
+            Dev Database Container: epic_satoshi
                   Dev Database Url: postgres://postgres:password@localhost:32768?sslmode=disable
           Generated Auth Method Id: ampw_1234567890
   Generated Auth Method Login Name: admin
@@ -47,9 +47,9 @@ boundary dev
                         Listener 2: tcp (addr: "127.0.0.1:9201", max_request_duration: "1m30s", purpose: "cluster")
                         Listener 3: tcp (addr: "127.0.0.1:9202", max_request_duration: "1m30s", purpose: "proxy")
                          Log Level: info
-                             Mlock: supported: false, enabled: false
-                           Version: Boundary v0.1.0
-                       Version Sha: e08ab98a2b128ee202eae46551da23c831b4acfc
+                             Mlock: supported: true, enabled: false
+                           Version: Boundary v0.1.1
+                       Version Sha: eccd68d73c3edf14863ecfd31f9023063b809d5a
                 Worker Public Addr: 127.0.0.1:9202
 
 ==> Boundary server started! Log data will stream in below:
@@ -63,11 +63,15 @@ Notice the following default configurations:
 
 ## Authenticate with Boundary
 
-Display the help message for `boundary authenticate` command.
+Click the **+** next to the opened Terminal, and select **Open New Terminal**.
+
+![New Terminal](./assets/ops-another-terminal.png)
+
+In the **Terminal 2**, view the help message for `boundary authenticate` command.
 
 ```
 boundary authenticate help
-```{{execute}}
+```{{execute T2}}
 
 Authenticate with Boundary.
 
@@ -75,7 +79,7 @@ Authenticate with Boundary.
 boundary authenticate password -auth-method-id=ampw_1234567890 \
       -login-name=admin -password=password \
       -keyring-type=none -format=json | jq -r ".token" > boundary_token.txt
-```{{execute}}
+```{{execute T2}}
 
 **Example output:**
 
@@ -83,4 +87,4 @@ Set the `BOUNDARY_TOKEN` environment variable.
 
 ```
 export BOUNDARY_TOKEN=$(cat boundary_token.txt)
-```{{execute}}
+```{{execute T2}}

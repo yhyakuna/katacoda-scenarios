@@ -17,7 +17,6 @@
     ],
     "intro": {
       "text": "intro.md",
-      "code": "env-init.sh",
       "credits": "https://learn.hashicorp.com/boundary"
     },
     "finish": {
@@ -31,8 +30,7 @@
   },
   "environment": {
       "showdashboard": true,
-      "uilayout": "editor-terminal",
-      "hideHiddenFiles": true,
+      "uilayout": "terminal",
       "dashboards": [
         { "name": "Admin Console", "port": 9200 }
       ],

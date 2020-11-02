@@ -16,7 +16,7 @@ boundary dev -h
 There are a number of optional parameters available, but for now, start a dev server with default configurations.
 
 ```
-boundary dev
+boundary dev -api-listen-address=0.0.0.0:9200
 ```{{execute}}
 
 
@@ -54,7 +54,6 @@ Notice the following default configurations:
 
 <br />
 
-Now that your infrastructure is ready, you can access [Admin Console](https://[[HOST_SUBDOMAIN]]-9200-[[KATACODA_HOST]].environments.katacoda.com) in a separate browser tab.
 
 ## Authenticate with Boundary
 

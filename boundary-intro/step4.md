@@ -1,72 +1,129 @@
-A Terraform configuration file (`main.tf`) is provided in the `terraform` directory.
-
-To perform this task, you need to install Terraform.
+Read the details about the Generated target by its target ID which is `ttcp_1234567890`.
 
 ```
-sudo apt-get install terraform
+boundary targets read -id ttcp_1234567890
 ```{{execute T2}}
 
-Now, change the working directory to `terraform`.
+```
+Target information:
+  Created Time:               Wed, 28 Oct 2020 21:29:37 UTC
+  Description:                Provides an initial target in Boundary
+  ID:                         ttcp_1234567890
+  Name:                       Generated target
+  Session Connection Limit:   1
+  Session Max Seconds:        28800
+  Type:                       tcp
+  Updated Time:               Wed, 28 Oct 2020 21:29:37 UTC
+  Version:                    1
+
+  Scope:
+    ID:                       p_1234567890
+    Name:                     Generated project scope
+    Parent Scope ID:          o_1234567890
+    Type:                     project
+
+  Host Sets:
+    Host Catalog ID:          hcst_1234567890
+    ID:                       hsst_1234567890
+
+  Attributes:
+    Default Port:             22
+```
+
+Use the `boundary connect` command to SSH into the `localhost`.
 
 ```
-cd terraform
+boundary connect ssh -target-id ttcp_1234567890
 ```{{execute T2}}
 
-Inspect the `main.tf` file contents.
+Return to the first **Terminal** to view the Boundary server log.
 
 ```
-cat main.tf
+[INFO]  controller.worker-handler: session activated: session_id=s_XJmV49qjVM target_id=ttcp_1234567890 user_id=u_1234567890 host_set_id=hsst_1234567890 host_id=hst_1234567890
+[INFO]  controller.worker-handler: authorized connection: session_id=s_XJmV49qjVM connection_id=sc_6zV0R2LIxq connections_left=0
+[INFO]  controller.worker-handler: connection established: session_id=s_XJmV49qjVM connection_id=sc_6zV0R2LIxq client_tcp_address=127.0.0.1 client_tcp_port=44380 endpoint_tcp_address=::1 endpoint_tcp_port=22
+```
+
+<br />
+
+Open a **new terminal**, and list current sessions.
+
+```
+boundary sessions list -scope-id=p_1234567890 \
+    -token $(cat boundary_token.txt)
+```{{execute T3}}
+
+**Example output:**
+
+```
+Session information:
+  ID:                 s_XJmV49qjVM
+    Status:           active
+    Created Time:     Wed, 28 Oct 2020 21:31:15 UTC
+    Expiration Time:  Thu, 29 Oct 2020 05:31:15 UTC
+    Updated Time:     Wed, 28 Oct 2020 21:31:15 UTC
+    User ID:          u_1234567890
+    Target ID:        ttcp_1234567890
+```
+
+The `ID` should match to what you saw in the Boundary server log (e.g. `session activated: session_id=s_XJmV49qjVM`). 
+
+Return to **Terminal 2** and exit out of the SSH session.
+
+```
+exit
 ```{{execute T2}}
 
-The provided Terraform will generate Boundary resources.
+A message, "Connection to 127.0.0.1 closed" displays.
 
-| Type          | Name      | Notes                                            |
-|---------------|-----------|--------------------------------------------------|
-| Organization  | Corp One  |  A new organization                              |
-| Users         | (_multiple_) | Creates 9 users (Jim, Jeff, Randy, etc.)      |
-| Group         | read-only | A new group with 3 users                         |
-| Roles         | (_multiple_) | 2 new roles (**Read-only** and **admin**)     |
-| Auth Method   | Corp Password | A new password auth method           |
-| Project       | Core infrastrcture |  A new project within the **Corp One** organization |
-| Host catalog  | backend_servers | A new host catalog with one host set       |
-| Host set      | backend_servers_ssh | A new host set with 2 hosts            |
-| Targets       | (_multiple_) | 2 new targets (**Backend servers** and **Backend service**) |
-
-
-First, initialize Terraform.
+Verify that the session is terminated.
 
 ```
-terraform init
+boundary sessions list -scope-id=p_1234567890
 ```{{execute T2}}
 
-The `init` command downloads the latest available Terraform Provider for Boundary. Alternatively, you can clone the [Terraform Boundary Provider GitHub repository](https://github.com/hashicorp/terraform-provider-boundary) and build it from the source code. Refer to its README for more detail.
-
-Run `terraform apply` and review the planned actions.
+The output should show the session status to be `terminated`.
 
 ```
-terraform apply -auto-approve
+Session information:
+  ID:                 s_XJmV49qjVM
+    Status:           terminated
+    Created Time:     Wed, 28 Oct 2020 21:31:15 UTC
+    Expiration Time:  Thu, 29 Oct 2020 05:31:15 UTC
+    Updated Time:     Wed, 28 Oct 2020 21:36:51 UTC
+    User ID:          u_1234567890
+    Target ID:        ttcp_1234567890
+```
+
+<br />
+
+## Exec command
+
+The `boundary connect` can execute clients even when there is no built-in wrapper subcommand for it using `-exec`. The `-exec` flag is a very powerful tool, allowing you to wrap Boundary TCP sessions in your preferred client. You can use this flag to create an authenticated proxy to almost anything.
+
+
+Let's update the default TCP target (`ttcp_1234567890`) port from `22` to `443` using the `boundary targets update` command.
+
+```
+boundary targets update tcp -default-port 443 -id ttcp_1234567890
 ```{{execute T2}}
 
-When it completes, it displays `Apply complete! Resources: 28 added, 0 changed, 0 destroyed`.
-
-
-You can verify the configurations.
+Execute the cURL command using the `-exec` flag.
 
 ```
-boudary scopes list
+boundary connect -exec curl -target-id ttcp_1234567890 \
+     -- -vvsL --output /dev/null hashicorp.com
 ```{{execute T2}}
 
-You should see a new scope, `Corp One` listed.
-
 ```
-Scope information:
-  ID:             o_1234567890
-    Version:      1
-    Name:         Generated org scope
-    Description:  Provides an initial org scope in Boundary
+* Rebuilt URL to: hashicorp.com/
+*   Trying 76.76.21.21...
+* TCP_NODELAY set
+* Connected to hashicorp.com (76.76.21.21) port 80 (#0)
+> GET / HTTP/1.1
+> Host: hashicorp.com
+> User-Agent: curl/7.58.0
+> Accept: */*
 
-  ID:             o_WHYhRSly10
-    Version:      1
-    Name:         Corp One
-    Description:  My first scope!
+...snip...
 ```

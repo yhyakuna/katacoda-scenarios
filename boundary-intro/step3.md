@@ -44,10 +44,13 @@ Return to the first **Terminal** to view the Boundary server log.
 [INFO]  controller.worker-handler: connection established: session_id=s_XJmV49qjVM connection_id=sc_6zV0R2LIxq client_tcp_address=127.0.0.1 client_tcp_port=44380 endpoint_tcp_address=::1 endpoint_tcp_port=22
 ```
 
-Open a new terminal, and list current sessions.
+<br />
+
+Open a **new terminal**, and list current sessions.
 
 ```
-boundary sessions list -scope-id=p_1234567890 -token $(cat boundary_token.txt)
+boundary sessions list -scope-id=p_1234567890 \
+    -token $(cat boundary_token.txt)
 ```{{execute T3}}
 
 **Example output:**
@@ -62,6 +65,8 @@ Session information:
     User ID:          u_1234567890
     Target ID:        ttcp_1234567890
 ```
+
+The `ID` should match to what you saw in the Boundary server log (e.g. `session activated: session_id=s_XJmV49qjVM`). 
 
 Return to **Terminal 2** and exit out of the SSH session.
 
@@ -90,6 +95,7 @@ Session information:
     Target ID:        ttcp_1234567890
 ```
 
+<br />
 
 ## Exec command
 
@@ -108,3 +114,16 @@ Execute the cURL command using the `-exec` flag.
 boundary connect -exec curl -target-id ttcp_1234567890 \
      -- -vvsL --output /dev/null hashicorp.com
 ```{{execute T2}}
+
+```
+* Rebuilt URL to: hashicorp.com/
+*   Trying 76.76.21.21...
+* TCP_NODELAY set
+* Connected to hashicorp.com (76.76.21.21) port 80 (#0)
+> GET / HTTP/1.1
+> Host: hashicorp.com
+> User-Agent: curl/7.58.0
+> Accept: */*
+
+...snip...
+```

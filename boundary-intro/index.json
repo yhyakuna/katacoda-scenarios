@@ -1,6 +1,6 @@
 {
   "pathwayTitle": "Learn HashiCorp Boundary",
-  "title": "Getting Started with Boundary",
+  "title": "Test Boundary",
   "description": "Learn how to install, configure, and manage the Boundary server.",
   "difficulty": "beginner",
   "time": "10 minutes",
@@ -42,6 +42,10 @@
       "uimessage1": "\u001b[32mCommand Terminal\u001b[m\r\n"
   },
   "backend": {
-    "imageid": "ubuntu:1804"
-  }
+    "imageid": "ubuntu:1804",
+    "showdashboard": true,
+    "dashboards": [
+      { "name": "Admin Console", "port": 9200 }
+    ]
+  },
 }

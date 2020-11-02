@@ -1,3 +1,34 @@
+Click the **+** next to the opened Terminal, and select **Open New Terminal**.
+
+![New Terminal](./assets/ops-another-terminal.png)
+
+In the **Terminal 2**, view the help message for `boundary authenticate` command.
+
+```
+boundary authenticate help
+```{{execute T2}}
+
+Authenticate with Boundary.
+
+```
+boundary authenticate password -auth-method-id=ampw_1234567890 \
+      -login-name=admin -password=password \
+      -keyring-type=none -format=json | jq -r ".token" > boundary_token.txt
+```{{execute T2}}
+
+The output suggests that token must be provided via `BOUNDARY_TOKEN` env var or `-token` flag.
+
+```
+Error opening keyring: Specified keyring backend not available
+Token must be provided via BOUNDARY_TOKEN env var or -token flag. Reading the token can also be disabled via -keyring-type=none.
+```
+
+Set the `BOUNDARY_TOKEN` environment variable.  
+
+```
+export BOUNDARY_TOKEN=$(cat boundary_token.txt)
+```{{execute T2}}
+
 Read the details about the Generated target by its target ID which is `ttcp_1234567890`.
 
 ```
@@ -66,7 +97,7 @@ Session information:
     Target ID:        ttcp_1234567890
 ```
 
-The `ID` should match to what you saw in the Boundary server log (e.g. `session activated: session_id=s_XJmV49qjVM`). 
+The `ID` should match to what you saw in the Boundary server log (e.g. `session activated: session_id=s_XJmV49qjVM`).
 
 Return to **Terminal 2** and exit out of the SSH session.
 

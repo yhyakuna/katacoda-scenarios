@@ -54,6 +54,8 @@ Notice the following default configurations:
 
 <br />
 
+Now that your infrastructure is ready, you can access [Admin Console](https://[[HOST_SUBDOMAIN]]-9200-[[KATACODA_HOST]].environments.katacoda.com) in a separate browser tab.
+
 ## Authenticate with Boundary
 
 Click the **+** next to the opened Terminal, and select **Open New Terminal**.

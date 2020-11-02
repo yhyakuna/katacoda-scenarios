@@ -41,16 +41,13 @@
     }
   },
   "environment": {
-      "showdashboard": false,
-      "dashboards": [
-        {
-          "name": "Admin Console",
-          "port": "9200"
-        }
-      ],
-      "uilayout": "terminal-iframe",
-      "uimessage1": "\u001b[32mCommand Terminal\u001b[m\r\n"
-  },
+    "uilayout": "terminal-iframe",
+    "showdashboard": true,
+    "dashboards": [
+      { "name": "Admin Console", "port": 9200 }
+    ],
+    "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
+  },  
   "backend": {
     "imageid": "ubuntu:1804"
   }

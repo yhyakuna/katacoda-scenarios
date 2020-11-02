@@ -54,4 +54,4 @@ field to sign in.
 
 The relationships between hosts, host sets, and targets are as shown in the following diagram:
 
-![Resources](/assets/boundary-resources.png)
+![Resources](./assets/boundary-resources.png)

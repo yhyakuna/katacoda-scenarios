@@ -1,15 +1,11 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Vault Token Lifecycle",
-  "description": "Learn the lifecycle of Vault client tokens.",
+  "title": "Vault Token",
+  "description": "Learn to manage Vault tokens",
   "difficulty": "beginner",
-  "time": "10 minutes",
+  "time": "5 minutes",
   "icon": "fa-vault",
   "details": {
-    "intro": {
-      "text": "intro.md",
-      "credits": "https://learn.hashicorp.com/vault"
-    },
     "steps": [
       {
         "title": "Tokens with Use Limit",
@@ -42,6 +38,10 @@
         "text": "step7.md"
       }
     ],
+    "intro": {
+      "text": "intro.md",
+      "credits": "https://learn.hashicorp.com/vault"
+    },
     "finish": {
       "text": "finish.md",
       "credits": "https://learn.hashicorp.com/vault"
@@ -50,6 +50,7 @@
   "environment": {
     "showdashboard": true,
     "uilayout": "terminal",
+    "hideHiddenFiles": true,
     "uimessage1": "\u001b[32mYour Interactive Bash Terminal. A safe place to learn and execute commands.\u001b[m\r\n"
   },
   "backend": {

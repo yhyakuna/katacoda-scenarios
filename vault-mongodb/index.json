@@ -9,7 +9,7 @@
     "steps": [
       {
         "title": "Installing Vault",
-        "code": "start-vault.sh"
+        "code": "start-vault.sh",
         "text": "step1.md"
       },
       {

@@ -1,7 +1,7 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
   "title": "Database Secrets Engine with MongoDB",
-  "description": "Learn how to install, configure, and manage the Vault server.",
+  "description": "Learn how to enable and configure database secrets engine with MongoDB.",
   "difficulty": "beginner",
   "time": "10 minutes",
   "icon": "fa-vault",
@@ -9,6 +9,7 @@
     "steps": [
       {
         "title": "Installing Vault",
+        "code": "start-vault.sh"
         "text": "step1.md"
       },
       {

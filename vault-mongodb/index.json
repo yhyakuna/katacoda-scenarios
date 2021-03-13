@@ -1,6 +1,6 @@
 {
   "pathwayTitle": "Learn HashiCorp Vault",
-  "title": "Vault Operations",
+  "title": "Database Secrets Engine with MongoDB",
   "description": "Learn how to install, configure, and manage the Vault server.",
   "difficulty": "beginner",
   "time": "10 minutes",

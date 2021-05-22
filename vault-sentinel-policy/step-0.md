@@ -1,3 +1,14 @@
+```
+wget https://releases.hashicorp.com/sentinel/0.18.2/sentinel_0.18.2_linux_amd64.zip
+unzip -d /usr/local/bin sentinel_0.18.2_linux_amd64.zip
+```{{execute}}
+
+```
+wget https://releases.hashicorp.com/vault/1.7.2+ent/vault_1.7.2+ent_linux_amd64.zip
+unzip -d /usr/local/bin vault_1.7.2+ent_linux_amd64.zip
+```{{execute}}
+
+
 Confirm that the Sentinel simulator is available.
 
 ```shell
